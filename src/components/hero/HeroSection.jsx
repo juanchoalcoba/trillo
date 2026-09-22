@@ -54,26 +54,26 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto z-10"
+      className="relative min-h-screen lg:h-screen flex flex-col justify-between pt-20 md:pt-24 pb-4 md:pb-6 px-4 md:px-8 max-w-7xl mx-auto z-10"
     >
       {/* Top Meta Header */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.2 }}
-        className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6 text-xs text-[#8d9299]"
+        transition={{ duration: 0.8, delay: 0.15 }}
+        className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 md:pb-4 text-xs text-[#8d9299]"
       >
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#e87a38] animate-ping" />
-          <span className="font-mono text-[#f5f4f0] uppercase tracking-wider">
+          <span className="font-mono text-[#f5f4f0] uppercase tracking-wider text-[11px]">
             Universo en movimiento
           </span>
           <span className="text-white/20">|</span>
-          <span className="hidden sm:inline">Interior de Uruguay</span>
+          <span className="hidden sm:inline text-[11px]">Interior de Uruguay</span>
         </div>
 
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-1.5 font-mono">
+        <div className="flex items-center gap-5">
+          <div className="flex items-center gap-1.5 font-mono text-[11px]">
             <MapPin className="w-3.5 h-3.5 text-[#e87a38]" />
             <span>Durazno · Río Yí</span>
           </div>
@@ -81,17 +81,17 @@ export default function HeroSection() {
           {/* Botón de Sonido Ambiental Procedural */}
           <button
             onClick={toggleAmbientSound}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#e87a38]/50 text-[#f5f4f0] text-[11px] transition-all duration-300 hover:bg-white/5"
+            className="flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 hover:border-[#e87a38]/50 text-[#f5f4f0] text-[11px] transition-all duration-300 hover:bg-white/5"
             title="Activar atmósfera de brisa de campo"
           >
             {ambientAudio ? (
               <>
-                <Volume2 className="w-3.5 h-3.5 text-[#e87a38] animate-pulse" />
+                <Volume2 className="w-3 h-3 text-[#e87a38] animate-pulse" />
                 <span className="text-[#e87a38] font-mono">Atmósfera activa</span>
               </>
             ) : (
               <>
-                <VolumeX className="w-3.5 h-3.5 text-[#8d9299]" />
+                <VolumeX className="w-3 h-3 text-[#8d9299]" />
                 <span className="font-mono text-[#8d9299]">Activar sonido</span>
               </>
             )}
@@ -100,15 +100,15 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Hero Central Content */}
-      <div className="my-auto py-12 lg:py-16 text-center md:text-left">
+      <div className="my-auto py-2 md:py-4 text-center md:text-left flex flex-col justify-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-8"
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-3 md:mb-4 w-fit mx-auto md:mx-0"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#e87a38]" />
-          <span className="tracking-widest uppercase text-[11px] font-mono">
+          <Sparkles className="w-3 h-3 text-[#e87a38]" />
+          <span className="tracking-widest uppercase text-[10px] font-mono">
             Una filosofía de vida
           </span>
         </motion.div>
@@ -118,53 +118,65 @@ export default function HeroSection() {
           <motion.h1
             initial={{ y: '100%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="text-[17vw] md:text-[14vw] lg:text-[11.5rem] font-black tracking-[-0.04em] uppercase font-['Outfit'] leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-[#f5f4f0] via-[#eceae5] to-[#8d9299] select-none"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
+            className="text-[14vw] md:text-[11vw] lg:text-[8rem] xl:text-[9.2rem] font-black tracking-[-0.04em] uppercase font-['Outfit'] leading-[0.82] text-transparent bg-clip-text bg-gradient-to-b from-[#f5f4f0] via-[#eceae5] to-[#8d9299] select-none"
           >
             TRILLO
           </motion.h1>
         </div>
 
-        {/* Manifiesto Central "ANIMATE A VIVIR" */}
-        <div className="mt-6 md:mt-8 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        {/* Fila Manifiesto + Tres Items Alineados */}
+        <div className="mt-4 md:mt-6 flex flex-col lg:flex-row lg:items-end justify-between gap-5 lg:gap-8">
+          {/* Párrafo y Manifiesto */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="max-w-2xl"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-xl text-left"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight">
               Animate a vivir<span className="text-[#e87a38]">.</span>
             </h2>
-            <p className="mt-4 text-base md:text-lg text-[#8d9299] font-normal leading-relaxed max-w-xl">
+            <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-[#8d9299] font-normal leading-relaxed">
               Nacidos en el interior de Uruguay para reivindicar una manera más simple,
               auténtica y activa de vivir: salir, moverse, conocer, compartir, desafiarse y
               reconectar con la tierra.
             </p>
           </motion.div>
 
-          {/* Quick Tríada Badges */}
+          {/* Tres Items Alineados en Hilera Horizontal Prolija */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.7 }}
-            className="flex flex-wrap md:flex-col gap-3 justify-center md:items-end"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-wrap sm:flex-row items-center gap-2.5 lg:justify-end"
           >
-            <div className="flex items-center gap-3 px-4 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0]">
-              <span className="w-2 h-2 rounded-full bg-[#e87a38]" />
+            <a
+              href="#eventos"
+              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#e87a38]/50 hover:bg-white/[0.04] transition-all duration-300 group"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform" />
               <span className="font-semibold tracking-wide">Trillo Eventos</span>
-              <span className="text-[#8d9299] text-[11px]">· Carreras</span>
-            </div>
-            <div className="flex items-center gap-3 px-4 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0]">
-              <span className="w-2 h-2 rounded-full bg-[#2e4033]" />
+              <span className="text-[#8d9299] text-[11px] font-mono">· Carreras</span>
+            </a>
+
+            <a
+              href="#aventuras"
+              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#4ade80]/50 hover:bg-white/[0.04] transition-all duration-300 group"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#4ade80] group-hover:scale-125 transition-transform" />
               <span className="font-semibold tracking-wide">Trillo Aventuras</span>
-              <span className="text-[#8d9299] text-[11px]">· Territorio</span>
-            </div>
-            <div className="flex items-center gap-3 px-4 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0]">
-              <span className="w-2 h-2 rounded-full bg-[#d8cfc4]" />
+              <span className="text-[#8d9299] text-[11px] font-mono">· Territorio</span>
+            </a>
+
+            <a
+              href="#club"
+              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#d8cfc4]/50 hover:bg-white/[0.04] transition-all duration-300 group"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#d8cfc4] group-hover:scale-125 transition-transform" />
               <span className="font-semibold tracking-wide">El Club</span>
-              <span className="text-[#8d9299] text-[11px]">· Comunidad</span>
-            </div>
+              <span className="text-[#8d9299] text-[11px] font-mono">· Comunidad</span>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -173,24 +185,24 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.9 }}
-        className="flex items-center justify-between pt-8 border-t border-white/10"
+        transition={{ duration: 0.9, delay: 0.75 }}
+        className="flex items-center justify-between pt-3 md:pt-4 border-t border-white/10"
       >
-        <div className="text-xs text-[#8d9299] font-mono hidden sm:block">
+        <div className="text-[11px] text-[#8d9299] font-mono hidden sm:block">
           EXPERIENCIAS · COMUNIDAD · NATURALEZA
         </div>
 
         <a
           href="#about"
-          className="group mx-auto sm:mx-0 flex items-center gap-3 text-xs tracking-widest uppercase font-mono text-[#d8cfc4] hover:text-[#e87a38] transition-colors duration-300"
+          className="group mx-auto sm:mx-0 flex items-center gap-2.5 text-[11px] tracking-widest uppercase font-mono text-[#d8cfc4] hover:text-[#e87a38] transition-colors duration-300"
         >
           <span>Descubrir el Universo</span>
-          <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#e87a38] group-hover:translate-y-1 transition-all duration-300">
-            <ArrowDown className="w-3.5 h-3.5 text-[#e87a38]" />
+          <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#e87a38] group-hover:translate-y-0.5 transition-all duration-300">
+            <ArrowDown className="w-3 h-3 text-[#e87a38]" />
           </div>
         </a>
 
-        <div className="text-xs text-[#8d9299] font-mono hidden md:block">
+        <div className="text-[11px] text-[#8d9299] font-mono hidden md:block">
           EDICIÓN 2026/2027
         </div>
       </motion.div>
