@@ -1,4 +1,5 @@
 import React from 'react';
+import SmoothScroll from './components/common/SmoothScroll';
 import TrilloCanvas from './components/3d/TrilloCanvas';
 import Navbar from './components/common/Navbar';
 import HeroSection from './components/hero/HeroSection';
@@ -7,22 +8,27 @@ import { ArrowUp } from 'lucide-react';
 
 export default function App() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#08090a] text-[#f5f4f0] selection:bg-[#e87a38] selection:text-black">
-      {/* 3D WebGL Atmosphere Canvas */}
-      <TrilloCanvas />
+    <SmoothScroll>
+      <div className="relative min-h-screen bg-[#08090a] text-[#f5f4f0] selection:bg-[#e87a38] selection:text-black">
+        {/* 3D WebGL Atmosphere Canvas */}
+        <TrilloCanvas />
 
-      {/* Navigation Header */}
-      <Navbar />
+        {/* Navigation Header */}
+        <Navbar />
 
-      {/* Main Content Flow */}
-      <main className="relative z-10">
-        <HeroSection />
-        <AboutSection />
-      </main>
+        {/* Main Content Flow */}
+        <main className="relative z-10">
+          <HeroSection />
+          <AboutSection />
+        </main>
 
       {/* Footer Minimalista */}
       <footer className="relative z-10 border-t border-white/10 bg-[#08090a]/80 backdrop-blur-md py-12 px-4 md:px-8">
@@ -52,5 +58,6 @@ export default function App() {
         </div>
       </footer>
     </div>
+    </SmoothScroll>
   );
 }

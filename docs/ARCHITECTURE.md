@@ -5,7 +5,8 @@ La web de Universo Trillo está concebida como una aplicación web de alto impac
 
 1. **Capa 3D / WebGL (`src/components/3d/`)**: Renderizado en canvas con Three.js aislado del DOM para no penalizar el render de React. Uso de RequestAnimationFrame optimizado y baja huella de memoria.
 2. **Capa de Componentes de Experiencia (`src/components/`)**:
-   - `hero/`: HeroSection con animaciones Framer Motion y tipografía monumental.
+   - `common/SmoothScroll.jsx`: Configuración global de Lenis (Studio Freight / Darkroom Engineering) para scroll inercial suave sin colisión con el navegador.
+   - `hero/`: HeroSection con animaciones Framer Motion, tipografía monumental y proporciones ajustadas al primer pantallazo.
    - `about/`: AboutSection / Manifiesto interactivo con reveal cinemático y tarjetas de los tres pilares.
    - `common/`: Navbar flotante, cursor magnético opcional, footer y badges.
 3. **Capa de Estilos**:
