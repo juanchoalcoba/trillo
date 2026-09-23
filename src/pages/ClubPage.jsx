@@ -8,7 +8,7 @@ import ClubJoinSection from '../components/club/ClubJoinSection';
 
 export default function ClubPage() {
   return (
-    <div className="relative min-h-screen bg-[#faf5ee] text-stone-900 selection:bg-amber-500 selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen bg-transparent text-stone-900 selection:bg-amber-500 selection:text-white overflow-x-hidden">
       {/* 3D WebGL Canvas: Río Yí & Sol animado reactivo al scroll */}
       <ClubRiverCanvas />
 

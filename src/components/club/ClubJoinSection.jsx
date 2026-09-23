@@ -45,18 +45,24 @@ export default function ClubJoinSection() {
 
   return (
     <section id="unirme" className="relative py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto z-10">
-      {/* Header */}
-      <div className="max-w-2xl mx-auto text-center mb-16">
-        <span className="text-xs font-mono uppercase tracking-widest text-amber-800 font-bold bg-white/80 px-3 py-1 rounded-full border border-amber-900/10">
+      {/* Header con Cápsula Protectora Translúcida de Alto Contraste */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="max-w-2xl mx-auto text-center mb-16 p-8 sm:p-10 rounded-3xl bg-black/45 backdrop-blur-xl border border-white/15 shadow-2xl"
+      >
+        <span className="text-xs font-mono uppercase tracking-widest text-amber-300 font-bold bg-amber-500/20 px-3.5 py-1.5 rounded-full border border-amber-500/40">
           Comenzar Hoy
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Outfit'] font-black text-stone-900 mt-3">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Outfit'] font-black text-[#FAF5EE] mt-4 tracking-tight">
           Sumate a El Club
         </h2>
-        <p className="mt-3 text-base text-stone-700">
+        <p className="mt-3 text-sm sm:text-base text-[#E2D9CE] font-normal leading-relaxed">
           No importa si estás dando tus primeros pasos o si buscás bajar tus marcas. Encontrá tu lugar en el pelotón.
         </p>
-      </div>
+      </motion.div>
 
       {/* Planes Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-24">
@@ -122,29 +128,29 @@ export default function ClubJoinSection() {
       </div>
 
       {/* Footer del Club con Volver a Universo Trillo */}
-      <div className="pt-12 border-t border-amber-900/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-amber-950/70">
+      <div className="pt-12 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#E2D9CE]">
         <Link
           to="/"
-          className="flex items-center gap-2 font-semibold text-amber-800 hover:text-amber-600 transition-colors group"
+          className="flex items-center gap-2 font-semibold text-amber-300 hover:text-amber-200 transition-colors group"
         >
-          <div className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center transition-transform group-hover:-translate-x-1">
-            <ArrowLeft className="w-3.5 h-3.5" />
+          <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-transform group-hover:-translate-x-1">
+            <ArrowLeft className="w-3.5 h-3.5 text-amber-300" />
           </div>
           <span>← Volver a Universo Trillo</span>
         </Link>
 
-        <div className="flex items-center gap-4 font-mono text-[11px] text-center">
+        <div className="flex items-center gap-4 font-mono text-[11px] text-center text-[#E2D9CE]">
           <span>Durazno · Río Yí</span>
-          <span className="text-amber-900/20">|</span>
-          <span className="text-amber-700 font-semibold">El deporte como estilo de vida</span>
+          <span className="text-white/20">|</span>
+          <span className="text-amber-300 font-semibold">El deporte como estilo de vida</span>
         </div>
 
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-2 hover:text-stone-900 transition-colors p-2 rounded-full border border-amber-900/15 bg-white/70"
+          className="flex items-center gap-2 text-[#FAF5EE] hover:text-amber-300 transition-colors p-2 rounded-full border border-white/20 bg-white/10 hover:border-amber-400"
           title="Volver arriba"
         >
-          <ArrowUp className="w-3.5 h-3.5 text-amber-700" />
+          <ArrowUp className="w-3.5 h-3.5 text-amber-300" />
           <span className="font-mono uppercase text-[10px]">Arriba</span>
         </button>
       </div>
