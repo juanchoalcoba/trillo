@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Volume2, VolumeX, Sparkles, MapPin, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
   const [ambientAudio, setAmbientAudio] = useState(false);
@@ -169,14 +170,14 @@ export default function HeroSection() {
               <span className="text-[#8d9299] text-[11px] font-mono">· Territorio</span>
             </a>
 
-            <a
-              href="#club"
-              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#d8cfc4]/50 hover:bg-white/[0.04] transition-all duration-300 group"
+            <Link
+              to="/club"
+              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-sm"
             >
-              <span className="w-2 h-2 rounded-full bg-[#d8cfc4] group-hover:scale-125 transition-transform" />
+              <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform" />
               <span className="font-semibold tracking-wide">El Club</span>
-              <span className="text-[#8d9299] text-[11px] font-mono">· Comunidad</span>
-            </a>
+              <span className="text-amber-300 text-[11px] font-mono">· Entrar</span>
+            </Link>
           </motion.div>
         </div>
       </div>

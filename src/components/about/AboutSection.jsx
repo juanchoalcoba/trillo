@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Compass, Users, ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function AboutSection() {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,6 +20,7 @@ export default function AboutSection() {
       bgGradient: 'from-[#e87a38]/15 via-transparent to-transparent',
       borderColor: 'border-[#e87a38]/30',
       actionText: 'Explorar Eventos',
+      link: '#eventos',
     },
     {
       id: 'aventuras',
@@ -33,6 +35,7 @@ export default function AboutSection() {
       bgGradient: 'from-[#2e4033]/30 via-transparent to-transparent',
       borderColor: 'border-[#4ade80]/30',
       actionText: 'Descubrir Aventuras',
+      link: '#aventuras',
     },
     {
       id: 'club',
@@ -46,7 +49,8 @@ export default function AboutSection() {
       accent: '#d8cfc4',
       bgGradient: 'from-[#d8cfc4]/15 via-transparent to-transparent',
       borderColor: 'border-[#d8cfc4]/30',
-      actionText: 'Conocer El Club',
+      actionText: 'Entrar a El Club (Ruta Nueva)',
+      link: '/club',
     },
   ];
 
@@ -210,12 +214,27 @@ export default function AboutSection() {
                 </div>
 
                 {/* Card Action Link */}
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold tracking-wider uppercase text-[#f5f4f0] group-hover:text-[#e87a38] transition-colors">
-                  <span>{pillar.actionText}</span>
-                  <div className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center group-hover:border-[#e87a38] group-hover:translate-x-1 transition-all">
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
+                {pillar.link.startsWith('/') ? (
+                  <Link
+                    to={pillar.link}
+                    className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold tracking-wider uppercase text-[#f5f4f0] group-hover:text-amber-400 transition-colors"
+                  >
+                    <span>{pillar.actionText}</span>
+                    <div className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center group-hover:border-amber-400 group-hover:translate-x-1 transition-all">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </Link>
+                ) : (
+                  <a
+                    href={pillar.link}
+                    className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold tracking-wider uppercase text-[#f5f4f0] group-hover:text-[#e87a38] transition-colors"
+                  >
+                    <span>{pillar.actionText}</span>
+                    <div className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center group-hover:border-[#e87a38] group-hover:translate-x-1 transition-all">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </a>
+                )}
               </motion.div>
             );
           })}

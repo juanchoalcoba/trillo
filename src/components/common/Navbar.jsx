@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Compass, ArrowUpRight, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -67,12 +68,15 @@ export default function Navbar() {
           >
             Aventuras
           </a>
-          <a
-            href="#club"
-            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
+          <Link
+            to="/club"
+            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
           >
             El Club
-          </a>
+            <span className="text-[10px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded-full border border-amber-500/30">
+              Durazno
+            </span>
+          </Link>
         </nav>
 
         {/* Right CTA & Coordinates */}
@@ -138,13 +142,16 @@ export default function Navbar() {
             >
               Trillo Aventuras
             </a>
-            <a
-              href="#club"
+            <Link
+              to="/club"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium flex items-center justify-between"
             >
-              El Club
-            </a>
+              <span>El Club de Corredores</span>
+              <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-mono">
+                Ruta Nueva
+              </span>
+            </Link>
             <div className="pt-2 border-t border-white/10 flex items-center justify-between">
               <span className="text-xs text-[#8d9299] font-mono">Durazno, Uruguay</span>
               <a
