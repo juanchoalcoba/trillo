@@ -14,10 +14,10 @@ export default function ClubRiverCanvas() {
     const scene = new THREE.Scene();
 
     // Colores clave para la transición del atardecer:
-    // 1. Día / Tarde clara: #fcf6ee (Luminoso, cálido)
+    // 1. Día / Tarde despejada: #bce3f7 (Celeste clarito limpio y luminoso)
     // 2. Atardecer medio: #9a4820 (Ámbar fuego profundo)
     // 3. Crepúsculo / Anochecer cálido: #140b08 (Oscuro, envolvente)
-    const colorDay = new THREE.Color(0xfcf6ee);
+    const colorDay = new THREE.Color(0xbce3f7);
     const colorMid = new THREE.Color(0x9a4820);
     const colorDusk = new THREE.Color(0x140b08);
 
@@ -203,7 +203,7 @@ export default function ClubRiverCanvas() {
 
     // Superficie suave de colinas
     const groundMat = new THREE.MeshBasicMaterial({
-      color: 0xf5ebe1,
+      color: 0xe8f4fa,
       transparent: true,
       opacity: 0.65,
     });
@@ -212,28 +212,78 @@ export default function ClubRiverCanvas() {
     scene.add(groundMesh);
 
     // ==========================================
-    // 5. PARTÍCULAS DORADAS DE ATARDECER
+    // 5. ESTRELLAS RADIANTES EN EL CIELO CELESTE (FORMA EN CRUZ ESTILO TRILLO)
     // ==========================================
-    const particleCount = 100;
-    const particleGeo = new THREE.BufferGeometry();
-    const particlePositions = new Float32Array(particleCount * 3);
+    // Ubicadas exclusivamente en la cúpula del cielo por encima del horizonte
+    const starCount = 70;
+    const starGeo = new THREE.BufferGeometry();
+    const starPositions = new Float32Array(starCount * 3);
+    const starScales = new Float32Array(starCount);
+    const starPhases = new Float32Array(starCount);
 
-    for (let i = 0; i < particleCount; i++) {
-      particlePositions[i * 3] = (Math.random() - 0.5) * 180;
-      particlePositions[i * 3 + 1] = Math.random() * 45 - 4;
-      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 160;
+    for (let i = 0; i < starCount; i++) {
+      starPositions[i * 3] = (Math.random() - 0.5) * 220;
+      // Estrictamente en el cielo (Y entre 14 y 55, muy por encima de colinas y río)
+      starPositions[i * 3 + 1] = Math.random() * 38 + 14;
+      starPositions[i * 3 + 2] = -Math.random() * 110 - 15;
+      starScales[i] = Math.random() * 20.0 + 12.0;
+      starPhases[i] = Math.random() * Math.PI * 2;
     }
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
-    const particleMat = new THREE.PointsMaterial({
-      color: 0xf59e0b,
-      size: 1.5,
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    starGeo.setAttribute('aScale', new THREE.BufferAttribute(starScales, 1));
+    starGeo.setAttribute('aPhase', new THREE.BufferAttribute(starPhases, 1));
+
+    const starMat = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+      },
+      vertexShader: `
+        attribute float aScale;
+        attribute float aPhase;
+        varying float vPhase;
+
+        void main() {
+          vPhase = aPhase;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = aScale * (120.0 / -mvPosition.z);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        varying float vPhase;
+        uniform float uTime;
+
+        void main() {
+          vec2 p = gl_PointCoord - vec2(0.5);
+          float dist = length(p);
+
+          // Forma de estrella en cruz de 4 puntas fina y elegante (estilo Trillo)
+          float crossDist = min(abs(p.x) * 0.16 + abs(p.y), abs(p.y) * 0.16 + abs(p.x));
+          float starRays = 0.026 / (crossDist + 0.032);
+          float core = 0.038 / (dist + 0.025);
+
+          float starShape = max(starRays * 0.6, core);
+
+          // Titileo suave pausado y orgánico
+          float twinkle = 0.55 + 0.45 * sin(uTime * 1.8 + vPhase);
+
+          // Destello luminoso blanco cálido que brilla con fuerza sobre el cielo celeste
+          vec3 starColor = vec3(1.0, 0.98, 0.92);
+
+          float circleMask = smoothstep(0.5, 0.12, dist);
+          float finalAlpha = starShape * twinkle * circleMask;
+
+          gl_FragColor = vec4(starColor, clamp(finalAlpha, 0.0, 1.0));
+        }
+      `,
       transparent: true,
-      opacity: 0.6,
       blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
+
+    const starParticles = new THREE.Points(starGeo, starMat);
+    scene.add(starParticles);
 
     // ==========================================
     // 6. CONTROL DEL SCROLL BIDIRECCIONAL & ATARDECER
@@ -304,7 +354,7 @@ export default function ClubRiverCanvas() {
       scene.fog.color.copy(currentColor);
 
       // Oscurecer el suelo en sintonía con el crepúsculo
-      const groundDay = new THREE.Color(0xf5ebe1);
+      const groundDay = new THREE.Color(0xe8f4fa);
       const groundDusk = new THREE.Color(0x24140c);
       groundMat.color.copy(groundDay).lerp(groundDusk, currentScrollProgress);
       groundMat.opacity = 0.65 - currentScrollProgress * 0.25;
@@ -328,12 +378,8 @@ export default function ClubRiverCanvas() {
       camera.position.y = 16 - currentScrollProgress * 3.5 + targetMouseY * -2.5;
       camera.lookAt(0, 2 - currentScrollProgress * 1.5, 0);
 
-      // Flotación lenta de partículas
-      const pArr = particleGeo.attributes.position.array;
-      for (let i = 0; i < particleCount; i++) {
-        pArr[i * 3 + 1] += Math.sin(elapsedTime * 0.6 + i) * 0.012;
-      }
-      particleGeo.attributes.position.needsUpdate = true;
+      // Actualizar uniforms de estrellas
+      starMat.uniforms.uTime.value = elapsedTime;
 
       renderer.render(scene, camera);
     };
@@ -356,8 +402,8 @@ export default function ClubRiverCanvas() {
       terrainGeo.dispose();
       terrainMat.dispose();
       groundMat.dispose();
-      particleGeo.dispose();
-      particleMat.dispose();
+      starGeo.dispose();
+      starMat.dispose();
       renderer.dispose();
     };
   }, []);
