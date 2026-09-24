@@ -14,10 +14,10 @@ export default function ClubRiverCanvas() {
     const scene = new THREE.Scene();
 
     // Colores clave para la transición del atardecer:
-    // 1. Día / Tarde despejada: #bce3f7 (Celeste clarito limpio y luminoso)
+    // 1. Día / Tarde despejada: #87CEEB (Sky Blue auténtico solicitado)
     // 2. Atardecer medio: #9a4820 (Ámbar fuego profundo)
     // 3. Crepúsculo / Anochecer cálido: #140b08 (Oscuro, envolvente)
-    const colorDay = new THREE.Color(0xbce3f7);
+    const colorDay = new THREE.Color(0x87ceeb);
     const colorMid = new THREE.Color(0x9a4820);
     const colorDusk = new THREE.Color(0x140b08);
 
@@ -203,7 +203,7 @@ export default function ClubRiverCanvas() {
 
     // Superficie suave de colinas
     const groundMat = new THREE.MeshBasicMaterial({
-      color: 0xe8f4fa,
+      color: 0xb5def2,
       transparent: true,
       opacity: 0.65,
     });
@@ -354,7 +354,7 @@ export default function ClubRiverCanvas() {
       scene.fog.color.copy(currentColor);
 
       // Oscurecer el suelo en sintonía con el crepúsculo
-      const groundDay = new THREE.Color(0xe8f4fa);
+      const groundDay = new THREE.Color(0xb5def2);
       const groundDusk = new THREE.Color(0x24140c);
       groundMat.color.copy(groundDay).lerp(groundDusk, currentScrollProgress);
       groundMat.opacity = 0.65 - currentScrollProgress * 0.25;
