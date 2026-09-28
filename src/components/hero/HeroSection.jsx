@@ -55,7 +55,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen lg:h-screen flex flex-col justify-between pt-20 md:pt-24 pb-4 md:pb-6 px-4 md:px-8 max-w-7xl mx-auto z-10"
+      className="relative min-h-[580px] lg:min-h-screen flex flex-col justify-between pt-16 sm:pt-20 pb-4 md:pb-6 px-4 md:px-8 max-w-7xl mx-auto z-10"
     >
       {/* Top Meta Header */}
       <motion.div
@@ -101,12 +101,12 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Hero Central Content */}
-      <div className="my-auto py-2 md:py-4 text-center md:text-left flex flex-col justify-center">
+      <div className="my-auto py-2 md:py-3 text-center md:text-left flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-3 md:mb-4 w-fit mx-auto md:mx-0"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-2 sm:mb-3 w-fit mx-auto md:mx-0"
         >
           <Sparkles className="w-3 h-3 text-[#e87a38]" />
           <span className="tracking-widest uppercase text-[10px] font-mono">
@@ -114,7 +114,7 @@ export default function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Título Monumental TRILLO (Tipografía y trazo auténtico) */}
+        {/* Título Monumental TRILLO (Tipografía y trazo auténtico con escala equilibrada) */}
         <div className="overflow-hidden py-1">
           <motion.h1
             initial={{ y: '100%', opacity: 0 }}
@@ -126,14 +126,14 @@ export default function HeroSection() {
             <img
               src="/trillo-logo.png"
               alt="TRILLO"
-              className="w-auto h-auto max-w-[270px] sm:max-w-[380px] md:max-w-[480px] lg:max-w-[560px] xl:max-w-[620px] max-h-[120px] sm:max-h-[150px] md:max-h-[180px] lg:max-h-[210px] object-contain drop-shadow-[0_4px_25px_rgba(255,255,255,0.08)] pointer-events-none"
+              className="w-auto h-auto max-w-[210px] sm:max-w-[290px] md:max-w-[360px] lg:max-w-[430px] xl:max-w-[470px] max-h-[85px] sm:max-h-[110px] md:max-h-[130px] lg:max-h-[150px] object-contain drop-shadow-[0_4px_25px_rgba(255,255,255,0.08)] pointer-events-none"
               draggable="false"
             />
           </motion.h1>
         </div>
 
         {/* Fila Manifiesto + Tres Items Alineados */}
-        <div className="mt-4 md:mt-6 flex flex-col lg:flex-row lg:items-end justify-between gap-5 lg:gap-8">
+        <div className="mt-3 md:mt-5 flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-6">
           {/* Párrafo y Manifiesto */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -141,10 +141,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="max-w-xl text-left"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight">
               Animate a vivir<span className="text-[#e87a38]">.</span>
             </h2>
-            <p className="mt-2 text-xs sm:text-sm md:text-[15px] text-[#8d9299] font-normal leading-relaxed">
+            <p className="mt-1.5 text-xs sm:text-sm text-[#8d9299] font-normal leading-relaxed">
               Nacidos en el interior de Uruguay para reivindicar una manera más simple,
               auténtica y activa de vivir: salir, moverse, conocer, compartir, desafiarse y
               reconectar con la tierra.
@@ -156,31 +156,31 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap sm:flex-row items-center gap-2.5 lg:justify-end"
+            className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 lg:justify-end shrink-0"
           >
             <a
               href="#eventos"
-              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#e87a38]/50 hover:bg-white/[0.04] transition-all duration-300 group"
+              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#e87a38]/50 hover:bg-white/[0.04] transition-all duration-300 group whitespace-nowrap"
             >
-              <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform" />
+              <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">Trillo Eventos</span>
               <span className="text-[#8d9299] text-[11px] font-mono">· Carreras</span>
             </a>
 
             <a
               href="#aventuras"
-              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#4ade80]/50 hover:bg-white/[0.04] transition-all duration-300 group"
+              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#4ade80]/50 hover:bg-white/[0.04] transition-all duration-300 group whitespace-nowrap"
             >
-              <span className="w-2 h-2 rounded-full bg-[#4ade80] group-hover:scale-125 transition-transform" />
+              <span className="w-2 h-2 rounded-full bg-[#4ade80] group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">Trillo Aventuras</span>
               <span className="text-[#8d9299] text-[11px] font-mono">· Territorio</span>
             </a>
 
             <Link
               to="/club"
-              className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-sm"
+              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-sm whitespace-nowrap"
             >
-              <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform" />
+              <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">El Club</span>
               <span className="text-amber-300 text-[11px] font-mono">· Entrar</span>
             </Link>
