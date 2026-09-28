@@ -114,15 +114,21 @@ export default function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Título Monumental TRILLO */}
-        <div className="overflow-hidden">
+        {/* Título Monumental TRILLO (Tipografía y trazo auténtico) */}
+        <div className="overflow-hidden py-1">
           <motion.h1
             initial={{ y: '100%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-            className="text-[14vw] md:text-[11vw] lg:text-[8rem] xl:text-[9.2rem] font-black tracking-[-0.04em] uppercase font-['Outfit'] leading-[0.82] text-transparent bg-clip-text bg-gradient-to-b from-[#f5f4f0] via-[#eceae5] to-[#8d9299] select-none"
+            className="flex items-center justify-center md:justify-start select-none"
           >
-            TRILLO
+            <span className="sr-only">TRILLO</span>
+            <img
+              src="/trillo-logo.png"
+              alt="TRILLO"
+              className="w-auto h-auto max-w-[270px] sm:max-w-[380px] md:max-w-[480px] lg:max-w-[560px] xl:max-w-[620px] max-h-[120px] sm:max-h-[150px] md:max-h-[180px] lg:max-h-[210px] object-contain drop-shadow-[0_4px_25px_rgba(255,255,255,0.08)] pointer-events-none"
+              draggable="false"
+            />
           </motion.h1>
         </div>
 
