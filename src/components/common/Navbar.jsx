@@ -16,9 +16,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-4 transition-all duration-500">
+    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-4 transition-all duration-500 pointer-events-none">
       <div
-        className={`max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 py-3.5 rounded-full transition-all duration-500 ${
+        className={`max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 py-3.5 rounded-full transition-all duration-500 pointer-events-auto ${
           scrolled
             ? 'glass-panel shadow-2xl border-white/10'
             : 'bg-black/30 backdrop-blur-md border border-white/5'
@@ -112,7 +112,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mt-2 mx-auto max-w-7xl glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-white/10"
+            className="pointer-events-auto md:hidden mt-2 mx-auto max-w-7xl glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-white/10"
           >
             <a
               href="#about"

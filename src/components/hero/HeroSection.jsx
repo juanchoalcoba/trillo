@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Volume2, VolumeX, Sparkles, MapPin, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
   const [ambientAudio, setAmbientAudio] = useState(false);
-  const [audioCtx, setAudioCtx] = useState(null);
-  const [noiseNode, setNoiseNode] = useState(null);
+  const audioCtxRef = useRef(null);
+  const sourceNodeRef = useRef(null);
+  const gainNodeRef = useRef(null);
 
-  // Sintetizador procedural de viento sutil de campo con Web Audio API
-  const toggleAmbientSound = () => {
+  // Sintetizador procedural de brisa de campo con Web Audio API
+  const toggleAmbientSound = async () => {
     if (!ambientAudio) {
       try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        // Buffer de ruido blanco con filtro paso bajo para simular brisa de campo
+        let ctx = audioCtxRef.current;
+        if (!ctx || ctx.state === 'closed') {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          ctx = new AudioContextClass();
+          audioCtxRef.current = ctx;
+        }
+
+        if (ctx.state === 'suspended') {
+          await ctx.resume();
+        }
+
+        // Simulación de viento sutil con filtro paso bajo y ruido blanco
         const bufferSize = ctx.sampleRate * 2;
         const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
         const output = noiseBuffer.getChannelData(0);
+        let lastOut = 0.0;
         for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
+          const white = Math.random() * 2 - 1;
+          // Filtro browniano suave para sonido de viento natural y orgánico
+          output[i] = (lastOut + 0.02 * white) / 1.02;
+          lastOut = output[i];
+          output[i] *= 3.5;
         }
 
         const whiteNoise = ctx.createBufferSource();
@@ -27,10 +43,12 @@ export default function HeroSection() {
 
         const filter = ctx.createBiquadFilter();
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(320, ctx.currentTime);
+        filter.frequency.setValueAtTime(450, ctx.currentTime);
 
         const gain = ctx.createGain();
-        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        // Fade in suave
+        gain.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + 0.6);
 
         whiteNoise.connect(filter);
         filter.connect(gain);
@@ -38,24 +56,50 @@ export default function HeroSection() {
 
         whiteNoise.start(0);
 
-        setAudioCtx(ctx);
-        setNoiseNode(whiteNoise);
+        sourceNodeRef.current = whiteNoise;
+        gainNodeRef.current = gain;
         setAmbientAudio(true);
       } catch (e) {
         console.error('Audio not available', e);
       }
     } else {
-      if (audioCtx) {
-        audioCtx.close();
+      try {
+        if (gainNodeRef.current && audioCtxRef.current && audioCtxRef.current.state === 'running') {
+          const ctx = audioCtxRef.current;
+          gainNodeRef.current.gain.setValueAtTime(gainNodeRef.current.gain.value, ctx.currentTime);
+          gainNodeRef.current.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+          setTimeout(() => {
+            if (sourceNodeRef.current) {
+              try {
+                sourceNodeRef.current.stop();
+                sourceNodeRef.current.disconnect();
+              } catch (_) {}
+              sourceNodeRef.current = null;
+            }
+          }, 450);
+        } else if (audioCtxRef.current) {
+          audioCtxRef.current.close().catch(() => {});
+          audioCtxRef.current = null;
+        }
+      } catch (e) {
+        console.error('Error closing audio', e);
       }
       setAmbientAudio(false);
     }
   };
 
+  useEffect(() => {
+    return () => {
+      if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
+        audioCtxRef.current.close().catch(() => {});
+      }
+    };
+  }, []);
+
   return (
     <section
       id="hero"
-      className="relative min-h-[580px] lg:min-h-screen flex flex-col justify-between pt-16 sm:pt-20 pb-4 md:pb-6 px-4 md:px-8 max-w-7xl mx-auto z-10"
+      className="relative min-h-[580px] lg:min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-4 md:pb-6 px-4 md:px-8 max-w-7xl mx-auto z-10"
     >
       {/* Top Meta Header */}
       <motion.div
@@ -81,8 +125,9 @@ export default function HeroSection() {
 
           {/* Botón de Sonido Ambiental Procedural */}
           <button
+            type="button"
             onClick={toggleAmbientSound}
-            className="flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 hover:border-[#e87a38]/50 text-[#f5f4f0] text-[11px] transition-all duration-300 hover:bg-white/5"
+            className="relative z-30 cursor-pointer flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 hover:border-[#e87a38]/50 text-[#f5f4f0] text-[11px] transition-all duration-300 hover:bg-white/10 active:scale-95 select-none"
             title="Activar atmósfera de brisa de campo"
           >
             {ambientAudio ? (
