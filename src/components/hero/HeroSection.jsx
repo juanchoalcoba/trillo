@@ -203,14 +203,14 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 lg:justify-end shrink-0"
           >
-            <a
-              href="#eventos"
+            <Link
+              to="/eventos"
               className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl glass-panel text-xs text-[#f5f4f0] border border-white/10 hover:border-[#e87a38]/50 hover:bg-white/[0.04] transition-all duration-300 group whitespace-nowrap"
             >
               <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">Trillo Eventos</span>
               <span className="text-[#8d9299] text-[11px] font-mono">· Carreras</span>
-            </a>
+            </Link>
 
             <a
               href="#aventuras"

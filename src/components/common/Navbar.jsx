@@ -53,15 +53,15 @@ export default function Navbar() {
           >
             Universo
           </a>
-          <a
-            href="#eventos"
+          <Link
+            to="/eventos"
             className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
           >
             Eventos
             <span className="text-[10px] bg-[#e87a38]/15 text-[#e87a38] px-1.5 py-0.5 rounded-full border border-[#e87a38]/30">
               San Pedro
             </span>
-          </a>
+          </Link>
           <a
             href="#aventuras"
             className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
@@ -128,13 +128,16 @@ export default function Navbar() {
             >
               Universo Trillo
             </a>
-            <a
-              href="#eventos"
+            <Link
+              to="/eventos"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium flex items-center justify-between"
             >
-              Trillo Eventos
-            </a>
+              <span>Trillo Eventos</span>
+              <span className="text-xs bg-[#e87a38]/20 text-[#e87a38] px-2 py-0.5 rounded-full font-mono">
+                San Pedro
+              </span>
+            </Link>
             <a
               href="#aventuras"
               onClick={() => setMobileMenuOpen(false)}

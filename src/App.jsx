@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import SmoothScroll from './components/common/SmoothScroll';
 import HomePage from './pages/HomePage';
 import ClubPage from './pages/ClubPage';
+import EventosPage from './pages/EventosPage';
 
 // Resetea el scroll suave al cambiar de página
 function ScrollReset() {
@@ -27,6 +28,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/club" element={<ClubPage />} />
+          <Route path="/eventos" element={<EventosPage />} />
         </Routes>
       </SmoothScroll>
     </BrowserRouter>

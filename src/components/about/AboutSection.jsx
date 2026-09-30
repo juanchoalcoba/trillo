@@ -20,7 +20,7 @@ export default function AboutSection() {
       bgGradient: 'from-[#e87a38]/15 via-transparent to-transparent',
       borderColor: 'border-[#e87a38]/30',
       actionText: 'Explorar Eventos',
-      link: '#eventos',
+      link: '/eventos',
     },
     {
       id: 'aventuras',

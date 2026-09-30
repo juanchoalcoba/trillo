@@ -64,6 +64,15 @@ export default function ClubNavbar() {
           <a href="#unirme" className="hover:text-amber-600 transition-colors">
             Entrenar
           </a>
+          <Link
+            to="/eventos"
+            className="hover:text-amber-600 transition-colors flex items-center gap-1 font-semibold"
+          >
+            <span>Eventos</span>
+            <span className="text-[9px] bg-amber-500/20 text-amber-700 px-1.5 py-0.5 rounded-full font-mono">
+              San Pedro
+            </span>
+          </Link>
         </nav>
 
         {/* Right CTA WhatsApp */}
@@ -127,6 +136,16 @@ export default function ClubNavbar() {
             >
               Nuestra Comunidad
             </a>
+            <Link
+              to="/eventos"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-medium hover:text-amber-600 flex items-center justify-between"
+            >
+              <span>Eventos San Pedro</span>
+              <span className="text-xs bg-amber-500/20 text-amber-700 px-2 py-0.5 rounded-full font-mono">
+                Carrera
+              </span>
+            </Link>
             <div className="pt-3 border-t border-stone-200">
               <a
                 href="https://wa.me/59899360000?text=Hola!%20Quiero%20sumarme%20a%20El%20Club%20de%20Corredores%20en%20Durazno"
