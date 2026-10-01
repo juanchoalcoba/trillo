@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -127,16 +128,51 @@ export default function EventosGallery() {
     return () => clearInterval(timer);
   }, [isPaused, selectedImage, currentIndex]);
 
-  // Soporte para teclas flecha izquierda / derecha
+  // Bloquear el scroll de la página y Lenis mientras el modal está abierto
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (selectedImage) return;
-      if (e.key === 'ArrowRight') nextSlide();
-      if (e.key === 'ArrowLeft') prevSlide();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage]);
+    if (selectedImage) {
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+      const prevOverflow = document.body.style.overflow;
+      const prevTouch = document.body.style.touchAction;
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+
+      const handleModalKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setSelectedImage(null);
+        } else if (e.key === 'ArrowRight') {
+          const nextIdx = (currentIndex + 1) % total;
+          setCurrentIndex(nextIdx);
+          setSelectedImage(GALLERY_ITEMS[nextIdx]);
+        } else if (e.key === 'ArrowLeft') {
+          const prevIdx = (currentIndex - 1 + total) % total;
+          setCurrentIndex(prevIdx);
+          setSelectedImage(GALLERY_ITEMS[prevIdx]);
+        }
+      };
+
+      window.addEventListener('keydown', handleModalKeyDown);
+
+      return () => {
+        if (window.lenis) {
+          window.lenis.start();
+        }
+        document.body.style.overflow = prevOverflow;
+        document.body.style.touchAction = prevTouch;
+        window.removeEventListener('keydown', handleModalKeyDown);
+      };
+    } else {
+      // Manejar flechas del teclado en el carrusel normal cuando no hay modal abierto
+      const handleNormalKeyDown = (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+      };
+      window.addEventListener('keydown', handleNormalKeyDown);
+      return () => window.removeEventListener('keydown', handleNormalKeyDown);
+    }
+  }, [selectedImage, currentIndex, total]);
 
   const currentItem = GALLERY_ITEMS[currentIndex];
 
@@ -394,127 +430,149 @@ export default function EventosGallery() {
         </div>
       </div>
 
-      {/* Lightbox / Modal Fullscreen al hacer click */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/95 backdrop-blur-2xl"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.92, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.92, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative max-w-5xl w-full rounded-3xl glass-panel bg-[#0d1015] border border-white/20 overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[90vh]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Botón Cerrar */}
-              <button
+      {/* Lightbox / Modal Fullscreen al hacer click (Renderizado directamente en document.body con z-[999999] y scroll bloqueado) */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {selectedImage && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[999999] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/90 backdrop-blur-2xl"
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:bg-[#e87a38] transition-colors cursor-pointer"
-                aria-label="Cerrar visor"
               >
-                <X className="w-5 h-5" />
-              </button>
-
-              {/* Imagen en HD con navegación */}
-              <div className="lg:w-3/5 relative min-h-[300px] lg:min-h-[520px] bg-black flex items-center justify-center">
-                <img
-                  src={selectedImage.image}
-                  alt={selectedImage.title}
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Flechas dentro del modal */}
+                {/* Botón Cerrar Flotante en la esquina superior derecha (SIEMPRE 100% VISIBLE en pantalla) */}
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const nextIdx = (currentIndex - 1 + total) % total;
-                    setCurrentIndex(nextIdx);
-                    setSelectedImage(GALLERY_ITEMS[nextIdx]);
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-[#e87a38] transition-colors cursor-pointer"
+                  type="button"
+                  onClick={() => setSelectedImage(null)}
+                  className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[1000000] flex items-center gap-2 px-4 py-2.5 rounded-full bg-black/85 hover:bg-[#e87a38] text-white border border-white/30 hover:border-transparent transition-all duration-300 shadow-2xl cursor-pointer group active:scale-95"
+                  title="Cerrar ventana (Esc)"
+                  aria-label="Cerrar modal"
                 >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const nextIdx = (currentIndex + 1) % total;
-                    setCurrentIndex(nextIdx);
-                    setSelectedImage(GALLERY_ITEMS[nextIdx]);
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-[#e87a38] transition-colors cursor-pointer"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Ficha Técnica */}
-              <div className="lg:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
-                <div>
-                  <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase bg-[#e87a38]/20 text-[#e87a38] border border-[#e87a38]/40">
-                    {selectedImage.category}
+                  <span className="text-xs font-mono uppercase font-bold tracking-wider hidden sm:inline text-white/90 group-hover:text-white">
+                    Cerrar
                   </span>
+                  <X className="w-5 h-5 text-white" />
+                </button>
 
-                  <h3 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#f5f4f0] mt-3">
-                    {selectedImage.title}
-                  </h3>
+                {/* Tarjeta del Modal Centrada */}
+                <motion.div
+                  initial={{ scale: 0.94, opacity: 0, y: 15 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.94, opacity: 0, y: 15 }}
+                  transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+                  className="relative max-w-4xl w-full rounded-2xl sm:rounded-3xl glass-panel bg-[#0d1015] border border-white/20 shadow-2xl flex flex-col md:flex-row max-h-[85vh] overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Imagen en HD con navegación */}
+                  <div className="md:w-3/5 relative min-h-[240px] sm:min-h-[300px] md:min-h-[460px] bg-black flex items-center justify-center overflow-hidden">
+                    <img
+                      src={selectedImage.image}
+                      alt={selectedImage.title}
+                      className="w-full h-full object-cover"
+                    />
 
-                  <p className="text-xs font-mono text-[#e87a38] mt-1">
-                    {selectedImage.subtitle}
-                  </p>
+                    {/* Flechas dentro de la imagen del modal */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const nextIdx = (currentIndex - 1 + total) % total;
+                        setCurrentIndex(nextIdx);
+                        setSelectedImage(GALLERY_ITEMS[nextIdx]);
+                      }}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:bg-[#e87a38] transition-colors cursor-pointer shadow-lg active:scale-90"
+                      aria-label="Foto anterior"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
 
-                  <p className="mt-4 text-xs sm:text-sm text-[#8d9299] leading-relaxed">
-                    {selectedImage.description}
-                  </p>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const nextIdx = (currentIndex + 1) % total;
+                        setCurrentIndex(nextIdx);
+                        setSelectedImage(GALLERY_ITEMS[nextIdx]);
+                      }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:bg-[#e87a38] transition-colors cursor-pointer shadow-lg active:scale-90"
+                      aria-label="Siguiente foto"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
 
-                  <div className="mt-6 pt-5 border-t border-white/10 space-y-3">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-[#d8cfc4]">
-                      Telemetría de Punto de Carrera
-                    </h4>
-
-                    <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                      <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-[#8d9299] block text-[10px]">Altitud</span>
-                        <span className="text-[#f5f4f0] font-bold">{selectedImage.telemetry.altitud}</span>
-                      </div>
-                      <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-[#8d9299] block text-[10px]">Condición</span>
-                        <span className="text-[#f5f4f0] font-bold">{selectedImage.telemetry.clima}</span>
-                      </div>
-                      <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-[#8d9299] block text-[10px]">Superficie</span>
-                        <span className="text-[#f5f4f0] font-bold">{selectedImage.telemetry.terreno}</span>
-                      </div>
-                      <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                        <span className="text-[#8d9299] block text-[10px]">Hito</span>
-                        <span className="text-[#e87a38] font-bold">{selectedImage.telemetry.destacado}</span>
-                      </div>
+                    {/* Badge contador sobre la imagen */}
+                    <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20 text-[10px] font-mono text-white/90">
+                      {currentIndex + 1} / {total}
                     </div>
                   </div>
-                </div>
 
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#8d9299] font-mono">
-                  <span>San Pedro · Durazno</span>
-                  <a
-                    href="#inscripcion"
-                    onClick={() => setSelectedImage(null)}
-                    className="text-[#e87a38] hover:underline font-bold"
-                  >
-                    Inscribirme a la Carrera →
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+                  {/* Ficha Técnica Lateral */}
+                  <div className="md:w-2/5 p-5 sm:p-7 flex flex-col justify-between overflow-y-auto bg-[#0d1015]/95">
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase bg-[#e87a38]/20 text-[#e87a38] border border-[#e87a38]/40">
+                          {selectedImage.category}
+                        </span>
+                        <span className="text-[10px] font-mono text-[#8d9299]">San Pedro · UY</span>
+                      </div>
+
+                      <h3 className="text-xl sm:text-2xl font-black font-['Outfit'] text-[#f5f4f0] mt-3 leading-tight">
+                        {selectedImage.title}
+                      </h3>
+
+                      <p className="text-xs font-mono text-[#e87a38] mt-1 flex items-center gap-1.5">
+                        <Clock className="w-3 h-3" />
+                        <span>{selectedImage.subtitle}</span>
+                      </p>
+
+                      <p className="mt-3 text-xs sm:text-sm text-[#8d9299] leading-relaxed">
+                        {selectedImage.description}
+                      </p>
+
+                      {/* Telemetría */}
+                      <div className="mt-5 pt-4 border-t border-white/10 space-y-2.5">
+                        <h4 className="text-[10px] font-mono uppercase tracking-wider text-[#d8cfc4]">
+                          Telemetría de Punto de Carrera
+                        </h4>
+
+                        <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                          <div className="bg-white/5 p-2 rounded-xl border border-white/5">
+                            <span className="text-[#8d9299] block text-[9px] uppercase">Altitud</span>
+                            <span className="text-[#f5f4f0] font-bold text-xs">{selectedImage.telemetry.altitud}</span>
+                          </div>
+                          <div className="bg-white/5 p-2 rounded-xl border border-white/5">
+                            <span className="text-[#8d9299] block text-[9px] uppercase">Condición</span>
+                            <span className="text-[#f5f4f0] font-bold text-xs">{selectedImage.telemetry.clima}</span>
+                          </div>
+                          <div className="bg-white/5 p-2 rounded-xl border border-white/5 col-span-2">
+                            <span className="text-[#8d9299] block text-[9px] uppercase">Superficie & Hito</span>
+                            <span className="text-[#e87a38] font-bold text-xs block mt-0.5">
+                              {selectedImage.telemetry.terreno} · {selectedImage.telemetry.destacado}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#8d9299] font-mono">
+                      <span>Circuito San Pedro</span>
+                      <a
+                        href="#inscripcion"
+                        onClick={() => setSelectedImage(null)}
+                        className="text-[#e87a38] hover:underline font-bold"
+                      >
+                        Inscribirme →
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 }
