@@ -442,20 +442,6 @@ export default function EventosGallery() {
                 className="fixed inset-0 z-[999999] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/90 backdrop-blur-2xl"
                 onClick={() => setSelectedImage(null)}
               >
-                {/* Botón Cerrar Flotante en la esquina superior derecha (SIEMPRE 100% VISIBLE en pantalla) */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedImage(null)}
-                  className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[1000000] flex items-center gap-2 px-4 py-2.5 rounded-full bg-black/85 hover:bg-[#e87a38] text-white border border-white/30 hover:border-transparent transition-all duration-300 shadow-2xl cursor-pointer group active:scale-95"
-                  title="Cerrar ventana (Esc)"
-                  aria-label="Cerrar modal"
-                >
-                  <span className="text-xs font-mono uppercase font-bold tracking-wider hidden sm:inline text-white/90 group-hover:text-white">
-                    Cerrar
-                  </span>
-                  <X className="w-5 h-5 text-white" />
-                </button>
-
                 {/* Tarjeta del Modal Centrada */}
                 <motion.div
                   initial={{ scale: 0.94, opacity: 0, y: 15 }}
@@ -465,8 +451,19 @@ export default function EventosGallery() {
                   className="relative max-w-4xl w-full rounded-2xl sm:rounded-3xl glass-panel bg-[#0d1015] border border-white/20 shadow-2xl flex flex-col md:flex-row max-h-[85vh] overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
+                  {/* Botón Cerrar (Cruz) SIEMPRE visible, integrado en la esquina superior derecha de la tarjeta */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedImage(null)}
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 w-10 h-10 rounded-full bg-black/80 hover:bg-[#e87a38] text-white border border-white/30 hover:border-transparent flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer group active:scale-90 backdrop-blur-md"
+                    title="Cerrar ventana (Esc)"
+                    aria-label="Cerrar modal"
+                  >
+                    <X className="w-5 h-5 text-white stroke-[2.5] transition-transform duration-200 group-hover:rotate-90" />
+                  </button>
+
                   {/* Imagen en HD con navegación */}
-                  <div className="md:w-3/5 relative min-h-[240px] sm:min-h-[300px] md:min-h-[460px] bg-black flex items-center justify-center overflow-hidden">
+                  <div className="md:w-3/5 relative min-h-[240px] sm:min-h-[300px] md:min-h-[460px] bg-black flex items-center justify-center overflow-hidden shrink-0">
                     <img
                       src={selectedImage.image}
                       alt={selectedImage.title}
@@ -511,7 +508,8 @@ export default function EventosGallery() {
                   {/* Ficha Técnica Lateral */}
                   <div className="md:w-2/5 p-5 sm:p-7 flex flex-col justify-between overflow-y-auto bg-[#0d1015]/95">
                     <div>
-                      <div className="flex items-center justify-between gap-2">
+                      {/* Cabecera con padding derecho para no solapar la cruz */}
+                      <div className="flex items-center justify-between gap-2 pr-12">
                         <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase bg-[#e87a38]/20 text-[#e87a38] border border-[#e87a38]/40">
                           {selectedImage.category}
                         </span>
@@ -557,7 +555,15 @@ export default function EventosGallery() {
                     </div>
 
                     <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#8d9299] font-mono">
-                      <span>Circuito San Pedro</span>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedImage(null)}
+                        className="hover:text-[#e87a38] transition-colors flex items-center gap-1.5 cursor-pointer py-1"
+                        title="Cerrar modal"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                        <span>Cerrar</span>
+                      </button>
                       <a
                         href="#inscripcion"
                         onClick={() => setSelectedImage(null)}
