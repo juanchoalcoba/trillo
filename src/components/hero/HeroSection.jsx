@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Volume2, VolumeX, Sparkles, MapPin, Play } from 'lucide-react';
+import { ArrowDown, Volume2, VolumeX, Sparkles, MapPin, Play, Pause, Maximize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
@@ -8,6 +8,12 @@ export default function HeroSection() {
   const audioCtxRef = useRef(null);
   const sourceNodeRef = useRef(null);
   const gainNodeRef = useRef(null);
+
+  // Video State & Controls
+  const videoRef = useRef(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [videoProgress, setVideoProgress] = useState(0);
 
   // Sintetizador procedural de brisa de campo con Web Audio API
   const toggleAmbientSound = async () => {
@@ -31,7 +37,6 @@ export default function HeroSection() {
         let lastOut = 0.0;
         for (let i = 0; i < bufferSize; i++) {
           const white = Math.random() * 2 - 1;
-          // Filtro browniano suave para sonido de viento natural y orgánico
           output[i] = (lastOut + 0.02 * white) / 1.02;
           lastOut = output[i];
           output[i] *= 3.5;
@@ -47,7 +52,6 @@ export default function HeroSection() {
 
         const gain = ctx.createGain();
         gain.gain.setValueAtTime(0.001, ctx.currentTime);
-        // Fade in suave
         gain.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + 0.6);
 
         whiteNoise.connect(filter);
@@ -85,6 +89,40 @@ export default function HeroSection() {
         console.error('Error closing audio', e);
       }
       setAmbientAudio(false);
+    }
+  };
+
+  const toggleVideoPlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsVideoPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsVideoPlaying(false);
+    }
+  };
+
+  const toggleVideoMute = () => {
+    if (!videoRef.current) return;
+    const newMuted = !videoRef.current.muted;
+    videoRef.current.muted = newMuted;
+    setIsVideoMuted(newMuted);
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.duration) {
+      const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setVideoProgress(progress);
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (!videoRef.current) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else {
+      videoRef.current.requestFullscreen().catch(() => {});
     }
   };
 
@@ -145,63 +183,62 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Hero Central Content */}
-      <div className="my-auto py-2 md:py-3 text-center md:text-left flex flex-col justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-2 sm:mb-3 w-fit mx-auto md:mx-0"
-        >
-          <Sparkles className="w-3 h-3 text-[#e87a38]" />
-          <span className="tracking-widest uppercase text-[10px] font-mono">
-            Una filosofía de vida
-          </span>
-        </motion.div>
-
-        {/* Título Monumental TRILLO (Tipografía y trazo auténtico con escala equilibrada) */}
-        <div className="overflow-hidden py-1">
-          <motion.h1
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-            className="flex items-center justify-center md:justify-start select-none"
+      {/* Hero Central Content: Two-column layout with Space Between (Texts Left | Video Right) */}
+      <div className="my-auto py-6 sm:py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+        {/* Left Column: Brand, Logo, Manifesto & Actions */}
+        <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-3 sm:mb-4 w-fit"
           >
-            <span className="sr-only">TRILLO</span>
+            <Sparkles className="w-3 h-3 text-[#e87a38]" />
+            <span className="tracking-widest uppercase text-[10px] font-mono">
+              Una filosofía de vida
+            </span>
+          </motion.div>
+
+          {/* Título Monumental TRILLO con el Logo Real en Alta Calidad */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+            className="mb-4 sm:mb-5 select-none"
+          >
+            <h1 className="sr-only">TRILLO</h1>
             <img
-              src="/trillo-logo.png"
+              src="/logoTrillo.png"
               alt="TRILLO"
-              className="w-auto h-auto max-w-[210px] sm:max-w-[290px] md:max-w-[360px] lg:max-w-[430px] xl:max-w-[470px] max-h-[85px] sm:max-h-[110px] md:max-h-[130px] lg:max-h-[150px] object-contain drop-shadow-[0_4px_25px_rgba(255,255,255,0.08)] pointer-events-none"
+              className="w-auto h-auto max-w-[220px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px] max-h-[90px] sm:max-h-[115px] md:max-h-[135px] object-contain drop-shadow-[0_4px_30px_rgba(255,255,255,0.12)] pointer-events-none"
               draggable="false"
             />
-          </motion.h1>
-        </div>
+          </motion.div>
 
-        {/* Fila Manifiesto + Tres Items Alineados */}
-        <div className="mt-3 md:mt-5 flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-6">
-          {/* Párrafo y Manifiesto */}
+          {/* Manifiesto y Copys */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="max-w-xl text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="max-w-xl"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight">
               Animate a vivir<span className="text-[#e87a38]">.</span>
             </h2>
-            <p className="mt-1.5 text-xs sm:text-sm text-[#8d9299] font-normal leading-relaxed">
+            <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base text-[#8d9299] font-normal leading-relaxed">
               Nacidos en el interior de Uruguay para reivindicar una manera más simple,
               auténtica y activa de vivir: salir, moverse, conocer, compartir, desafiarse y
               reconectar con la tierra.
             </p>
           </motion.div>
 
-          {/* Tres Items Alineados en Hilera Horizontal Prolija */}
+          {/* Tres Items / Accesos Rápidos */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 lg:justify-end shrink-0"
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="mt-6 sm:mt-7 flex flex-wrap items-center gap-2 sm:gap-2.5"
           >
             <Link
               to="/eventos"
@@ -231,6 +268,100 @@ export default function HeroSection() {
             </Link>
           </motion.div>
         </div>
+
+        {/* Right Column: High-Impact Hero Video Showcase */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 25 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 xl:col-span-6 relative w-full flex items-center justify-center lg:justify-end"
+        >
+          {/* Subtle Ambient Backlight Glow */}
+          <div className="absolute -inset-2 sm:-inset-4 rounded-3xl bg-gradient-to-tr from-[#e87a38]/25 via-[#f49358]/10 to-transparent blur-3xl opacity-50 pointer-events-none -z-10" />
+
+          {/* Cinematic Video Player Container */}
+          <div className="relative w-full max-w-[620px] aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black/60 shadow-[0_25px_60px_rgba(0,0,0,0.85)] group backdrop-blur-md">
+            {/* The Video */}
+            <video
+              ref={videoRef}
+              src="/1003.mp4"
+              autoPlay
+              loop
+              muted={isVideoMuted}
+              playsInline
+              onTimeUpdate={handleTimeUpdate}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            />
+
+            {/* Subtle Gradient Overlays for Elegance */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
+
+            {/* Top Badge: Status / Live Tag */}
+            <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-20 flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] sm:text-[11px] font-mono text-[#f5f4f0] select-none">
+              <span className="w-2 h-2 rounded-full bg-[#e87a38] animate-pulse" />
+              <span className="tracking-wider uppercase font-semibold">Trillo en Movimiento</span>
+            </div>
+
+            {/* Controls Bar (Glassmorphic) */}
+            <div className="absolute bottom-3 sm:bottom-4 left-3.5 sm:left-4 right-3.5 sm:right-4 z-20 flex items-center justify-between pointer-events-auto">
+              {/* Play / Pause & Mute controls */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={toggleVideoPlay}
+                  className="p-2 sm:p-2.5 rounded-full bg-black/60 hover:bg-white/20 backdrop-blur-md border border-white/15 text-[#f5f4f0] hover:text-[#e87a38] transition-all duration-300 active:scale-95 cursor-pointer"
+                  title={isVideoPlaying ? 'Pausar video' : 'Reproducir video'}
+                  aria-label={isVideoPlaying ? 'Pausar video' : 'Reproducir video'}
+                >
+                  {isVideoPlaying ? (
+                    <Pause className="w-3.5 h-3.5 fill-current" />
+                  ) : (
+                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={toggleVideoMute}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full bg-black/60 hover:bg-white/20 backdrop-blur-md border border-white/15 text-[#f5f4f0] transition-all duration-300 active:scale-95 cursor-pointer text-[10px] sm:text-[11px] font-mono"
+                  title={isVideoMuted ? 'Activar sonido del video' : 'Silenciar sonido'}
+                  aria-label={isVideoMuted ? 'Activar sonido' : 'Silenciar'}
+                >
+                  {isVideoMuted ? (
+                    <>
+                      <VolumeX className="w-3.5 h-3.5 text-[#8d9299]" />
+                      <span className="text-[#8d9299] hidden sm:inline">Silenciado</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-3.5 h-3.5 text-[#e87a38] animate-pulse" />
+                      <span className="text-[#e87a38] hidden sm:inline">Sonido ON</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Fullscreen button */}
+              <button
+                type="button"
+                onClick={toggleFullscreen}
+                className="p-2 sm:p-2.5 rounded-full bg-black/60 hover:bg-white/20 backdrop-blur-md border border-white/15 text-[#f5f4f0] hover:text-[#e87a38] transition-all duration-300 active:scale-95 cursor-pointer"
+                title="Ver en pantalla completa"
+                aria-label="Pantalla completa"
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Loop Timeline Progress Indicator */}
+            <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white/10 z-30 overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-[#e87a38] to-[#f49358] transition-all duration-200 ease-linear shadow-[0_0_8px_rgba(232,122,56,0.8)]"
+                style={{ width: `${videoProgress}%` }}
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom Bar & Scroll Indicator */}
@@ -261,3 +392,4 @@ export default function HeroSection() {
     </section>
   );
 }
+
