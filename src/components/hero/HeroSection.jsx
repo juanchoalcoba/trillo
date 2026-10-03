@@ -257,10 +257,8 @@ export default function HeroSection() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
               Animate a vivir<span className="text-[#e87a38]">.</span>
             </h2>
-            <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[#f5f4f0]/90 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-lg mx-auto">
-              Nacidos en el interior de Uruguay para reivindicar una manera más simple,
-              auténtica y activa de vivir: salir, moverse, conocer, compartir, desafiarse y
-              reconectar con la tierra.
+            <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base text-[#f5f4f0]/90 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-lg mx-auto">
+              El deporte, la aventura y la naturaleza como estilo de vida
             </p>
           </motion.div>
 
