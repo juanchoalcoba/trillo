@@ -25,18 +25,12 @@ export default function Navbar() {
         }`}
       >
         {/* Brand / Logo */}
-        <a href="#hero" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-full bg-[#14171c] border border-[#e87a38]/40 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:border-[#e87a38]">
-            <span className="w-2.5 h-2.5 rotate-45 bg-[#e87a38] transition-all duration-300 group-hover:bg-[#f49358]" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-['Outfit'] font-black tracking-[0.25em] text-lg text-[#f5f4f0] uppercase">
-              TRILLO
-            </span>
-            <span className="text-[9px] tracking-widest text-[#8d9299] uppercase -mt-1 font-mono">
-              Universo · UY
-            </span>
-          </div>
+        <a href="#hero" className="flex items-center group py-0.5 select-none" aria-label="TRILLO Inicio">
+          <img
+            src="/logoTrillo.png"
+            alt="TRILLO"
+            className="h-7 sm:h-8 w-auto max-w-[120px] object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_2px_12px_rgba(255,255,255,0.18)]"
+          />
         </a>
 
         {/* Desktop Links */}
