@@ -289,6 +289,14 @@ export default function HeroSection() {
               loop
               muted={isVideoMuted}
               playsInline
+              preload="auto"
+              onCanPlay={(e) => {
+                if (isVideoPlaying) {
+                  e.currentTarget.play().catch(() => {});
+                }
+              }}
+              onPlay={() => setIsVideoPlaying(true)}
+              onPause={() => setIsVideoPlaying(false)}
               onTimeUpdate={handleTimeUpdate}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
             />
