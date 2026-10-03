@@ -1,5 +1,4 @@
 import React from 'react';
-import TrilloCanvas from '../components/3d/TrilloCanvas';
 import Navbar from '../components/common/Navbar';
 import HeroSection from '../components/hero/HeroSection';
 import AboutSection from '../components/about/AboutSection';
@@ -17,9 +16,6 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen bg-[#08090a] text-[#f5f4f0] selection:bg-[#e87a38] selection:text-black">
-      {/* 3D WebGL Atmosphere Canvas (Luna Hiperreal & Estrellas nocturnas) */}
-      <TrilloCanvas />
-
       {/* Navigation Header */}
       <Navbar />
 
