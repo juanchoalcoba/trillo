@@ -231,18 +231,18 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Logo Principal TRILLO (Alta Calidad Real con Resplandor) */}
+          {/* Logo Principal TRILLO (Alta Calidad Real con Mayor Presencia) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mb-2.5 sm:mb-3 select-none"
+            className="mb-2 sm:mb-2.5 select-none"
           >
             <h1 className="sr-only">TRILLO</h1>
             <img
               src="/logoTrillo.png"
               alt="TRILLO"
-              className="w-auto h-auto max-w-[210px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] max-h-[70px] sm:max-h-[85px] md:max-h-[100px] object-contain drop-shadow-[0_6px_30px_rgba(0,0,0,0.85)] pointer-events-none"
+              className="w-auto h-auto max-w-[250px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[460px] max-h-[85px] sm:max-h-[105px] md:max-h-[125px] lg:max-h-[135px] object-contain drop-shadow-[0_8px_35px_rgba(0,0,0,0.9)] pointer-events-none"
               draggable="false"
             />
           </motion.div>
