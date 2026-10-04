@@ -1,158 +1,82 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Check, ArrowLeft, ArrowUp, Calendar, MapPin, Sparkles } from 'lucide-react';
+import { MessageCircle, Check, ArrowUpRight, Compass, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ClubJoinSection() {
-  const scrollToTop = () => {
-    if (window.lenis) {
-      window.lenis.scrollTo(0, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const plans = [
-    {
-      name: 'Entrenamiento Presencial',
-      badge: 'Durazno, UY',
-      description: 'Sumate a nuestros grupos en la ribera del Río Yí, pista y senderos.',
-      features: [
-        'Grupos divididos por niveles y objetivos',
-        'Horarios matutinos y vespertinos',
-        'Entrenadores presenciales en cada sesión',
-        'Acceso a fondos grupales de fin de semana',
-        'Descuentos en carreras de Trillo Eventos',
-      ],
-      ctaText: 'Consultar Horarios Presenciales',
-      highlighted: true,
-    },
-    {
-      name: 'Plan a Distancia',
-      badge: 'Todo Uruguay',
-      description: 'Entrená con nuestra metodología estés donde estés con planificación a medida.',
-      features: [
-        'Planificación personalizada semanal o mensual',
-        'Preparación específica para 10K, 21K y 42K',
-        'Seguimiento directo con los profesores por WhatsApp',
-        'Ajuste continuo según tu evolución y tiempos',
-        'Comunidad online de corredores',
-      ],
-      ctaText: 'Solicitar Plan a Distancia',
-      highlighted: false,
-    },
-  ];
-
   return (
-    <section id="unirme" className="relative py-20 md:py-28 px-4 md:px-8 max-w-7xl mx-auto z-10">
-      {/* Header con Cápsula Protectora Translúcida de Alto Contraste */}
+    <section id="unirme" className="relative z-10 py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10 scroll-mt-24">
+      {/* Banner Final de Conversión */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="max-w-2xl mx-auto text-center mb-16 p-8 sm:p-10 rounded-3xl bg-black/45 backdrop-blur-xl border border-white/15 shadow-2xl"
+        transition={{ duration: 0.8 }}
+        className="rounded-3xl p-8 sm:p-12 lg:p-16 glass-panel border border-amber-400/40 relative overflow-hidden mb-20 bg-gradient-to-br from-amber-500/20 via-[#0d1015] to-[#08090a]"
       >
-        <span className="text-xs font-mono uppercase tracking-widest text-amber-300 font-bold bg-amber-500/20 px-3.5 py-1.5 rounded-full border border-amber-500/40">
-          Comenzar Hoy
-        </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Space_Grotesk'] font-black text-[#FAF5EE] mt-4 tracking-tight">
-          Sumate a El Club
-        </h2>
-        <p className="mt-3 text-sm sm:text-base text-[#E2D9CE] font-normal leading-relaxed">
-          No importa si estás dando tus primeros pasos o si buscás bajar tus marcas. Encontrá tu lugar en el pelotón.
-        </p>
-      </motion.div>
+        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Planes Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-24">
-        {plans.map((p, idx) => (
-          <motion.div
-            key={p.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.15 }}
-            className={`rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all duration-300 ${
-              p.highlighted
-                ? 'bg-gradient-to-b from-white to-amber-50/80 border-2 border-amber-600 shadow-xl'
-                : 'bg-white/80 backdrop-blur-md border border-amber-900/10 shadow-lg'
-            }`}
-          >
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full">
-                  {p.badge}
-                </span>
-                {p.highlighted && (
-                  <span className="flex items-center gap-1 text-[11px] text-amber-600 font-bold font-mono">
-                    <Sparkles className="w-3.5 h-3.5" /> Más popular
-                  </span>
-                )}
-              </div>
+        <div className="relative z-10 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-mono uppercase tracking-wider mb-4 border border-amber-400/30">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span>Afiliación Inmediata</span>
+          </div>
 
-              <h3 className="text-2xl font-['Space_Grotesk'] font-bold text-stone-900 mb-2">
-                {p.name}
-              </h3>
-              <p className="text-sm text-stone-600 mb-6">
-                {p.description}
-              </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] tracking-tight leading-tight">
+            Empezá a Entrenar con Nosotros Esta Semana
+          </h2>
 
-              <div className="space-y-3 pt-4 border-t border-amber-900/10 mb-8">
-                {p.features.map((f, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-700">
-                    <Check className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <p className="mt-4 text-base sm:text-lg text-[#d8cfc4] leading-relaxed">
+            No importa tu nivel actual ni si nunca corriste antes. Te invitamos a una clase de prueba sin costo para que conozcas al grupo, a los profes y el ritmo de los entrenamientos.
+          </p>
 
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href={`https://wa.me/59899360000?text=Hola!%20Quiero%20información%20sobre%20el%20${encodeURIComponent(
-                p.name
-              )}%20de%20El%20Club%20de%20Corredores`}
+              href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20coordinar%20mi%20primera%20clase%20de%20prueba%20en%20El%20Club%20de%20Corredores."
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md ${
-                p.highlighted
-                  ? 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white shadow-amber-600/25'
-                  : 'bg-stone-900 hover:bg-stone-800 text-white'
-              }`}
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-amber-400 hover:bg-amber-300 transition-all duration-300 shadow-xl shadow-amber-400/20 active:scale-95"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>{p.ctaText}</span>
+              <span>Pedir Clase de Prueba Gratis</span>
+              <ArrowUpRight className="w-4 h-4" />
             </a>
-          </motion.div>
-        ))}
-      </div>
+
+            <div className="text-xs text-[#8d9299] font-mono">
+              Contacto directo: +598 98 121 608 · Durazno
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Footer del Club con Volver a Universo Trillo */}
-      <div className="pt-12 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#E2D9CE]">
-        <Link
-          to="/"
-          className="flex items-center gap-2 font-semibold text-amber-300 hover:text-amber-200 transition-colors group"
-        >
-          <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-transform group-hover:-translate-x-1">
-            <ArrowLeft className="w-3.5 h-3.5 text-amber-300" />
+      <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#8d9299]">
+        <div className="flex items-center gap-3">
+          <div className="w-6 h-6 rounded-full overflow-hidden border border-amber-400/30 p-0.5 bg-black/40 shrink-0">
+            <img
+              src="/logocorredores.png"
+              alt="Club Corredores"
+              className="w-full h-full object-cover rounded-full"
+            />
           </div>
-          <span>← Volver a Universo Trillo</span>
-        </Link>
-
-        <div className="flex items-center gap-4 font-mono text-[11px] text-center text-[#E2D9CE]">
-          <span>Durazno · Río Yí</span>
-          <span className="text-white/20">|</span>
-          <span className="text-amber-300 font-semibold">El deporte como estilo de vida</span>
+          <span className="text-[11px] font-mono">
+            EL CLUB DE CORREDORES © {new Date().getFullYear()} · Durazno, Uruguay
+          </span>
         </div>
 
-        <button
-          onClick={scrollToTop}
-          className="flex items-center gap-2 text-[#FAF5EE] hover:text-amber-300 transition-colors p-2 rounded-full border border-white/20 bg-white/10 hover:border-amber-400"
-          title="Volver arriba"
-        >
-          <ArrowUp className="w-3.5 h-3.5 text-amber-300" />
-          <span className="font-mono uppercase text-[10px]">Arriba</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-6 font-mono text-[11px]">
+          <Link to="/eventos" className="hover:text-[#e87a38] transition-colors flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#e87a38]" />
+            Trillo Eventos (San Pedro)
+          </Link>
+          <Link to="/aventuras" className="hover:text-[#4ade80] transition-colors flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
+            Trillo Aventuras (Expedición)
+          </Link>
+          <Link to="/" className="hover:text-white transition-colors">
+            Inicio Trillo
+          </Link>
+        </div>
       </div>
     </section>
   );

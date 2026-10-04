@@ -114,7 +114,7 @@ export default function EventosCTA() {
             </div>
 
             <a
-              href={`https://wa.me/?text=Hola%20Trillo!%20Quiero%20inscribirme%20a%20la%20Corrida%20San%20Pedro%20en%20la%20distancia%20de%20${selectedDist}.`}
+              href={`https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20inscribirme%20a%20la%20Corrida%20San%20Pedro%20en%20la%20distancia%20de%20${selectedDist}.`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3.5 rounded-full text-center text-xs font-semibold uppercase tracking-wider text-black bg-[#f5f4f0] hover:bg-[#e87a38] hover:text-white transition-all duration-300 shadow-xl font-mono flex items-center justify-center gap-2"

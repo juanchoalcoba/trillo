@@ -208,7 +208,7 @@ export default function AventurasCategories() {
                       </button>
 
                       <a
-                        href={`https://wa.me/59899360000?text=${encodeURIComponent(
+                        href={`https://wa.me/59898121608?text=${encodeURIComponent(
                           adventure.whatsappMsg
                         )}`}
                         target="_blank"

@@ -1,25 +1,37 @@
-import React from 'react';
-import ClubRiverCanvas from '../components/3d/ClubRiverCanvas';
+import React, { useEffect } from 'react';
 import ClubNavbar from '../components/club/ClubNavbar';
 import ClubHero from '../components/club/ClubHero';
 import ClubDisciplines from '../components/club/ClubDisciplines';
+import ClubPricing from '../components/club/ClubPricing';
 import ClubCommunity from '../components/club/ClubCommunity';
 import ClubJoinSection from '../components/club/ClubJoinSection';
 
 export default function ClubPage() {
-  return (
-    <div className="relative min-h-screen bg-transparent text-stone-900 selection:bg-amber-500 selection:text-white overflow-x-hidden">
-      {/* 3D WebGL Canvas: Río Yí & Sol animado reactivo al scroll */}
-      <ClubRiverCanvas />
+  // Ajuste del título del documento para SEO y claridad
+  useEffect(() => {
+    document.title = 'El Club de Corredores | Trillo Durazno';
+  }, []);
 
-      {/* Navegación Diurna */}
+  return (
+    <div className="relative min-h-screen bg-[#08090a] text-[#f5f4f0] selection:bg-amber-400 selection:text-black overflow-x-hidden">
+      {/* Navegación de El Club */}
       <ClubNavbar />
 
-      {/* Contenido Principal de El Club */}
+      {/* Contenido Principal de El Club (100% alineado con Aventuras y Trillo, sin WebGL 3D) */}
       <main className="relative z-10">
+        {/* Hero con Parallax en bgClub.jpg, overlay oscuro y logo redondeado logocorredores.png */}
         <ClubHero />
+
+        {/* 4 Formas de Movernos: Running, Trail, Funcional, Trekking */}
         <ClubDisciplines />
+
+        {/* Cuota Mensual de Afiliación & Beneficios Exclusivos */}
+        <ClubPricing />
+
+        {/* El Río Yí como Pista Natural & Valores del Club */}
         <ClubCommunity />
+
+        {/* Clase de Prueba, Contacto por WhatsApp (+598 98 121 608) y Footer */}
         <ClubJoinSection />
       </main>
     </div>

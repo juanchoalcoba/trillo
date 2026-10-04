@@ -53,7 +53,7 @@ export default function AventurasCTA() {
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href="https://wa.me/59899360000?text=Hola%20Trillo!%20Quiero%20consultar%20por%20una%20expedici%C3%B3n%20a%20medida%20para%20un%20grupo%20privado."
+              href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20consultar%20por%20una%20expedici%C3%B3n%20a%20medida%20para%20un%20grupo%20privado."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-[#4ade80] hover:bg-[#22c55e] transition-all duration-300 shadow-xl shadow-[#4ade80]/20 active:scale-95"

@@ -87,7 +87,7 @@ export default function AventurasNavbar() {
           </div>
 
           <a
-            href="https://wa.me/59899360000?text=Hola%20Trillo!%20Quiero%20consultar%20por%20las%20pr%C3%B3ximas%20expediciones%20de%20Trillo%20Aventuras."
+            href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20consultar%20por%20las%20pr%C3%B3ximas%20expediciones%20de%20Trillo%20Aventuras."
             target="_blank"
             rel="noopener noreferrer"
             className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-[#4ade80] hover:bg-[#22c55e] transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[#4ade80]/20 active:scale-95"
@@ -166,7 +166,7 @@ export default function AventurasNavbar() {
 
             <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
               <a
-                href="https://wa.me/59899360000?text=Hola%20Trillo!%20Quiero%20consultar%20por%20las%20pr%C3%B3ximas%20expediciones%20de%20Trillo%20Aventuras."
+                href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20consultar%20por%20las%20pr%C3%B3ximas%20expediciones%20de%20Trillo%20Aventuras."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}

@@ -58,7 +58,7 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
     btnBg: 'bg-[#4ade80] hover:bg-[#22c55e] text-black',
   };
 
-  const whatsappUrl = `https://wa.me/59899360000?text=${encodeURIComponent(adventure.whatsappMsg)}`;
+  const whatsappUrl = `https://wa.me/59898121608?text=${encodeURIComponent(adventure.whatsappMsg)}`;
 
   return (
     <AnimatePresence>

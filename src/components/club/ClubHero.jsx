@@ -1,124 +1,213 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Sun, Sparkles, MapPin, ArrowDown, Footprints, ShieldCheck } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Sun, Sparkles, MapPin, ArrowDown, Footprints, ShieldCheck, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 export default function ClubHero() {
-  return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 md:pt-32 pb-8 px-4 md:px-8 max-w-7xl mx-auto z-10">
-      {/* Top Tagline */}
-      <motion.div
-        initial={{ opacity: 0, y: -15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex flex-wrap items-center justify-between gap-3 border-b border-amber-900/10 pb-4 text-xs text-amber-950/70"
-      >
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-amber-600 animate-ping" />
-          <span className="font-mono uppercase tracking-wider font-semibold text-stone-900 text-[11px]">
-            Comunidad Activa · Durazno
-          </span>
-          <span className="text-amber-900/20">|</span>
-          <span className="text-[11px] font-mono hidden sm:inline text-amber-800">
-            33°22'S 56°31'W · Ribera Río Yí
-          </span>
-        </div>
+  const containerRef = useRef(null);
 
-        <div className="flex items-center gap-2 text-[11px] font-mono text-amber-900/80">
-          <Sun className="w-3.5 h-3.5 text-amber-600" />
-          <span>Atardecer en vivo</span>
-        </div>
+  // Parallax scroll effect con Framer Motion idéntico a Aventuras y Trillo
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const yBackground = useTransform(scrollYProgress, [0, 1], ['0%', '35%']);
+  const scaleBackground = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const opacityOverlay = useTransform(scrollYProgress, [0, 0.8], [0.6, 0.92]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+
+  return (
+    <section
+      ref={containerRef}
+      id="hero"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#08090a]"
+    >
+      {/* 1. Background Image con Parallax & Overlay Oscuro Cinematográfico */}
+      <motion.div
+        style={{ y: yBackground, scale: scaleBackground }}
+        className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none select-none z-0"
+      >
+        <img
+          src="/bgClub.jpg"
+          alt="El Club de Corredores Trillo"
+          className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.08] saturate-[1.2]"
+        />
+
+        {/* Overlay oscuro para otorgar profundidad y contraste con el texto blanco y dorado */}
+        <motion.div
+          style={{ opacity: opacityOverlay }}
+          className="absolute inset-0 bg-[#08090a]/50"
+        />
+
+        {/* Degradé superior para navbar y degradé inferior para fundir con la página */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/85 via-transparent to-[#08090a]" />
+
+        {/* Viñeta radial oscura para concentrar la mirada en el centro */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#08090a_92%)] opacity-85" />
       </motion.div>
 
-      {/* Hero Central Block */}
-      <div className="my-auto py-6 md:py-10 text-center md:text-left">
+      {/* 2. Contenido Centrado Frontal - Estilo Monumental Trillo */}
+      <motion.div
+        style={{ y: contentY }}
+        className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-between pt-28 sm:pt-32 pb-8 sm:pb-12 px-4 md:px-8 text-center"
+      >
+        {/* Meta Header Superior */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-amber-900/10 text-xs font-medium text-amber-900 mb-4 shadow-sm"
+          transition={{ duration: 0.8 }}
+          className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 text-xs text-[#8d9299] max-w-5xl mx-auto w-full"
         >
-          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-          <span className="tracking-widest uppercase text-[10px] font-mono font-semibold">
-            Expresión Cotidiana de Universo Trillo
-          </span>
+          <div className="flex items-center gap-2 mx-auto sm:mx-0">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="font-mono text-[#f5f4f0] uppercase tracking-wider text-[11px]">
+              Comunidad Activa · Durazno
+            </span>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <span className="hidden sm:inline text-[11px] text-[#8d9299]">Ribera del Río Yí · Interior de Uruguay</span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-4 font-mono text-[11px] text-[#8d9299]">
+            <div className="flex items-center gap-1.5 text-amber-400">
+              <Sun className="w-3.5 h-3.5" />
+              <span>Entrenamientos Todo el Año</span>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Título Monumental Luminoso */}
-        <div className="overflow-hidden">
-          <motion.h1
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-            className="text-[11vw] md:text-[9vw] lg:text-[6.8rem] font-black tracking-[-0.03em] uppercase font-['Space_Grotesk'] leading-[0.88] text-stone-900 select-none"
-          >
-            CLUB DE CORREDORES
-          </motion.h1>
-        </div>
-
-        {/* Subtítulo & Manifiesto Oficial */}
-        <div className="mt-6 flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12">
+        {/* Núcleo Central: Logo Redondeado + Título Monumental + Manifiesto */}
+        <div className="my-auto py-8 sm:py-12 flex flex-col items-center">
+          {/* Badge superior */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-2xl text-left"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 backdrop-blur-md mb-6"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Newsreader'] italic font-normal text-amber-950 leading-tight">
-              El deporte como estilo de vida<span className="text-amber-600">.</span>
-            </h2>
-            <p className="mt-3 text-sm md:text-base text-stone-700 font-normal leading-relaxed">
-              Somos una comunidad que entendemos la actividad física como una forma de vivir.
-              Entrenamos en entornos naturales para todas las edades: estimulando el movimiento
-              cotidiano y pregonando el cuidado y la conservación de nuestra tierra.
-            </p>
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span className="font-mono uppercase tracking-[0.25em] text-[10px] sm:text-[11px] text-[#f5f4f0] font-semibold">
+              Una comunidad que eligió moverse
+            </span>
           </motion.div>
 
-          {/* Disciplinas Pills */}
+          {/* Logo Redondeado de Corredores (logocorredores.png) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6 relative group"
+          >
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full p-1 bg-gradient-to-tr from-amber-500/40 via-white/20 to-amber-300/40 shadow-[0_10px_40px_rgba(245,158,11,0.25)] border border-white/20 backdrop-blur-md mx-auto flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+              <img
+                src="/logocorredores.png"
+                alt="El Club de Corredores"
+                className="w-full h-full object-contain rounded-full drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)]"
+              />
+            </div>
+          </motion.div>
+
+          {/* Título de la Sección */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
-            className="flex flex-wrap items-center gap-2 lg:justify-end"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="max-w-4xl mx-auto px-2"
           >
-            <span className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-900/10 text-xs font-semibold text-stone-800 shadow-sm">
-              • Running
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-900/10 text-xs font-semibold text-stone-800 shadow-sm">
-              • Trail Running
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-900/10 text-xs font-semibold text-stone-800 shadow-sm">
-              • Funcional
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-900/10 text-xs font-semibold text-stone-800 shadow-sm">
-              • Trekking
-            </span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-['Space_Grotesk'] font-black uppercase text-[#f5f4f0] tracking-tight leading-none drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
+              EL CLUB DE CORREDORES
+            </h1>
+            <p className="mt-3 sm:mt-4 text-xl sm:text-2xl md:text-3xl font-['Newsreader'] italic font-light text-amber-400 drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
+              El deporte como estilo de vida
+            </p>
+            <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#d8cfc4] font-normal leading-relaxed max-w-2xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              Entrenamientos grupales semanales en Durazno, preparación física guiada por profesores y el Río Yí como nuestro patio natural. Para todas las edades, desde quienes dan sus primeros pasos hasta maratonistas.
+            </p>
+          </motion.div>
+
+          {/* Botones / Accesos Directos a las Secciones */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl"
+          >
+            <a
+              href="#disciplinas"
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-amber-400 transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
+              <div className="text-left">
+                <span className="block font-semibold tracking-wide text-white">Disciplinas</span>
+                <span className="block text-[10px] text-[#8d9299] font-mono">Running · Trail · Funcional</span>
+              </div>
+            </a>
+
+            <a
+              href="#membresia"
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 text-xs sm:text-sm text-[#f5f4f0] border border-amber-500/50 hover:border-amber-400 bg-amber-500/10 transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
+              <div className="text-left">
+                <span className="block font-semibold tracking-wide text-amber-300">Cuota & Beneficios</span>
+                <span className="block text-[10px] text-amber-200/80 font-mono">Membresía Mensual</span>
+              </div>
+            </a>
+
+            <a
+              href="#rioyi"
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-black/60 hover:bg-black/90 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-amber-400 transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-stone-300 group-hover:scale-125 transition-transform shrink-0" />
+              <div className="text-left">
+                <span className="block font-semibold tracking-wide text-white">El Río Yí</span>
+                <span className="block text-[10px] text-[#8d9299] font-mono">Nuestra Pista Natural</span>
+              </div>
+            </a>
+
+            <a
+              href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20sumarme%20a%20El%20Club%20de%20Corredores%20en%20Durazno."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-black text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-xl shadow-amber-400/20 active:scale-95"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Inscribirme</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </motion.div>
         </div>
-      </div>
 
-      {/* Bottom Bar: Scroll Sync Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.7 }}
-        className="flex items-center justify-between pt-4 border-t border-amber-900/10"
-      >
-        <div className="text-[11px] text-amber-950/70 font-mono hidden sm:block">
-          DURAZNO · URUGUAY · ENTORNO NATURAL
-        </div>
-
-        <div className="flex items-center gap-3 mx-auto sm:mx-0 text-xs font-mono text-amber-900">
-          <span className="tracking-widest uppercase text-[11px] font-semibold">
-            Desliza para ver la caída del sol sobre el Río Yí
-          </span>
-          <div className="w-7 h-7 rounded-full bg-amber-600/15 border border-amber-600/30 flex items-center justify-center animate-bounce">
-            <ArrowDown className="w-3.5 h-3.5 text-amber-700" />
+        {/* Barra Inferior con Indicadores & Scroll Down */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10 max-w-5xl mx-auto w-full"
+        >
+          {/* Credenciales rápidas */}
+          <div className="flex items-center gap-4 text-[11px] text-[#8d9299] font-mono">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+              Profesores Certificados
+            </span>
+            <span className="text-white/20">·</span>
+            <span className="flex items-center gap-1.5">
+              <Footprints className="w-3.5 h-3.5 text-amber-400" />
+              Pase Libre Semanal
+            </span>
           </div>
-        </div>
 
-        <div className="text-[11px] text-amber-950/70 font-mono hidden md:block">
-          EDICIÓN CONTINUA 2026/2027
-        </div>
+          {/* Flecha de scroll */}
+          <a
+            href="#disciplinas"
+            className="group flex items-center gap-2 text-[11px] tracking-widest uppercase font-mono text-[#d8cfc4] hover:text-amber-400 transition-colors"
+          >
+            <span>Conocer el Club</span>
+            <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-amber-400 group-hover:translate-y-0.5 transition-all">
+              <ArrowDown className="w-3.5 h-3.5 text-amber-400" />
+            </div>
+          </a>
+        </motion.div>
       </motion.div>
     </section>
   );
