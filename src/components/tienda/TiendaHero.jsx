@@ -83,17 +83,17 @@ export default function TiendaHero() {
           </span>
         </motion.div>
 
-        {/* Logo Trillo */}
+        {/* Logo Trillo Agrandado */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-2 sm:mb-3"
+          className="mb-3 sm:mb-4"
         >
           <img
             src="/logoTrillo.png"
             alt="TRILLO"
-            className="w-auto h-auto max-w-[170px] sm:max-w-[210px] md:max-w-[250px] max-h-[55px] sm:max-h-[65px] md:max-h-[75px] object-contain drop-shadow-[0_8px_35px_rgba(0,0,0,0.9)] mx-auto pointer-events-none"
+            className="w-auto h-auto max-w-[230px] sm:max-w-[300px] md:max-w-[360px] max-h-[80px] sm:max-h-[100px] md:max-h-[115px] object-contain drop-shadow-[0_8px_35px_rgba(0,0,0,0.9)] mx-auto pointer-events-none"
             draggable="false"
           />
         </motion.div>
