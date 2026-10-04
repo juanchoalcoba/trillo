@@ -42,7 +42,7 @@ export default function EventosCTA() {
               Edición Oficial San Pedro 2026/2027
             </span>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Outfit'] uppercase text-[#f5f4f0] leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Space_Grotesk'] uppercase text-[#f5f4f0] leading-tight">
               ASEGURÁ TU DORSAL EN <span className="text-[#e87a38]">SAN PEDRO</span>
             </h2>
 
@@ -83,7 +83,7 @@ export default function EventosCTA() {
               </div>
 
               <div className="my-6">
-                <span className="text-3xl sm:text-4xl font-black font-['Outfit'] text-[#f5f4f0]">
+                <span className="text-3xl sm:text-4xl font-black font-['Space_Grotesk'] text-[#f5f4f0]">
                   {currentPrice.precio} <span className="text-sm font-normal text-[#8d9299]">UYU</span>
                 </span>
 
@@ -129,7 +129,7 @@ export default function EventosCTA() {
       {/* Preguntas Rápidas */}
       <div className="mt-16 pt-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#8d9299]">
         <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-          <h4 className="text-sm font-bold font-['Outfit'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
+          <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
             <HelpCircle className="w-4 h-4 text-[#e87a38]" />
             ¿Qué equipo es obligatorio?
           </h4>
@@ -140,7 +140,7 @@ export default function EventosCTA() {
         </div>
 
         <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-          <h4 className="text-sm font-bold font-['Outfit'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
+          <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
             <HelpCircle className="w-4 h-4 text-[#e87a38]" />
             ¿Dónde se retira el kit?
           </h4>
@@ -150,7 +150,7 @@ export default function EventosCTA() {
         </div>
 
         <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-          <h4 className="text-sm font-bold font-['Outfit'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
+          <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
             <HelpCircle className="w-4 h-4 text-[#e87a38]" />
             ¿Hay estacionamiento y duchas?
           </h4>
@@ -163,7 +163,7 @@ export default function EventosCTA() {
       {/* Footer Eventos */}
       <footer className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#8d9299]">
         <div className="flex items-center gap-3">
-          <span className="font-['Outfit'] font-black tracking-widest text-[#f5f4f0] uppercase text-sm">
+          <span className="font-['Space_Grotesk'] font-black tracking-widest text-[#f5f4f0] uppercase text-sm">
             TRILLO EVENTOS
           </span>
           <span className="text-white/20">|</span>

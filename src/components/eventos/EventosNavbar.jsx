@@ -31,7 +31,7 @@ export default function EventosNavbar() {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="font-['Outfit'] font-black tracking-widest text-sm text-[#f5f4f0] uppercase">
+              <span className="font-['Space_Grotesk'] font-black tracking-widest text-sm text-[#f5f4f0] uppercase">
                 TRILLO
               </span>
               <span className="text-[10px] bg-[#e87a38]/20 text-[#e87a38] px-1.5 py-0.2 rounded font-mono font-bold tracking-wider">

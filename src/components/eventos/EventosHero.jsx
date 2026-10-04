@@ -88,7 +88,7 @@ export default function EventosHero() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 select-none"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase font-['Outfit'] tracking-tight text-[#f5f4f0]">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase font-['Space_Grotesk'] tracking-tight text-[#f5f4f0]">
               SAN PEDRO
             </h1>
             <span className="text-2xl sm:text-4xl md:text-5xl font-['Newsreader'] italic font-light text-[#e87a38]">
@@ -139,7 +139,7 @@ export default function EventosHero() {
                   key={idx}
                   className="bg-black/40 border border-white/5 rounded-xl py-3 px-1 flex flex-col items-center"
                 >
-                  <span className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#f5f4f0]">
+                  <span className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0]">
                     {String(item.val).padStart(2, '0')}
                   </span>
                   <span className="text-[9px] font-mono text-[#8d9299] tracking-widest mt-1">
@@ -183,7 +183,7 @@ export default function EventosHero() {
                   <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full ${d.chip}`}>
                     {d.tipo}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#f5f4f0] mt-2 group-hover:text-[#e87a38] transition-colors">
+                  <h3 className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0] mt-2 group-hover:text-[#e87a38] transition-colors">
                     {d.dist}
                   </h3>
                 </div>

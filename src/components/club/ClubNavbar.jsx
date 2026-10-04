@@ -41,7 +41,7 @@ export default function ClubNavbar() {
             <Sun className="w-4 h-4 text-white animate-spin-slow" />
           </div>
           <div className="flex flex-col text-left">
-            <span className="font-['Outfit'] font-extrabold tracking-wider text-sm text-stone-900 uppercase">
+            <span className="font-['Space_Grotesk'] font-extrabold tracking-wider text-sm text-stone-900 uppercase">
               EL CLUB
             </span>
             <span className="text-[9px] tracking-widest text-amber-800/80 font-mono -mt-1 uppercase">

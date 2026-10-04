@@ -29,7 +29,7 @@ export default function HomePage() {
       <footer className="relative z-10 border-t border-white/10 bg-[#08090a]/80 backdrop-blur-md py-12 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#8d9299]">
           <div className="flex items-center gap-3">
-            <span className="font-['Outfit'] font-black tracking-widest text-[#f5f4f0] uppercase text-sm">
+            <span className="font-['Space_Grotesk'] font-black tracking-widest text-[#f5f4f0] uppercase text-sm">
               TRILLO
             </span>
             <span className="text-white/20">|</span>

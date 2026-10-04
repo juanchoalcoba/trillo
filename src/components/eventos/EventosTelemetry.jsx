@@ -66,7 +66,7 @@ export default function EventosTelemetry() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Outfit'] uppercase text-[#f5f4f0] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Space_Grotesk'] uppercase text-[#f5f4f0] tracking-tight">
             PERFIL DEL CIRCUITO <span className="font-['Newsreader'] italic font-light text-[#e87a38]">San Pedro</span>
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-[#8d9299] max-w-xl">
@@ -102,14 +102,14 @@ export default function EventosTelemetry() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-8 border-b border-white/10">
           <div>
             <span className="text-[11px] font-mono uppercase text-[#8d9299]">Distancia Oficial</span>
-            <div className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#f5f4f0] mt-1">
+            <div className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0] mt-1">
               {course.distancia}
             </div>
           </div>
 
           <div>
             <span className="text-[11px] font-mono uppercase text-[#8d9299]">Desnivel Positivo</span>
-            <div className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#e87a38] mt-1 flex items-center gap-1.5">
+            <div className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#e87a38] mt-1 flex items-center gap-1.5">
               <Mountain className="w-5 h-5 text-[#e87a38]" />
               <span>{course.desnivel}</span>
             </div>
@@ -117,7 +117,7 @@ export default function EventosTelemetry() {
 
           <div>
             <span className="text-[11px] font-mono uppercase text-[#8d9299]">Hidratación</span>
-            <div className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#f5f4f0] mt-1 flex items-center gap-1.5">
+            <div className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0] mt-1 flex items-center gap-1.5">
               <Droplets className="w-5 h-5 text-blue-400" />
               <span>{course.puntosHidratacion}</span>
             </div>
@@ -125,7 +125,7 @@ export default function EventosTelemetry() {
 
           <div>
             <span className="text-[11px] font-mono uppercase text-[#8d9299]">Dificultad</span>
-            <div className="text-lg sm:text-xl font-bold font-['Outfit'] text-amber-300 mt-2">
+            <div className="text-lg sm:text-xl font-bold font-['Space_Grotesk'] text-amber-300 mt-2">
               {course.dificultad}
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function EventosTelemetry() {
               <span className="text-[#e87a38] uppercase font-bold text-[10px]">
                 Hito Seleccionado · Km {activePoint.km} ({activePoint.alt}m de altitud)
               </span>
-              <h4 className="text-base font-bold font-['Outfit'] text-[#f5f4f0] mt-0.5">
+              <h4 className="text-base font-bold font-['Space_Grotesk'] text-[#f5f4f0] mt-0.5">
                 {activePoint.name}
               </h4>
               <p className="text-[#8d9299] mt-0.5">{activePoint.desc}</p>

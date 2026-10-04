@@ -49,7 +49,7 @@ export default function ClubHero() {
             initial={{ y: '100%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-            className="text-[11vw] md:text-[9vw] lg:text-[6.8rem] font-black tracking-[-0.03em] uppercase font-['Outfit'] leading-[0.88] text-stone-900 select-none"
+            className="text-[11vw] md:text-[9vw] lg:text-[6.8rem] font-black tracking-[-0.03em] uppercase font-['Space_Grotesk'] leading-[0.88] text-stone-900 select-none"
           >
             CLUB DE CORREDORES
           </motion.h1>

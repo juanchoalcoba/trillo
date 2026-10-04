@@ -28,7 +28,7 @@ export default function ClubCommunity() {
             <span>El Territorio de Durazno</span>
           </div>
 
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-['Outfit'] font-black leading-tight mb-4">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-['Space_Grotesk'] font-black leading-tight mb-4">
             El Río Yí es Nuestra Pista Natural
           </h3>
 
@@ -40,19 +40,19 @@ export default function ClubCommunity() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/20 text-center">
             <div>
-              <span className="block text-3xl font-black font-['Outfit']">+10</span>
+              <span className="block text-3xl font-black font-['Space_Grotesk']">+10</span>
               <span className="text-xs text-amber-200 font-mono">Años de historia</span>
             </div>
             <div>
-              <span className="block text-3xl font-black font-['Outfit']">+500</span>
+              <span className="block text-3xl font-black font-['Space_Grotesk']">+500</span>
               <span className="text-xs text-amber-200 font-mono">Corredores formados</span>
             </div>
             <div>
-              <span className="block text-3xl font-black font-['Outfit']">100%</span>
+              <span className="block text-3xl font-black font-['Space_Grotesk']">100%</span>
               <span className="text-xs text-amber-200 font-mono">Entorno Natural</span>
             </div>
             <div>
-              <span className="block text-3xl font-black font-['Outfit']">Durazno</span>
+              <span className="block text-3xl font-black font-['Space_Grotesk']">Durazno</span>
               <span className="text-xs text-amber-200 font-mono">Corazón de Uruguay</span>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function ClubCommunity() {
           <span className="text-xs font-mono uppercase tracking-widest text-amber-300 font-bold bg-amber-500/20 px-3.5 py-1.5 rounded-full border border-amber-500/40">
             Nuestra Filosofía
           </span>
-          <h3 className="text-3xl sm:text-4xl font-['Outfit'] font-black text-[#FAF5EE] mt-4 tracking-tight">
+          <h3 className="text-3xl sm:text-4xl font-['Space_Grotesk'] font-black text-[#FAF5EE] mt-4 tracking-tight">
             Cuatro Palabras que Guían Cada Paso
           </h3>
           <p className="mt-3 text-sm sm:text-base text-[#E2D9CE] font-normal leading-relaxed">
@@ -92,7 +92,7 @@ export default function ClubCommunity() {
               <div className="w-10 h-10 rounded-xl bg-amber-100/80 flex items-center justify-center text-amber-800 font-bold font-mono text-sm mb-4">
                 0{i + 1}
               </div>
-              <h4 className="text-xl font-['Outfit'] font-bold text-stone-900 mb-2">
+              <h4 className="text-xl font-['Space_Grotesk'] font-bold text-stone-900 mb-2">
                 {v.label}
               </h4>
               <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">

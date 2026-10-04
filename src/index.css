@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Outfit', sans-serif;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
   --font-serif: 'Newsreader', serif;
 
   --color-trillo-black: #08090a;
@@ -25,11 +25,15 @@
 html, body {
   background-color: #08090a;
   color: #f5f4f0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Glassmorphism helpers */

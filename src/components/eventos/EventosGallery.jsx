@@ -188,7 +188,7 @@ export default function EventosGallery() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Outfit'] uppercase text-[#f5f4f0] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Space_Grotesk'] uppercase text-[#f5f4f0] tracking-tight">
             LA EXPERIENCIA <span className="font-['Newsreader'] italic font-light text-[#e87a38]">San Pedro</span>
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-[#8d9299] max-w-xl">
@@ -331,7 +331,7 @@ export default function EventosGallery() {
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <h3 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#f5f4f0] leading-tight">
+                  <h3 className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0] leading-tight">
                     {currentItem.title}
                   </h3>
 
@@ -516,7 +516,7 @@ export default function EventosGallery() {
                         <span className="text-[10px] font-mono text-[#8d9299]">San Pedro · UY</span>
                       </div>
 
-                      <h3 className="text-xl sm:text-2xl font-black font-['Outfit'] text-[#f5f4f0] mt-3 leading-tight">
+                      <h3 className="text-xl sm:text-2xl font-black font-['Space_Grotesk'] text-[#f5f4f0] mt-3 leading-tight">
                         {selectedImage.title}
                       </h3>
 

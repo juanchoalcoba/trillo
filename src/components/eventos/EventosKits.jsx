@@ -57,7 +57,7 @@ export default function EventosKits() {
           </div>
 
           <div className="absolute bottom-5 left-5 right-5">
-            <h3 className="text-xl sm:text-2xl font-bold font-['Outfit'] text-[#f5f4f0]">
+            <h3 className="text-xl sm:text-2xl font-bold font-['Space_Grotesk'] text-[#f5f4f0]">
               Materia Criolla & Tecnología Deportiva
             </h3>
             <p className="text-xs text-[#8d9299] font-mono mt-1">
@@ -82,7 +82,7 @@ export default function EventosKits() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-black font-['Outfit'] uppercase text-[#f5f4f0] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black font-['Space_Grotesk'] uppercase text-[#f5f4f0] tracking-tight">
               LO QUE TE LLEVAS DE <span className="font-['Newsreader'] italic font-light text-[#e87a38]">San Pedro</span>
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-[#8d9299] mb-6">
@@ -100,7 +100,7 @@ export default function EventosKits() {
                     {item.icon}
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold font-['Outfit'] text-[#f5f4f0]">
+                    <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0]">
                       {item.title}
                     </h4>
                     <p className="text-xs text-[#8d9299] mt-0.5 leading-relaxed font-sans">

@@ -56,7 +56,7 @@ export default function ClubJoinSection() {
         <span className="text-xs font-mono uppercase tracking-widest text-amber-300 font-bold bg-amber-500/20 px-3.5 py-1.5 rounded-full border border-amber-500/40">
           Comenzar Hoy
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Outfit'] font-black text-[#FAF5EE] mt-4 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Space_Grotesk'] font-black text-[#FAF5EE] mt-4 tracking-tight">
           Sumate a El Club
         </h2>
         <p className="mt-3 text-sm sm:text-base text-[#E2D9CE] font-normal leading-relaxed">
@@ -91,7 +91,7 @@ export default function ClubJoinSection() {
                 )}
               </div>
 
-              <h3 className="text-2xl font-['Outfit'] font-bold text-stone-900 mb-2">
+              <h3 className="text-2xl font-['Space_Grotesk'] font-bold text-stone-900 mb-2">
                 {p.name}
               </h3>
               <p className="text-sm text-stone-600 mb-6">

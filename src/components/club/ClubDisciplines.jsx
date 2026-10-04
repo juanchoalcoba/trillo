@@ -61,7 +61,7 @@ export default function ClubDisciplines() {
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-amber-900/10 text-xs font-semibold text-amber-800 mb-4 shadow-sm font-mono uppercase tracking-widest text-[11px]">
           Nuestras 4 Formas de Movernos
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Outfit'] font-black text-stone-900 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Space_Grotesk'] font-black text-stone-900 tracking-tight">
           El Movimiento en el Entorno Natural
         </h2>
         <p className="mt-4 text-base md:text-lg text-stone-700 leading-relaxed font-normal">
@@ -96,7 +96,7 @@ export default function ClubDisciplines() {
                   </div>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-['Outfit'] font-bold text-stone-900 mb-2">
+                <h3 className="text-2xl md:text-3xl font-['Space_Grotesk'] font-bold text-stone-900 mb-2">
                   {item.title}
                 </h3>
                 <p className="text-base font-medium text-amber-950/80 mb-3">

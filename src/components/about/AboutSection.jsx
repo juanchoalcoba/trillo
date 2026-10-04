@@ -78,26 +78,24 @@ export default function AboutSection() {
           ¿Qué es Trillo?
         </motion.h2>
 
-        <motion.p
+        <motion.h3
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="text-2xl sm:text-3xl md:text-5xl font-['Outfit'] font-bold text-[#f5f4f0] leading-snug tracking-tight"
+          className="text-2xl sm:text-3xl md:text-5xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] leading-snug tracking-tight max-w-3xl mx-auto"
         >
-          TRILLO no es solo una empresa de eventos, un grupo de corredores o una agencia de aventuras.
-        </motion.p>
+          Trillo es una invitación a vivir la vida desde la aventura.
+        </motion.h3>
 
         <motion.p
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-6 text-lg sm:text-xl md:text-2xl text-[#8d9299] font-['Newsreader'] italic font-light leading-relaxed"
+          className="mt-6 text-base sm:text-lg md:text-xl text-[#d8cfc4] font-normal leading-relaxed max-w-3xl mx-auto"
         >
-          "Todas esas cosas son formas de expresar el espíritu Trillo.
-          Trillo es un estilo de vida: salir, moverse, conocer, compartir, desafiarse
-          y estar en contacto con la naturaleza."
+          Te ofrecemos un universo de experiencias que te harán dar todo en cada competencia, desafiarte en travesías inolvidables o llevarte a desconectar en entornos naturales de belleza absoluta.
         </motion.p>
       </div>
 
@@ -128,7 +126,7 @@ export default function AboutSection() {
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#e87a38]">
               La verdadera pregunta
             </span>
-            <h3 className="mt-2 text-2xl sm:text-3xl font-['Outfit'] font-bold text-[#f5f4f0]">
+            <h3 className="mt-2 text-2xl sm:text-3xl font-['Space_Grotesk'] font-bold text-[#f5f4f0]">
               "¿Qué puedo vivir dentro del Universo Trillo?"
             </h3>
             <p className="mt-2 text-sm sm:text-base text-[#8d9299]">
@@ -145,7 +143,7 @@ export default function AboutSection() {
             <span className="text-xs font-mono uppercase tracking-widest text-[#e87a38]">
               Las 3 Expresiones
             </span>
-            <h3 className="text-3xl md:text-4xl font-['Outfit'] font-bold text-[#f5f4f0] mt-1">
+            <h3 className="text-3xl md:text-4xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] mt-1">
               El Universo Trillo
             </h3>
           </div>
@@ -189,7 +187,7 @@ export default function AboutSection() {
                   </div>
 
                   {/* Title & Headline */}
-                  <h4 className="text-2xl font-['Outfit'] font-bold text-[#f5f4f0] tracking-wide mb-3">
+                  <h4 className="text-2xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] tracking-wide mb-3">
                     {pillar.title}
                   </h4>
                   <p className="text-base font-medium text-[#d8cfc4] mb-4 leading-snug">
@@ -256,7 +254,7 @@ export default function AboutSection() {
           Moverse. Explorar. Compartir. Vivir el proceso.
         </h4>
         <div className="mt-8 flex justify-center items-center gap-4">
-          <span className="text-lg font-['Outfit'] font-black tracking-widest uppercase text-[#e87a38]">
+          <span className="text-lg font-['Space_Grotesk'] font-black tracking-widest uppercase text-[#e87a38]">
             ¿Te animás?
           </span>
         </div>
