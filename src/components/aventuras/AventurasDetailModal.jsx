@@ -63,7 +63,7 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto pt-14 pb-8 sm:py-8">
           {/* Backdrop con blur profundo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -79,10 +79,10 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative z-10 w-full max-w-4xl bg-[#0c0e12] border border-white/10 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[92vh] flex flex-col"
+            className="relative z-10 w-full max-w-4xl bg-[#0c0e12] border border-white/15 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[84vh] flex flex-col"
           >
             {/* Header con imagen de portada */}
-            <div className="relative h-60 sm:h-72 w-full shrink-0 overflow-hidden">
+            <div className="relative h-48 sm:h-56 md:h-64 w-full shrink-0 overflow-hidden">
               <img
                 src={adventure.image}
                 alt={adventure.title}
@@ -92,10 +92,10 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
               {/* Degradé protector */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/40 to-black/60" />
 
-              {/* Botón Cerrar */}
+              {/* Botón Cerrar Siempre Visible y con Alto Contraste */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white/80 hover:text-white border border-white/20 flex items-center justify-center transition-all backdrop-blur-md"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/80 hover:bg-black text-white border border-white/30 flex items-center justify-center transition-all backdrop-blur-md shadow-2xl active:scale-95"
                 aria-label="Cerrar modal"
               >
                 <X className="w-5 h-5" />

@@ -36,7 +36,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto pt-14 pb-8 sm:py-8">
           {/* Backdrop con blur */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -52,21 +52,21 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative z-10 w-full max-w-4xl bg-[#0c0e12] border border-white/15 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[92vh] flex flex-col md:flex-row"
+            className="relative z-10 w-full max-w-4xl bg-[#0c0e12] border border-white/20 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[84vh] flex flex-col md:flex-row"
           >
-            {/* Botón Cerrar */}
+            {/* Botón Cerrar Siempre Visible */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white/80 hover:text-white border border-white/20 flex items-center justify-center transition-all backdrop-blur-md"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/85 hover:bg-black text-white border border-white/30 flex items-center justify-center transition-all backdrop-blur-md shadow-2xl active:scale-95"
               aria-label="Cerrar modal"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Lado Izquierdo: Visualizador de Prenda (Frente / Dorso) */}
-            <div className="md:w-1/2 p-6 sm:p-8 bg-gradient-to-b from-[#14171f] to-[#0c0e12] flex flex-col justify-between items-center border-b md:border-b-0 md:border-r border-white/10 relative">
+            <div className="md:w-1/2 p-5 sm:p-7 bg-gradient-to-b from-[#14171f] to-[#0c0e12] flex flex-col justify-between items-center border-b md:border-b-0 md:border-r border-white/10 relative">
               {/* Badge de Categoría */}
-              <div className="w-full flex items-center justify-between mb-4">
+              <div className="w-full flex items-center justify-between mb-3">
                 <span
                   className={`text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border font-bold ${product.badgeColor}`}
                 >
@@ -101,7 +101,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
               </div>
 
               {/* Imagen de la Prenda */}
-              <div className="my-auto py-4 w-full flex items-center justify-center relative min-h-[260px] sm:min-h-[320px]">
+              <div className="my-auto py-2 sm:py-4 w-full flex items-center justify-center relative min-h-[200px] sm:min-h-[260px]">
                 <motion.img
                   key={currentImage}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -109,7 +109,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                   transition={{ duration: 0.3 }}
                   src={currentImage}
                   alt={`${product.name} - ${selectedView}`}
-                  className="max-h-[320px] sm:max-h-[380px] w-auto object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]"
+                  className="max-h-[220px] sm:max-h-[280px] md:max-h-[320px] w-auto object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]"
                 />
               </div>
 

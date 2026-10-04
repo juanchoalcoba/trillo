@@ -123,7 +123,7 @@ export default function AventurasHero() {
               Experiencias auténticas fuera de lo cotidiano
             </p>
             <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#d8cfc4] font-normal leading-relaxed max-w-2xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-              Trekking agreste, travesías fluviales en kayak, ascensos serranos y cordillera. No es una simple excursión: es conectar con lo salvaje y desafiarte en entornos naturales imponentes.
+              Trekking agreste, travesías fluviales en kayak, ascensos serranos y cordillera. No es una simple excursión 
             </p>
           </motion.div>
 
