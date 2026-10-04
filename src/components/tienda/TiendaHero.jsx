@@ -76,7 +76,7 @@ export default function TiendaHero() {
             Indumentaria técnica y streetwear con identidad de Durazno
           </p>
           <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#d8cfc4] font-normal leading-relaxed max-w-2xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-            Remeras de carrera ultralivianas, indumentaria oficial del Club de Corredores y prendas urbanas oversize de algodón pesado. Diseñadas para resistir el esfuerzo y lucir en cualquier lugar.
+            Remeras de carrera ultralivianas, indumentaria oficial del Club de Corredores y prendas urbanas oversize de algodón pesado.
           </p>
         </motion.div>
       </div>
