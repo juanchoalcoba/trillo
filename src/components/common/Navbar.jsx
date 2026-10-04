@@ -56,12 +56,15 @@ export default function Navbar() {
               San Pedro
             </span>
           </Link>
-          <a
-            href="#aventuras"
-            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
+          <Link
+            to="/aventuras"
+            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
           >
             Aventuras
-          </a>
+            <span className="text-[10px] bg-[#4ade80]/15 text-[#4ade80] px-1.5 py-0.5 rounded-full border border-[#4ade80]/30">
+              Expedición
+            </span>
+          </Link>
           <Link
             to="/club"
             className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
@@ -132,13 +135,16 @@ export default function Navbar() {
                 San Pedro
               </span>
             </Link>
-            <a
-              href="#aventuras"
+            <Link
+              to="/aventuras"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#4ade80] transition-colors font-medium flex items-center justify-between"
             >
-              Trillo Aventuras
-            </a>
+              <span>Trillo Aventuras</span>
+              <span className="text-xs bg-[#4ade80]/20 text-[#4ade80] px-2 py-0.5 rounded-full font-mono">
+                Expedición
+              </span>
+            </Link>
             <Link
               to="/club"
               onClick={() => setMobileMenuOpen(false)}

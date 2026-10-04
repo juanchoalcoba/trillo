@@ -278,14 +278,14 @@ export default function HeroSection() {
               <span className="text-[#d8cfc4] text-[11px] font-mono">· Carreras</span>
             </Link>
 
-            <a
-              href="#aventuras"
+            <Link
+              to="/aventuras"
               className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-[#f5f4f0] border border-white/20 hover:border-[#4ade80] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-[#4ade80] group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">Trillo Aventuras</span>
               <span className="text-[#d8cfc4] text-[11px] font-mono">· Territorio</span>
-            </a>
+            </Link>
 
             <Link
               to="/club"

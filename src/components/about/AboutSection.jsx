@@ -35,7 +35,7 @@ export default function AboutSection() {
       bgGradient: 'from-[#2e4033]/30 via-transparent to-transparent',
       borderColor: 'border-[#4ade80]/30',
       actionText: 'Descubrir Aventuras',
-      link: '#aventuras',
+      link: '/aventuras',
     },
     {
       id: 'club',
