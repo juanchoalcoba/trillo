@@ -1,19 +1,55 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, ShoppingBag, ArrowDown, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
 
 export default function TiendaHero() {
+  const containerRef = useRef(null);
+
+  // Parallax suave al hacer scroll
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const yBackground = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
+  const scaleBackground = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+
   return (
     <section
+      ref={containerRef}
       id="hero"
-      className="relative w-full min-h-[75vh] sm:min-h-[82vh] flex flex-col justify-between pt-28 sm:pt-32 pb-10 px-4 md:px-8 max-w-7xl mx-auto z-10 text-center"
+      className="relative w-full min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-between pt-28 sm:pt-32 pb-10 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden text-center"
     >
-      {/* Top Tagline */}
+      {/* 1. Grand Background Graphic: transtrillo.png con Parallax & Ambient Glow */}
+      <motion.div
+        style={{ y: yBackground, scale: scaleBackground }}
+        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0 flex items-center justify-center"
+      >
+        {/* Glows ambientales sutiles */}
+        <div className="absolute w-[500px] sm:w-[850px] h-[500px] sm:h-[850px] bg-violet-600/12 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute w-[350px] sm:w-[550px] h-[350px] sm:h-[550px] bg-amber-500/8 rounded-full blur-[120px] pointer-events-none translate-y-20" />
+
+        {/* Emblema geométrico transtrillo.png a escala monumental */}
+        <motion.img
+          initial={{ opacity: 0, scale: 0.88 }}
+          animate={{ opacity: 0.16, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          src="/transtrillo.png"
+          alt="Trillo Graphic"
+          className="w-auto h-auto max-w-[90vw] sm:max-w-[70vw] md:max-w-[55vw] lg:max-w-[48vw] max-h-[85%] object-contain filter invert brightness-200 contrast-125 select-none pointer-events-none drop-shadow-[0_0_60px_rgba(168,85,247,0.18)]"
+        />
+
+        {/* Degradés de fundido para mantener contraste perfecto */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/90 via-transparent to-[#08090a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#08090a_88%)] opacity-75" />
+      </motion.div>
+
+      {/* 2. Top Tagline */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 text-xs text-[#8d9299] max-w-5xl mx-auto w-full"
+        className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 text-xs text-[#8d9299] max-w-5xl mx-auto w-full"
       >
         <div className="flex items-center gap-2 mx-auto sm:mx-0">
           <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
@@ -32,8 +68,8 @@ export default function TiendaHero() {
         </div>
       </motion.div>
 
-      {/* Main Core */}
-      <div className="my-auto py-8 sm:py-12 flex flex-col items-center">
+      {/* 3. Main Core */}
+      <div className="relative z-10 my-auto py-8 sm:py-12 flex flex-col items-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -81,12 +117,12 @@ export default function TiendaHero() {
         </motion.div>
       </div>
 
-      {/* Bottom Bar con Beneficios */}
+      {/* 4. Bottom Bar con Beneficios */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, delay: 0.5 }}
-        className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10 max-w-5xl mx-auto w-full"
+        className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10 max-w-5xl mx-auto w-full"
       >
         <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-[#8d9299] font-mono">
           <span className="flex items-center gap-1.5">
