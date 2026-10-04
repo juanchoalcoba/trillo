@@ -13,18 +13,31 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
     setSelectedView('front');
   }, [product]);
 
+  // Manejo de tecla ESC y bloqueo total de scroll (incluido Lenis)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
     };
+
     if (isOpen) {
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+      const prevOverflow = document.body.style.overflow;
+      const prevTouch = document.body.style.touchAction;
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
       window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        if (window.lenis) {
+          window.lenis.start();
+        }
+        document.body.style.overflow = prevOverflow;
+        document.body.style.touchAction = prevTouch;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
   }, [isOpen, onClose]);
 
   if (!product) return null;
@@ -36,7 +49,10 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto pt-14 pb-8 sm:py-8">
+        <div
+          data-lenis-prevent="true"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 pt-20 pb-6 sm:pt-24 sm:pb-8 overflow-hidden"
+        >
           {/* Backdrop con blur */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -48,11 +64,12 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            data-lenis-prevent="true"
+            initial={{ opacity: 0, scale: 0.94, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 20 }}
+            exit={{ opacity: 0, scale: 0.94, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative z-10 w-full max-w-4xl bg-[#0c0e12] border border-white/20 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[84vh] flex flex-col md:flex-row"
+            className="relative z-10 w-full max-w-3xl bg-[#0c0e12] border border-white/20 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[78vh] sm:max-h-[80vh] flex flex-col md:flex-row overscroll-contain"
           >
             {/* Botón Cerrar Siempre Visible */}
             <button
@@ -64,9 +81,9 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
             </button>
 
             {/* Lado Izquierdo: Visualizador de Prenda (Frente / Dorso) */}
-            <div className="md:w-1/2 p-5 sm:p-7 bg-gradient-to-b from-[#14171f] to-[#0c0e12] flex flex-col justify-between items-center border-b md:border-b-0 md:border-r border-white/10 relative">
+            <div className="md:w-5/12 p-4 sm:p-5 bg-gradient-to-b from-[#14171f] to-[#0c0e12] flex flex-col justify-between items-center border-b md:border-b-0 md:border-r border-white/10 relative shrink-0">
               {/* Badge de Categoría */}
-              <div className="w-full flex items-center justify-between mb-3">
+              <div className="w-full flex items-center justify-between mb-2">
                 <span
                   className={`text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border font-bold ${product.badgeColor}`}
                 >
@@ -78,7 +95,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                   <div className="flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/15">
                     <button
                       onClick={() => setSelectedView('front')}
-                      className={`px-3 py-1 rounded-lg text-xs font-mono font-semibold transition-all ${
+                      className={`px-2.5 py-0.5 rounded-lg text-xs font-mono font-semibold transition-all ${
                         selectedView === 'front'
                           ? 'bg-white text-black shadow-md'
                           : 'text-[#8d9299] hover:text-white'
@@ -88,7 +105,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                     </button>
                     <button
                       onClick={() => setSelectedView('back')}
-                      className={`px-3 py-1 rounded-lg text-xs font-mono font-semibold transition-all ${
+                      className={`px-2.5 py-0.5 rounded-lg text-xs font-mono font-semibold transition-all ${
                         selectedView === 'back'
                           ? 'bg-white text-black shadow-md'
                           : 'text-[#8d9299] hover:text-white'
@@ -101,7 +118,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
               </div>
 
               {/* Imagen de la Prenda */}
-              <div className="my-auto py-2 sm:py-4 w-full flex items-center justify-center relative min-h-[200px] sm:min-h-[260px]">
+              <div className="my-auto py-2 w-full flex items-center justify-center relative min-h-[160px] sm:min-h-[200px]">
                 <motion.img
                   key={currentImage}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -109,29 +126,32 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                   transition={{ duration: 0.3 }}
                   src={currentImage}
                   alt={`${product.name} - ${selectedView}`}
-                  className="max-h-[220px] sm:max-h-[280px] md:max-h-[320px] w-auto object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]"
+                  className="max-h-[170px] sm:max-h-[210px] md:max-h-[240px] w-auto object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]"
                 />
               </div>
 
-              <div className="text-center text-[11px] font-mono text-[#8d9299]">
+              <div className="text-center text-[10px] font-mono text-[#8d9299]">
                 Vista: {selectedView === 'front' ? 'Frente de la prenda' : 'Dorso de la prenda'}
               </div>
             </div>
 
             {/* Lado Derecho: Detalles, Talles y Compra Directa */}
-            <div className="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+            <div
+              data-lenis-prevent="true"
+              className="md:w-7/12 p-4 sm:p-6 flex flex-col justify-between overflow-y-auto min-h-0 overscroll-contain"
+            >
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-bold block mb-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold block mb-1">
                   {product.subtitle}
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] leading-tight mb-3">
+                <h3 className="text-xl sm:text-2xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] leading-tight mb-2">
                   {product.name}
                 </h3>
 
                 {/* Precio */}
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-3xl sm:text-4xl font-['Space_Grotesk'] font-black text-white">
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-2xl sm:text-3xl font-['Space_Grotesk'] font-black text-white">
                     {product.price}
                   </span>
                   <span className="text-xs font-mono text-[#8d9299]">
@@ -140,17 +160,17 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                 </div>
 
                 {/* Descripción */}
-                <p className="text-xs sm:text-sm text-[#d8cfc4] leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-[#d8cfc4] leading-relaxed mb-4">
                   {product.description}
                 </p>
 
                 {/* Selector de Talle */}
-                <div className="mb-6">
-                  <div className="flex items-center justify-between mb-2">
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-1.5">
                     <span className="text-xs font-mono uppercase tracking-wider text-white font-bold">
                       Seleccionar Talle:
                     </span>
-                    <span className="text-[11px] font-mono text-amber-400 flex items-center gap-1">
+                    <span className="text-[10px] font-mono text-amber-400 flex items-center gap-1">
                       <Ruler className="w-3 h-3" />
                       Talle estándar unisex
                     </span>
@@ -161,7 +181,7 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                       <button
                         key={s}
                         onClick={() => setSelectedSize(s)}
-                        className={`w-11 h-11 rounded-xl text-xs font-mono font-bold transition-all flex items-center justify-center border ${
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs font-mono font-bold transition-all flex items-center justify-center border ${
                           selectedSize === s
                             ? 'bg-amber-400 text-black border-amber-400 shadow-lg shadow-amber-400/20 scale-105'
                             : 'bg-white/5 text-[#f5f4f0] border-white/15 hover:border-white/30'
@@ -174,8 +194,8 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
                 </div>
 
                 {/* Características Clave */}
-                <div className="space-y-2 mb-6 pt-4 border-t border-white/10">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#8d9299] font-bold block mb-2">
+                <div className="space-y-1.5 mb-4 pt-3 border-t border-white/10">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#8d9299] font-bold block mb-1">
                     Especificaciones Técnicas:
                   </span>
                   {product.features.map((feat, i) => (
@@ -188,19 +208,19 @@ export default function TiendaProductModal({ product, isOpen, onClose }) {
               </div>
 
               {/* Botón WhatsApp & Garantía */}
-              <div className="pt-4 border-t border-white/10">
+              <div className="pt-3 border-t border-white/10">
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black transition-all duration-300 flex items-center justify-center gap-2 shadow-xl shadow-amber-400/20 active:scale-95"
+                  className="w-full py-3 px-5 rounded-2xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black transition-all duration-300 flex items-center justify-center gap-2 shadow-xl shadow-amber-400/20 active:scale-95"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Comprar Talle {selectedSize} por WhatsApp</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
 
-                <div className="mt-3 flex items-center justify-center gap-4 text-[10px] font-mono text-[#8d9299]">
+                <div className="mt-2.5 flex items-center justify-center gap-3 text-[10px] font-mono text-[#8d9299]">
                   <span className="flex items-center gap-1">
                     <Truck className="w-3 h-3 text-amber-400" />
                     Envíos a todo Uruguay

@@ -15,19 +15,31 @@ import {
 } from 'lucide-react';
 
 export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
-  // Manejo de tecla ESC para cerrar el modal
+  // Manejo de tecla ESC y bloqueo total de scroll (incluido Lenis)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
     };
+
     if (isOpen) {
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+      const prevOverflow = document.body.style.overflow;
+      const prevTouch = document.body.style.touchAction;
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
       window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        if (window.lenis) {
+          window.lenis.start();
+        }
+        document.body.style.overflow = prevOverflow;
+        document.body.style.touchAction = prevTouch;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
   }, [isOpen, onClose]);
 
   if (!adventure) return null;
@@ -63,7 +75,10 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto pt-14 pb-8 sm:py-8">
+        <div
+          data-lenis-prevent="true"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 pt-20 pb-6 sm:pt-24 sm:pb-8 overflow-hidden"
+        >
           {/* Backdrop con blur profundo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -75,14 +90,15 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            data-lenis-prevent="true"
+            initial={{ opacity: 0, scale: 0.94, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 20 }}
+            exit={{ opacity: 0, scale: 0.94, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative z-10 w-full max-w-4xl bg-[#0c0e12] border border-white/15 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[84vh] flex flex-col"
+            className="relative z-10 w-full max-w-3xl bg-[#0c0e12] border border-white/15 rounded-3xl overflow-hidden shadow-2xl my-auto max-h-[78vh] sm:max-h-[80vh] flex flex-col overscroll-contain"
           >
             {/* Header con imagen de portada */}
-            <div className="relative h-48 sm:h-56 md:h-64 w-full shrink-0 overflow-hidden">
+            <div className="relative h-36 sm:h-44 md:h-48 w-full shrink-0 overflow-hidden">
               <img
                 src={adventure.image}
                 alt={adventure.title}
@@ -102,19 +118,19 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
               </button>
 
               {/* Badges y Meta sobre la foto */}
-              <div className="absolute bottom-4 left-4 right-4 sm:left-8 sm:right-8 flex flex-col gap-2">
+              <div className="absolute bottom-3 left-4 right-4 sm:left-6 sm:right-6 flex flex-col gap-1.5">
                 <div className="flex flex-wrap items-center gap-2">
                   <span
-                    className={`text-[10px] sm:text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border font-bold ${categoryTheme.badgeBg}`}
+                    className={`text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border font-bold ${categoryTheme.badgeBg}`}
                   >
                     {categoryTheme.tag}
                   </span>
-                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/10">
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/10">
                     {adventure.badge}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] leading-tight drop-shadow-md">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] leading-tight drop-shadow-md">
                   {adventure.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-[#d8cfc4] font-medium line-clamp-1">
@@ -124,7 +140,7 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
             </div>
 
             {/* Ficha Técnica / Métricas Rápidas */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 sm:px-8 border-b border-white/10 bg-[#08090a]/80 shrink-0">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-3 sm:px-6 border-b border-white/10 bg-[#08090a]/80 shrink-0">
               <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/[0.02]">
                 <Clock className="w-4 h-4 text-[#8d9299] shrink-0" />
                 <div>
@@ -161,7 +177,10 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
             </div>
 
             {/* Contenido Scrolleable */}
-            <div className="p-4 sm:p-8 overflow-y-auto space-y-8 flex-1">
+            <div
+              data-lenis-prevent="true"
+              className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1 min-h-0 overscroll-contain"
+            >
               {/* Descripción */}
               <div>
                 <h4 className="text-xs font-mono uppercase tracking-widest text-[#8d9299] mb-2 flex items-center gap-2">
@@ -219,14 +238,14 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
               </div>
 
               {/* Qué Incluye & Requisitos */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-white/10">
                 {/* Incluye */}
-                <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h5 className="text-xs font-mono uppercase tracking-wider text-white font-bold mb-3 flex items-center gap-2">
+                <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
+                  <h5 className="text-xs font-mono uppercase tracking-wider text-white font-bold mb-2.5 flex items-center gap-2">
                     <Shield className="w-3.5 h-3.5" style={{ color: categoryTheme.accent }} />
                     ¿Qué Incluye el Servicio?
                   </h5>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {adventure.included.map((inc, i) => (
                       <li key={i} className="flex items-start gap-2 text-xs text-[#d8cfc4]">
                         <span className="text-emerald-400 font-bold shrink-0">✓</span>
@@ -237,12 +256,12 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
                 </div>
 
                 {/* Requisitos / Qué llevar */}
-                <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h5 className="text-xs font-mono uppercase tracking-wider text-white font-bold mb-3 flex items-center gap-2">
+                <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
+                  <h5 className="text-xs font-mono uppercase tracking-wider text-white font-bold mb-2.5 flex items-center gap-2">
                     <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
                     Equipo Recomendado & Requisitos
                   </h5>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {adventure.requirements.map((req, i) => (
                       <li key={i} className="flex items-start gap-2 text-xs text-[#8d9299]">
                         <span className="text-amber-400 font-bold shrink-0">•</span>
@@ -255,7 +274,7 @@ export default function AventurasDetailModal({ adventure, isOpen, onClose }) {
             </div>
 
             {/* Footer con CTA de Consulta Directa */}
-            <div className="p-4 sm:px-8 sm:py-5 border-t border-white/10 bg-[#08090a] flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
+            <div className="p-3.5 sm:px-6 sm:py-4 border-t border-white/10 bg-[#08090a] flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
               <div className="text-center sm:text-left">
                 <span className="text-[11px] font-mono text-[#8d9299] block">
                   ¿Te interesa sumarte o armar esta fecha con tu grupo?
