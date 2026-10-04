@@ -49,30 +49,27 @@ export default function Navbar() {
           </a>
           <Link
             to="/eventos"
-            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
+            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
           >
             Eventos
-            <span className="text-[10px] bg-[#e87a38]/15 text-[#e87a38] px-1.5 py-0.5 rounded-full border border-[#e87a38]/30">
-              San Pedro
-            </span>
           </Link>
           <Link
             to="/aventuras"
-            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
+            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
           >
             Aventuras
-            <span className="text-[10px] bg-[#4ade80]/15 text-[#4ade80] px-1.5 py-0.5 rounded-full border border-[#4ade80]/30">
-              Expedición
-            </span>
           </Link>
           <Link
             to="/club"
-            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide flex items-center gap-1.5"
+            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
           >
             El Club
-            <span className="text-[10px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded-full border border-amber-500/30">
-              Durazno
-            </span>
+          </Link>
+          <Link
+            to="/tienda"
+            className="text-sm font-medium text-[#8d9299] hover:text-violet-400 transition-colors duration-200 tracking-wide"
+          >
+            TiendaTrillo
           </Link>
         </nav>
 
@@ -128,32 +125,30 @@ export default function Navbar() {
             <Link
               to="/eventos"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium flex items-center justify-between"
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
             >
-              <span>Trillo Eventos</span>
-              <span className="text-xs bg-[#e87a38]/20 text-[#e87a38] px-2 py-0.5 rounded-full font-mono">
-                San Pedro
-              </span>
+              Eventos
             </Link>
             <Link
               to="/aventuras"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#4ade80] transition-colors font-medium flex items-center justify-between"
+              className="text-base text-[#f5f4f0] hover:text-[#4ade80] transition-colors font-medium"
             >
-              <span>Trillo Aventuras</span>
-              <span className="text-xs bg-[#4ade80]/20 text-[#4ade80] px-2 py-0.5 rounded-full font-mono">
-                Expedición
-              </span>
+              Aventuras
             </Link>
             <Link
               to="/club"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium flex items-center justify-between"
+              className="text-base text-[#f5f4f0] hover:text-amber-400 transition-colors font-medium"
             >
-              <span>El Club de Corredores</span>
-              <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-mono">
-                Ruta Nueva
-              </span>
+              El Club
+            </Link>
+            <Link
+              to="/tienda"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base text-[#f5f4f0] hover:text-violet-400 transition-colors font-medium"
+            >
+              TiendaTrillo
             </Link>
             <div className="pt-2 border-t border-white/10 flex items-center justify-between">
               <span className="text-xs text-[#8d9299] font-mono">Durazno, Uruguay</span>

@@ -262,38 +262,43 @@ export default function HeroSection() {
             </p>
           </motion.div>
 
-          {/* Tres Items / Accesos Rápidos */}
+          {/* Cuatro Items / Accesos Rápidos */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="mt-3.5 sm:mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5"
+            className="mt-3 sm:mt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5"
           >
             <Link
               to="/eventos"
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-[#f5f4f0] border border-white/20 hover:border-[#e87a38] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-[#e87a38] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform shrink-0" />
-              <span className="font-semibold tracking-wide">Trillo Eventos</span>
-              <span className="text-[#d8cfc4] text-[11px] font-mono">· Carreras</span>
+              <span className="font-semibold tracking-wide">Eventos</span>
             </Link>
 
             <Link
               to="/aventuras"
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-[#f5f4f0] border border-white/20 hover:border-[#4ade80] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-[#4ade80] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-[#4ade80] group-hover:scale-125 transition-transform shrink-0" />
-              <span className="font-semibold tracking-wide">Trillo Aventuras</span>
-              <span className="text-[#d8cfc4] text-[11px] font-mono">· Territorio</span>
+              <span className="font-semibold tracking-wide">Aventuras</span>
             </Link>
 
             <Link
               to="/club"
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-[#f5f4f0] border border-amber-500/60 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-amber-500/60 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">El Club</span>
-              <span className="text-amber-300 text-[11px] font-mono">· Entrar</span>
+            </Link>
+
+            <Link
+              to="/tienda"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-violet-500/60 hover:border-violet-400 hover:bg-violet-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+            >
+              <span className="w-2 h-2 rounded-full bg-violet-400 group-hover:scale-125 transition-transform shrink-0" />
+              <span className="font-semibold tracking-wide">TiendaTrillo</span>
             </Link>
           </motion.div>
         </div>

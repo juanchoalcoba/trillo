@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import ClubPage from './pages/ClubPage';
 import EventosPage from './pages/EventosPage';
 import AventurasPage from './pages/AventurasPage';
+import TiendaPage from './pages/TiendaPage';
 
 // Resetea el scroll suave al cambiar de página
 function ScrollReset() {
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/club" element={<ClubPage />} />
           <Route path="/eventos" element={<EventosPage />} />
           <Route path="/aventuras" element={<AventurasPage />} />
+          <Route path="/tienda" element={<TiendaPage />} />
         </Routes>
       </SmoothScroll>
     </BrowserRouter>

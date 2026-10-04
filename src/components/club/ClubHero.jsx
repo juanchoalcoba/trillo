@@ -28,7 +28,7 @@ export default function ClubHero() {
         className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none select-none z-0"
       >
         <img
-          src="/bgClub.jpg"
+          src="/clubfondook.jpg"
           alt="El Club de Corredores Trillo"
           className="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] saturate-[1.2]"
         />
