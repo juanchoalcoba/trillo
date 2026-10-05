@@ -1,0 +1,145 @@
+/**
+ * Trillo Eventos - Catálogo Oficial de Carreras y Competencias
+ * Durazno, Uruguay
+ */
+
+export const EVENTS = [
+  {
+    id: 'desafio-rebollo',
+    title: 'Desafío Rebollo',
+    subtitle: 'Trail Running, Sierra Agreste & Desnivel',
+    badge: 'Trail Puro',
+    season: 'Otoño 2027',
+    date: 'Mayo 2027 · Durazno',
+    location: 'Rincón de Rebollo, Durazno',
+    distances: ['7K Participativo', '15K Competitivo', '25K Trail Extremo'],
+    elevation: '+520m Desnivel Positivo',
+    difficulty: 'Media - Alta',
+    terrain: 'Senderos de sierra, canteras de piedra, cañadas y monte nativo',
+    image: '/eventosverti.jpg',
+    accent: '#f97316',
+    accentBg: 'bg-orange-500/15 text-orange-400 border-orange-500/30',
+    btnBg: 'bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-black',
+    shortDescription:
+      'Una prueba para corredores que buscan contacto visceral con la naturaleza. El Desafío Rebollo se interna en las quebradas y cerros más agrestes de Durazno.',
+    description:
+      'El Desafío Rebollo es una experiencia de trail running auténtica en el corazón geográfico del Uruguay. Diseñada para quienes disfrutan de los senderos rocosos, las subidas pronunciadas y el monte agreste. Con distancias accesibles para quienes debutan en el trail (7K) hasta un circuito de 25K de alta exigencia que demanda piernas, concentración y espíritu de montaña.',
+    highlights: [
+      'Circuito 100% agreste sin asfalto ni calles de tránsito vehicular',
+      'Cruce de cañadas naturales de agua clara y monte nativo virgen',
+      'Cronometraje digital con chip descartable de máxima precisión',
+      'Puestos de hidratación isotónica y frutas frescas cada 4 km',
+      'Medalla Finisher metálica conmemorativa de fundición pesada',
+      'Remera técnica oficial Trillo Trail de alta evaporación',
+    ],
+    kitIncludes: [
+      'Remera técnica oficial Desafío Rebollo Micro-Dry',
+      'Número de corredor con chip descartable incorporado',
+      'Medalla Finisher troquelada para todos los llegados',
+      'Seguro de accidentes personales de la competencia',
+      'Puntos de abastecimiento con agua, isotónica y frutas',
+      'Asistencia médica y patrullaje de rescate en el circuito',
+    ],
+    schedule: [
+      { time: '07:30 HS', activity: 'Acreditación y retiro de kits en campamento base' },
+      { time: '08:45 HS', activity: 'Charla técnica de seguridad y descripción del circuito' },
+      { time: '09:00 HS', activity: 'Largada simultánea categorías competitivas 25K y 15K' },
+      { time: '09:15 HS', activity: 'Largada categoría participativa 7K' },
+      { time: '12:30 HS', activity: 'Tercer tiempo con música en vivo y entrega de trofeos' },
+    ],
+    whatsappMsg:
+      'Hola Trillo! Quiero información e inscribirme en el Desafío Rebollo de Trail en Durazno.',
+  },
+  {
+    id: 'laberinto',
+    title: 'Carrera del Laberinto',
+    subtitle: 'Cross Country Técnico & Velocidad Pura',
+    badge: 'Cross Dinámico',
+    season: 'Invierno 2027',
+    date: 'Agosto 2027 · Durazno',
+    location: 'Circuito El Laberinto, Durazno',
+    distances: ['5K Promocional', '10K Desafío Total'],
+    elevation: '+210m Desnivel Dinámico',
+    difficulty: 'Media',
+    terrain: 'Senderos serpenteantes, bancos de arena, repechos cortos y barro',
+    image: '/images/events/san_pedro_night.jpg',
+    accent: '#eab308',
+    accentBg: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30',
+    btnBg: 'bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black',
+    shortDescription:
+      'Un trazado enigmático y electrizante que rompe la monotonía. Curvas cerradas, repechos explosivos y aceleración constante entre árboles.',
+    description:
+      'La Carrera del Laberinto es un desafío táctico donde no gana solo quien corre más rápido en línea recta, sino quien mejor sabe cambiar de ritmo y anticipar cada curva. Con un circuito entrelazado que ofrece vistas continuas para el público y familiares, se ha convertido en una de las pruebas más divertidas e intensas del calendario atlético.',
+    highlights: [
+      'Trazado tipo laberinto natural con constantes quiebres y curvas cerradas',
+      'Sectores de bosque cerrado con túneles de ramas y bancos de arena',
+      'Visuales continuas para el público y acompañantes en todo el predio',
+      'Competencia contrarreloj por mangas y tanda general',
+      'Kit con indumentaria técnica y gorra de carrera exclusiva',
+      'Premiación por categorías de edad y reconocimientos a récords de vuelta',
+    ],
+    kitIncludes: [
+      'Remera técnica de secado ultra-rápido Laberinto',
+      'Chip electrónico de cronometraje por vueltas y sectores',
+      'Medalla Finisher artesanal de acero inoxidable',
+      'Dorsal tyvek impermeable resistente al barro y sudor',
+      'Frutas, barras energéticas e hidratación al cruzar la meta',
+      'Cobertura de emergencia móvil durante toda la carrera',
+    ],
+    schedule: [
+      { time: '14:00 HS', activity: 'Apertura de parque cerrado y entrega de dorsales' },
+      { time: '15:15 HS', activity: 'Reconocimiento del trazado y entrada en calor guiada' },
+      { time: '15:45 HS', activity: 'Largada oficial 5K y 10K Laberinto' },
+      { time: '17:30 HS', activity: 'Premiación de podios generales y por edades' },
+      { time: '18:00 HS', activity: 'Cierre con fogón y convivencia en el circuito' },
+    ],
+    whatsappMsg:
+      'Hola Trillo! Me interesa sumarme a la Carrera del Laberinto en Durazno. ¿Cómo reservo mi cupo?',
+  },
+  {
+    id: 'san-pedro',
+    title: 'Corrida San Pedro',
+    subtitle: 'La Gran Fiesta del Running & Atardecer',
+    badge: 'Edición Oficial',
+    season: 'Primavera 2026',
+    date: 'Sábado 21 de Noviembre · 18:30 HS',
+    location: 'Plaza San Pedro & Rambla del Río Yí, Durazno',
+    distances: ['5K Recreativa', '10K Competitiva Oficial'],
+    elevation: '+140m Desnivel Urbano-Costero',
+    difficulty: 'Apta para todos los niveles',
+    terrain: 'Avenida histórica, costanera asfaltada y rambla del Río Yí',
+    image: '/eventosbg.png',
+    accent: '#e87a38',
+    accentBg: 'bg-[#e87a38]/15 text-[#e87a38] border-[#e87a38]/30',
+    btnBg: 'bg-gradient-to-r from-[#e87a38] to-[#ea580c] hover:from-[#f97316] hover:to-[#e87a38] text-white',
+    shortDescription:
+      'El evento insignia de la comunidad atlética de Durazno. Cientos de atletas corriendo al atardecer entre bengalas, tambores y el Río Yí.',
+    description:
+      'La Corrida San Pedro es la prueba más convocante y emblemática del interior del país organizada por Trillo. Una verdadera fiesta popular donde corredores de élite, grupos de entrenamiento, aficionados y familias enteras largan con el sol bajando sobre la Plaza San Pedro. El circuito recorre las calles históricas y bordea el Río Yí, culminando con fiesta, medallas y un tercer tiempo inolvidable.',
+    highlights: [
+      'La carrera más multitudinaria y festiva de la región centro',
+      'Recorrido escénico cruzando los puntos históricos de San Pedro y el Río Yí',
+      'Largada al caer el sol con bengalas de humo, luces y animación en vivo',
+      'Puntos de aliento con batucadas y vecinos en todo el recorrido',
+      'Medalla Finisher coleccionable con relieve arquitectónico',
+      'Gran fiesta de premiación en la plaza con gastronomía y tercer tiempo',
+    ],
+    kitIncludes: [
+      'Remera oficial Corrida San Pedro con tecnología Micro-Dry',
+      'Chip descartable integrado al dorsal numerado oficial',
+      'Medalla de finalista metálica de alto relieve con cinta sublimada',
+      'Garantía de hidratación con sachets cada 2.5K y en la meta',
+      'Seguro de cobertura médica deportiva del corredor',
+      'Acceso al sector de recuperación con frutas, masajes y fisioterapia',
+    ],
+    schedule: [
+      { time: '15:30 HS', activity: 'Feria del corredor, retiro de kits y música en Plaza San Pedro' },
+      { time: '18:00 HS', activity: 'Calentamiento masivo con los profes de Trillo Club' },
+      { time: '18:30 HS', activity: 'Cuenta regresiva y largada oficial 5K y 10K San Pedro' },
+      { time: '19:45 HS', activity: 'Llegadas masivas, hidratación y música en el arco de meta' },
+      { time: '20:30 HS', activity: 'Ceremonia de premiación, trofeos y festejo comunitario' },
+    ],
+    whatsappMsg:
+      'Hola Trillo! Quiero anotarme en la Corrida San Pedro en Durazno. ¿Cómo confirmo mi inscripción?',
+  },
+];

@@ -1,256 +1,201 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, Sparkles, Flame, Clock, Award, ArrowDown, ChevronRight } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Trophy, ArrowDown, Award, Users, Timer, Sparkles, MapPin } from 'lucide-react';
 
 export default function EventosHero() {
-  // Countdown a la próxima carrera (Noviembre 2026)
-  const targetDate = new Date('2026-11-21T18:30:00-03:00').getTime();
+  const containerRef = useRef(null);
 
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+  // Efecto Parallax en el background y fundido cinematográfico
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
   });
 
-  useEffect(() => {
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const diff = Math.max(0, targetDate - now);
-
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, [targetDate]);
+  const yBackground = useTransform(scrollYProgress, [0, 1], ['0%', '35%']);
+  const scaleBackground = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const opacityOverlay = useTransform(scrollYProgress, [0, 0.8], [0.55, 0.9]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
   return (
     <section
+      ref={containerRef}
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between pt-28 pb-10 px-4 md:px-8 max-w-7xl mx-auto z-10"
+      className="relative w-full h-[100dvh] min-h-[550px] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#08090a]"
     >
-      {/* Top Banner Meta */}
+      {/* 1. Background Image con Parallax & Overlay Oscuro Cinematográfico (eventosbg.png) */}
       <motion.div
-        initial={{ opacity: 0, y: -15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 text-xs text-[#8d9299]"
+        style={{ y: yBackground, scale: scaleBackground }}
+        className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none select-none z-0"
       >
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#e87a38] animate-ping" />
-          <span className="font-mono text-[#f5f4f0] uppercase tracking-wider text-[11px]">
-            Inscripciones Abiertas · 82% Cupos
-          </span>
-          <span className="text-white/20">|</span>
-          <span className="hidden sm:inline text-[11px]">Durazno, Interior de Uruguay</span>
-        </div>
+        <img
+          src="/eventosbg.png"
+          alt="Trillo Eventos Comunidad San Pedro"
+          className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.08] saturate-[1.15]"
+        />
 
-        <div className="flex items-center gap-5 font-mono text-[11px]">
-          <div className="flex items-center gap-1.5 text-[#f5f4f0]">
-            <Calendar className="w-3.5 h-3.5 text-[#e87a38]" />
-            <span>Sábado 21 de Noviembre</span>
-          </div>
-          <span className="text-white/20">|</span>
-          <div className="flex items-center gap-1.5 text-[#8d9299]">
-            <MapPin className="w-3.5 h-3.5 text-[#e87a38]" />
-            <span>Plaza San Pedro · 18:30 HS</span>
-          </div>
-        </div>
+        {/* Overlay oscuro para otorgar contraste y profundidad cinematográfica */}
+        <motion.div
+          style={{ opacity: opacityOverlay }}
+          className="absolute inset-0 bg-[#08090a]/50"
+        />
+
+        {/* Degradé superior para integrar navbar y degradé inferior para fundir con la página */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/85 via-transparent to-[#08090a]" />
+
+        {/* Viñeta radial oscura para concentrar la mirada en el contenido central */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#08090a_92%)] opacity-85" />
       </motion.div>
 
-      {/* Main Hero Header */}
-      <div className="my-auto py-8 flex flex-col items-center md:items-start text-center md:text-left">
-        {/* Pill Tag */}
+      {/* 2. Contenido Centrado Frontal - Estilo Monumental Trillo (Calce exacto en pantalla) */}
+      <motion.div
+        style={{ y: contentY }}
+        className="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-between pt-16 sm:pt-20 pb-2 sm:pb-3 px-4 md:px-8 text-center"
+      >
+        {/* Meta Header Superior */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-medium text-[#d8cfc4] mb-4 border border-[#e87a38]/30 bg-[#e87a38]/10"
+          transition={{ duration: 0.7 }}
+          className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-1.5 text-xs text-[#8d9299] max-w-5xl mx-auto w-full shrink-0"
         >
-          <Flame className="w-3.5 h-3.5 text-[#e87a38]" />
-          <span className="tracking-widest uppercase text-[10px] font-mono text-[#f5f4f0]">
-            Gran Carrera Nocturna & Atardecer
-          </span>
+          <div className="flex items-center gap-2 mx-auto sm:mx-0">
+            <span className="w-2 h-2 rounded-full bg-[#e87a38] animate-pulse" />
+            <span className="font-mono text-[#f5f4f0] uppercase tracking-wider text-[11px]">
+              Competencias & Desafíos Oficiales
+            </span>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <span className="hidden sm:inline text-[11px] text-[#8d9299]">Durazno · Interior de Uruguay</span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-4 font-mono text-[11px] text-[#8d9299]">
+            <div className="flex items-center gap-1.5 text-[#e87a38]">
+              <Trophy className="w-3.5 h-3.5" />
+              <span>3 Grandes Eventos Anuales</span>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Título Principal */}
-        <div className="overflow-hidden py-1 mb-2">
+        {/* Núcleo Central: Badge + Logo + Título Monumental + Manifiesto */}
+        <div className="my-auto py-1 sm:py-2 flex flex-col items-center">
+          {/* Badge superior */}
           <motion.div
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 select-none"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="inline-flex items-center gap-2 px-3 py-0.5 sm:py-1 rounded-full border border-[#e87a38]/30 bg-[#e87a38]/10 backdrop-blur-md mb-2 sm:mb-2.5"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase font-['Space_Grotesk'] tracking-tight text-[#f5f4f0]">
-              SAN PEDRO
-            </h1>
-            <span className="text-2xl sm:text-4xl md:text-5xl font-['Newsreader'] italic font-light text-[#e87a38]">
-              Trail & Desafío
+            <Sparkles className="w-3 h-3 text-[#e87a38]" />
+            <span className="font-mono uppercase tracking-[0.2em] text-[9px] sm:text-[10px] text-[#f5f4f0] font-semibold">
+              La energía de correr en comunidad
             </span>
+          </motion.div>
+
+          {/* Logo TRILLO de alta resolución */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-1.5 sm:mb-2"
+          >
+            <img
+              src="/logoTrillo.png"
+              alt="TRILLO"
+              className="w-auto h-auto max-w-[190px] sm:max-w-[240px] md:max-w-[280px] max-h-[55px] sm:max-h-[70px] md:max-h-[85px] object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] mx-auto pointer-events-none"
+              draggable="false"
+            />
+          </motion.div>
+
+          {/* Título de la Sección */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="max-w-3xl mx-auto px-2"
+          >
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-['Space_Grotesk'] font-black uppercase text-[#f5f4f0] tracking-tight leading-none drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
+              TRILLO EVENTOS
+            </h1>
+            <p className="mt-1.5 sm:mt-2 text-lg sm:text-2xl font-['Newsreader'] italic font-light text-[#e87a38] drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
+              Carreras y desafíos que hacen vibrar a toda una ciudad
+            </p>
+            <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[#d8cfc4] font-normal leading-relaxed max-w-xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              Circuitos de monte nativo, travesías nocturnas y asfalto histórico. Viví la adrenalina de superar tus límites junto a cientos de corredores en Durazno.
+            </p>
+          </motion.div>
+
+          {/* 3 Botones / Accesos Directos a los 3 Eventos Oficiales */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="mt-2.5 sm:mt-3.5 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-3xl"
+          >
+            <a
+              href="#rebollo"
+              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/90 text-xs text-[#f5f4f0] border border-[#f97316]/40 hover:border-[#f97316] transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#f97316] group-hover:scale-125 transition-transform shrink-0" />
+              <div className="text-left">
+                <span className="block font-semibold tracking-wide text-white">Desafío Rebollo</span>
+                <span className="block text-[10px] text-[#8d9299] font-mono">Trail & Sierras</span>
+              </div>
+            </a>
+
+            <a
+              href="#laberinto"
+              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/90 text-xs text-[#f5f4f0] border border-[#eab308]/40 hover:border-[#eab308] transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#eab308] group-hover:scale-125 transition-transform shrink-0" />
+              <div className="text-left">
+                <span className="block font-semibold tracking-wide text-white">Laberinto</span>
+                <span className="block text-[10px] text-[#8d9299] font-mono">Cross Country</span>
+              </div>
+            </a>
+
+            <a
+              href="#san-pedro"
+              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/90 text-xs text-[#f5f4f0] border border-[#e87a38]/40 hover:border-[#e87a38] transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform shrink-0" />
+              <div className="text-left">
+                <span className="block font-semibold tracking-wide text-white">San Pedro</span>
+                <span className="block text-[10px] text-[#8d9299] font-mono">Corrida Nocturna</span>
+              </div>
+            </a>
           </motion.div>
         </div>
 
-        {/* Bajada Narrativa */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="max-w-2xl text-sm sm:text-base md:text-lg text-[#8d9299] font-normal leading-relaxed mb-8"
-        >
-          El trail del interior donde la tierra ruge. Largamos al atardecer sobre los caminos de balastro
-          y cerros de San Pedro, para cruzar el monte nativo y coronar la meta nocturna bajo el fuego
-          de las antorchas y las estrellas de Durazno.
-        </motion.p>
-
-        {/* Bloque Cuenta Regresiva & Distancias */}
+        {/* Barra Inferior con Indicadores & Scroll Down */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 sm:pt-2.5 border-t border-white/10 max-w-5xl mx-auto w-full shrink-0"
         >
-          {/* Contador en Vivo */}
-          <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl glass-panel border border-white/10 bg-[#0d1015]/80 flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#e87a38]">
-                <Clock className="w-3.5 h-3.5" />
-                <span>Tiempo hasta la Largada</span>
-              </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-[#8d9299]">
-                Durazno TZ
-              </span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
-              {[
-                { val: timeLeft.days, label: 'DÍAS' },
-                { val: timeLeft.hours, label: 'HORAS' },
-                { val: timeLeft.minutes, label: 'MIN' },
-                { val: timeLeft.seconds, label: 'SEG' },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="bg-black/40 border border-white/5 rounded-xl py-3 px-1 flex flex-col items-center"
-                >
-                  <span className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0]">
-                    {String(item.val).padStart(2, '0')}
-                  </span>
-                  <span className="text-[9px] font-mono text-[#8d9299] tracking-widest mt-1">
-                    {item.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+          {/* Credenciales rápidas */}
+          <div className="flex items-center gap-4 text-[11px] text-[#8d9299] font-mono">
+            <span className="flex items-center gap-1.5">
+              <Timer className="w-3.5 h-3.5 text-[#e87a38]" />
+              Cronometraje con Chip Digital
+            </span>
+            <span className="text-white/20">·</span>
+            <span className="flex items-center gap-1.5">
+              <Award className="w-3.5 h-3.5 text-[#e87a38]" />
+              Kits & Medallas Finisher
+            </span>
           </div>
 
-          {/* Tres Distancias Oficiales */}
-          <div className="lg:col-span-6 grid grid-cols-3 gap-2.5 sm:gap-3">
-            {[
-              {
-                dist: '5K',
-                tipo: 'Participativa',
-                terreno: 'Camino & Campo',
-                accent: 'border-white/10 text-white',
-                chip: 'bg-white/10 text-white',
-              },
-              {
-                dist: '10K',
-                tipo: 'Competitiva',
-                terreno: 'Balastro & Vados',
-                accent: 'border-[#e87a38]/40 text-[#e87a38]',
-                chip: 'bg-[#e87a38]/15 text-[#e87a38]',
-              },
-              {
-                dist: '21K',
-                tipo: 'Trail Extremo',
-                terreno: 'Cerro & Linterna',
-                accent: 'border-amber-400/50 text-amber-400',
-                chip: 'bg-amber-400/15 text-amber-300',
-              },
-            ].map((d, i) => (
-              <div
-                key={i}
-                className={`p-3.5 sm:p-4 rounded-2xl glass-panel border bg-[#0d1015]/80 flex flex-col justify-between text-left transition-all duration-300 hover:border-[#e87a38] group`}
-              >
-                <div>
-                  <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full ${d.chip}`}>
-                    {d.tipo}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] text-[#f5f4f0] mt-2 group-hover:text-[#e87a38] transition-colors">
-                    {d.dist}
-                  </h3>
-                </div>
-                <p className="text-[11px] text-[#8d9299] font-mono mt-2 leading-tight">
-                  {d.terreno}
-                </p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Acciones Principales */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65 }}
-          className="flex flex-wrap items-center gap-3 justify-center md:justify-start"
-        >
+          {/* Flecha de scroll */}
           <a
-            href="#inscripcion"
-            className="flex items-center gap-2.5 px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-[#f5f4f0] hover:bg-[#e87a38] hover:text-white transition-all duration-300 shadow-xl hover:shadow-[#e87a38]/25"
+            href="#catalogo-eventos"
+            className="group flex items-center gap-2 text-[11px] tracking-widest uppercase font-mono text-[#d8cfc4] hover:text-[#e87a38] transition-colors"
           >
-            <span>Asegurar mi Lugar</span>
-            <ChevronRight className="w-4 h-4" />
-          </a>
-
-          <a
-            href="#circuito"
-            className="flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-wider text-[#f5f4f0] border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all duration-300 font-mono"
-          >
-            <span>Ver Circuito 3D</span>
-          </a>
-
-          <a
-            href="#galeria"
-            className="flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-wider text-[#8d9299] hover:text-[#f5f4f0] transition-colors font-mono"
-          >
-            <span>Galería de Fotos →</span>
+            <span>Ver Carreras Disponibles</span>
+            <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#e87a38] group-hover:translate-y-0.5 transition-all">
+              <ArrowDown className="w-3.5 h-3.5 text-[#e87a38]" />
+            </div>
           </a>
         </motion.div>
-      </div>
-
-      {/* Hero Footer Bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.8 }}
-        className="flex items-center justify-between pt-4 border-t border-white/10 text-xs text-[#8d9299] font-mono"
-      >
-        <div className="hidden sm:flex items-center gap-2">
-          <Award className="w-3.5 h-3.5 text-[#e87a38]" />
-          <span>MEDALLA FINISHER DE MADERA NATIVA · CRONOMETRAJE CHIP OFICIAL</span>
-        </div>
-
-        <a
-          href="#circuito"
-          className="group mx-auto sm:mx-0 flex items-center gap-2 uppercase tracking-widest text-[10px] text-[#d8cfc4] hover:text-[#e87a38] transition-colors"
-        >
-          <span>Bajar al Circuito</span>
-          <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#e87a38] group-hover:translate-y-0.5 transition-all">
-            <ArrowDown className="w-3 h-3 text-[#e87a38]" />
-          </div>
-        </a>
-
-        <div className="hidden md:block">
-          SAN PEDRO · DURAZNO · URUGUAY
-        </div>
       </motion.div>
     </section>
   );

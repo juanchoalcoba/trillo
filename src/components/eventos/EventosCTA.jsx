@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, CheckCircle2, ChevronRight, HelpCircle, ArrowUp, MessageSquare } from 'lucide-react';
+import { Flame, CheckCircle2, Trophy, HelpCircle, ArrowUp, MessageSquare, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function EventosCTA() {
-  const [selectedDist, setSelectedDist] = useState('21K');
+  const [selectedEvent, setSelectedEvent] = useState('san-pedro');
 
   const scrollToTop = () => {
     if (window.lenis) {
@@ -14,13 +14,65 @@ export default function EventosCTA() {
     }
   };
 
-  const prices = {
-    '5K': { precio: '$ 750', club: '$ 650', cupos: '90% completo' },
-    '10K': { precio: '$ 950', club: '$ 800', cupos: '82% completo' },
-    '21K': { precio: '$ 1.250', club: '$ 1.050', cupos: '75% completo' },
+  const eventConfigs = {
+    'rebollo': {
+      nombre: 'Desafío Rebollo',
+      tipo: 'Trail Running de Sierra',
+      fecha: 'Mayo 2027 · Durazno',
+      distancias: '7K · 15K · 25K',
+      precio: '$ 950 - $ 1.350',
+      clubDescuento: '20% OFF para Socios del Club Trillo',
+      cupos: 'Inscripciones Apertura',
+      whatsMsg: 'Hola Trillo! Quiero asegurar mi inscripción para el Desafío Rebollo de Trail en Durazno.',
+      accent: '#f97316',
+      items: [
+        'Remera técnica de secado ultra-rápido Desafío Rebollo',
+        'Chip digital descartable y número de corredor',
+        'Medalla Finisher troquelada con cinta oficial',
+        'Puestos de abastecimiento con isotónica en sierra',
+        'Seguro médico y rescate en circuito de campo',
+      ],
+    },
+    'laberinto': {
+      nombre: 'Carrera del Laberinto',
+      tipo: 'Cross Country & Agilidad',
+      fecha: 'Agosto 2027 · Durazno',
+      distancias: '5K · 10K',
+      precio: '$ 850 - $ 1.100',
+      clubDescuento: '20% OFF para Socios del Club Trillo',
+      cupos: 'Cupos Limitados por Trazado',
+      whatsMsg: 'Hola Trillo! Me interesa inscribirme a la Carrera del Laberinto en Durazno.',
+      accent: '#eab308',
+      items: [
+        'Remera técnica oficial Carrera del Laberinto',
+        'Chip electrónico con medición de vueltas',
+        'Medalla Finisher artesanal de acero inoxidable',
+        'Dorsal tyvek impermeable de alta resistencia',
+        'Acceso al fogón finisher y tercer tiempo comunitario',
+      ],
+    },
+    'san-pedro': {
+      nombre: 'Corrida San Pedro',
+      tipo: 'La Gran Carrera Nocturna',
+      fecha: 'Sábado 21 de Noviembre · 18:30 HS',
+      distancias: '5K · 10K',
+      precio: '$ 950 - $ 1.250',
+      clubDescuento: '20% OFF para Socios del Club Trillo',
+      cupos: '82% Cupos Completos',
+      whatsMsg: 'Hola Trillo! Quiero reservar mi dorsal para la Corrida San Pedro en Durazno.',
+      accent: '#e87a38',
+      items: [
+        'Remera técnica oficial Corrida San Pedro Micro-Dry',
+        'Dorsal oficial con chip descartable incorporado',
+        'Medalla Finisher metálica de colección con relieve',
+        'Hidratación en ruta cada 2.5K y en arco de meta',
+        'Música en vivo, batucadas en ruta y fiesta comunitaria',
+      ],
+    },
   };
 
-  const currentPrice = prices[selectedDist];
+  const currentConfig = eventConfigs[selectedEvent];
+  const whatsappUrl = `https://wa.me/59898121608?text=${encodeURIComponent(currentConfig.whatsMsg)}`;
 
   return (
     <section id="inscripcion" className="relative pt-20 pb-12 px-4 md:px-8 max-w-7xl mx-auto z-10">
@@ -39,123 +91,135 @@ export default function EventosCTA() {
           {/* Lado Izquierdo: Convocatoria */}
           <div className="lg:col-span-7">
             <span className="px-3.5 py-1 rounded-full text-xs font-mono uppercase bg-[#e87a38]/20 text-[#e87a38] border border-[#e87a38]/40 inline-block mb-4">
-              Edición Oficial San Pedro 2026/2027
+              Calendario Oficial Trillo 2026/2027
             </span>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-['Space_Grotesk'] uppercase text-[#f5f4f0] leading-tight">
-              ASEGURÁ TU DORSAL EN <span className="text-[#e87a38]">SAN PEDRO</span>
+              ELEGÍ TU RETO EN <span className="text-[#e87a38]">DURAZNO</span>
             </h2>
 
             <p className="mt-4 text-xs sm:text-sm md:text-base text-[#8d9299] leading-relaxed max-w-xl">
-              Los cupos son estrictamente limitados para preservar la seguridad y la mística
-              del sendero de campo y cerro. Incluye kit oficial, chip, cronometraje, seguro y fogón finisher.
+              Los cupos son limitados en cada competencia para garantizar la máxima seguridad,
+              servicios de primer nivel y la mística comunitaria que caracteriza a Trillo.
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <span className="text-xs font-mono uppercase text-[#d8cfc4]">Seleccioná tu reto:</span>
-              {['5K', '10K', '21K'].map((dist) => (
-                <button
-                  key={dist}
-                  onClick={() => setSelectedDist(dist)}
-                  className={`px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                    selectedDist === dist
-                      ? 'bg-[#e87a38] text-white font-bold shadow-lg shadow-[#e87a38]/30'
-                      : 'bg-white/5 text-[#8d9299] hover:bg-white/10 hover:text-white border border-white/5'
-                  }`}
-                >
-                  {dist}
-                </button>
-              ))}
+            {/* Selector de Evento */}
+            <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              <button
+                onClick={() => setSelectedEvent('rebollo')}
+                className={`px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
+                  selectedEvent === 'rebollo'
+                    ? 'bg-[#f97316] text-black font-bold shadow-lg shadow-[#f97316]/30'
+                    : 'bg-white/5 text-[#8d9299] hover:bg-white/10 hover:text-white border border-white/10'
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-white" />
+                Desafío Rebollo
+              </button>
+
+              <button
+                onClick={() => setSelectedEvent('laberinto')}
+                className={`px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
+                  selectedEvent === 'laberinto'
+                    ? 'bg-[#eab308] text-black font-bold shadow-lg shadow-[#eab308]/30'
+                    : 'bg-white/5 text-[#8d9299] hover:bg-white/10 hover:text-white border border-white/10'
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-white" />
+                Laberinto
+              </button>
+
+              <button
+                onClick={() => setSelectedEvent('san-pedro')}
+                className={`px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
+                  selectedEvent === 'san-pedro'
+                    ? 'bg-[#e87a38] text-white font-bold shadow-lg shadow-[#e87a38]/30'
+                    : 'bg-white/5 text-[#8d9299] hover:bg-white/10 hover:text-white border border-white/10'
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-white" />
+                San Pedro
+              </button>
             </div>
 
             <div className="mt-6 flex items-center gap-3 text-xs font-mono text-[#8d9299]">
               <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse" />
-              <span>Estado: {currentPrice.cupos} · Quedan los últimos dorsales</span>
+              <span>Estado: {currentConfig.cupos} · {currentConfig.fecha}</span>
             </div>
           </div>
 
           {/* Lado Derecho: Tarjeta de Precio y Acción */}
-          <div className="lg:col-span-5 bg-black/50 border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-black/60 border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between text-xs font-mono text-[#8d9299] pb-3 border-b border-white/10">
-                <span>Inscripción Distancia</span>
-                <span className="text-[#e87a38] font-bold text-sm">{selectedDist}</span>
+                <span className="uppercase">{currentConfig.tipo}</span>
+                <span className="text-[#e87a38] font-bold">{currentConfig.distancias}</span>
               </div>
 
               <div className="my-6">
                 <span className="text-3xl sm:text-4xl font-black font-['Space_Grotesk'] text-[#f5f4f0]">
-                  {currentPrice.precio} <span className="text-sm font-normal text-[#8d9299]">UYU</span>
+                  {currentConfig.precio} <span className="text-sm font-normal text-[#8d9299]">UYU</span>
                 </span>
 
                 <div className="mt-2 text-xs font-mono text-amber-400 flex items-center gap-1.5">
                   <Flame className="w-3.5 h-3.5" />
-                  <span>{currentPrice.club} UYU para socios de El Club Trillo</span>
+                  <span>{currentConfig.clubDescuento}</span>
                 </div>
               </div>
 
               <ul className="space-y-2 text-xs text-[#8d9299] font-mono mb-8">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#e87a38]" />
-                  <span>Dorsal y Chip descartable oficial</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#e87a38]" />
-                  <span>Remera técnica oficial Trillo San Pedro</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#e87a38]" />
-                  <span>Medalla finisher de madera nativa</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#e87a38]" />
-                  <span>Acceso al Fogón & Asado Finisher</span>
-                </li>
+                {currentConfig.items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#e87a38] shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <a
-              href={`https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20inscribirme%20a%20la%20Corrida%20San%20Pedro%20en%20la%20distancia%20de%20${selectedDist}.`}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 rounded-full text-center text-xs font-semibold uppercase tracking-wider text-black bg-[#f5f4f0] hover:bg-[#e87a38] hover:text-white transition-all duration-300 shadow-xl font-mono flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-full text-center text-xs font-bold uppercase tracking-wider text-black bg-[#f5f4f0] hover:bg-[#e87a38] hover:text-white transition-all duration-300 shadow-xl font-mono flex items-center justify-center gap-2 active:scale-95"
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Reservar Dorsal por WhatsApp</span>
+              <span>Inscribirme en {currentConfig.nombre}</span>
+              <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
         </div>
       </motion.div>
 
-      {/* Preguntas Rápidas */}
+      {/* Preguntas Frecuentes Rápidas */}
       <div className="mt-16 pt-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#8d9299]">
         <div className="p-4 rounded-xl bg-white/5 border border-white/5">
           <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
             <HelpCircle className="w-4 h-4 text-[#e87a38]" />
-            ¿Qué equipo es obligatorio?
+            ¿Qué distancias son para debutantes?
           </h4>
           <p className="leading-relaxed">
-            Para 21K es obligatorio contar con linterna frontal operativa y silbato de emergencia.
-            En 5K y 10K es libre y recomendado.
+            Las modalidades de 5K y 7K están pensadas para corredores de cualquier nivel, incluso sin experiencia previa en carreras.
           </p>
         </div>
 
         <div className="p-4 rounded-xl bg-white/5 border border-white/5">
           <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
             <HelpCircle className="w-4 h-4 text-[#e87a38]" />
-            ¿Dónde se retira el kit?
+            ¿Cómo se retira el kit oficial?
           </h4>
           <p className="leading-relaxed">
-            Viernes 20 en Durazno Capital (Sede Trillo) o el mismo sábado 21 en Plaza San Pedro hasta 1 hora antes de largada.
+            En la sede de Trillo en Durazno durante la semana previa, o el mismo día del evento en el campamento base de la carrera.
           </p>
         </div>
 
         <div className="p-4 rounded-xl bg-white/5 border border-white/5">
           <h4 className="text-sm font-bold font-['Space_Grotesk'] text-[#f5f4f0] flex items-center gap-1.5 mb-1.5">
             <HelpCircle className="w-4 h-4 text-[#e87a38]" />
-            ¿Hay estacionamiento y duchas?
+            ¿Tienen descuentos para grupos?
           </h4>
           <p className="leading-relaxed">
-            Sí, predio vigilado en el Polideportivo de San Pedro con vestuarios, duchas calientes y guardarropa seguro.
+            Sí. Equipos de entrenamiento, gimnasios y grupos de más de 5 corredores cuentan con bonificaciones especiales y retiro conjunto.
           </p>
         </div>
       </div>
@@ -167,7 +231,7 @@ export default function EventosCTA() {
             TRILLO EVENTOS
           </span>
           <span className="text-white/20">|</span>
-          <span className="font-mono">San Pedro · Durazno · Uruguay</span>
+          <span className="font-mono">Rebollo · Laberinto · San Pedro · Durazno</span>
         </div>
 
         <div className="flex items-center gap-6 font-mono text-[11px]">
@@ -177,6 +241,10 @@ export default function EventosCTA() {
           <span className="text-white/20">|</span>
           <Link to="/club" className="text-amber-400 hover:underline">
             El Club de Corredores →
+          </Link>
+          <span className="text-white/20">|</span>
+          <Link to="/aventuras" className="text-[#4ade80] hover:underline">
+            Trillo Aventuras →
           </Link>
         </div>
 

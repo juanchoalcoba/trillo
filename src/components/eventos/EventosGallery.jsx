@@ -17,6 +17,36 @@ import {
 
 const GALLERY_ITEMS = [
   {
+    id: 'comunidad-trillo',
+    category: 'Comunidad Trillo',
+    title: 'La Tribu Trillo al Completo',
+    subtitle: 'Plaza San Pedro · Celebración & Pertenencia',
+    description:
+      'Cientos de corredores, familias y amigos celebrando juntos después de cruzar la meta. La esencia de Trillo es el latido compartido de una comunidad unida por el movimiento.',
+    image: '/eventosbg.png',
+    telemetry: {
+      altitud: '84m',
+      clima: 'Clima Festivo',
+      terreno: 'Plaza San Pedro',
+      destacado: 'Más de 500 atletas reunidos',
+    },
+  },
+  {
+    id: 'rebollo-finish',
+    category: 'Desafío Rebollo',
+    title: 'El Gozo de la Meta en Familia',
+    subtitle: 'Sierra Agreste · Llegada Emocionante',
+    description:
+      'Cruzar la meta con una sonrisa genuina, escoltado por los tuyos. El trail running es superación personal pero también compañía y recuerdos imborrables.',
+    image: '/eventosverti.jpg',
+    telemetry: {
+      altitud: '110m',
+      clima: 'Sol de Otoño',
+      terreno: 'Sierra & Pista Natural',
+      destacado: 'Finisher Trail Trillo',
+    },
+  },
+  {
     id: 'start',
     category: 'Largada',
     title: 'La Marea Humana al Ocaso',
@@ -28,14 +58,14 @@ const GALLERY_ITEMS = [
       altitud: '84m',
       clima: '19°C · Viento Sur',
       terreno: 'Balastro Compacto',
-      destacado: 'Largada Conjunta 5K, 10K y 21K',
+      destacado: 'Largada Conjunta 5K y 10K',
     },
   },
   {
     id: 'night',
-    category: 'Noche & Trail',
+    category: 'Noche & Laberinto',
     title: 'El Haz que Corta la Penumbra',
-    subtitle: 'Km 12.4 · Monte Nativo · 20:15 HS',
+    subtitle: 'Km 8.4 · Monte Nativo · 20:15 HS',
     description:
       'La noche se cierra y las linternas frontales cobran vida. Cada respiración resuena en el sendero entre espinillos y cielo estrellado.',
     image: '/images/events/san_pedro_night.jpg',
@@ -50,7 +80,7 @@ const GALLERY_ITEMS = [
     id: 'finish',
     category: 'Meta & Antorchas',
     title: 'El Fuego de la Llegada',
-    subtitle: 'Km 21.0 · Arco de Meta · 21:40 HS',
+    subtitle: 'Arco de Meta · San Pedro',
     description:
       'Cruzar el arco de madera flanqueado por antorchas encendidas y aplausos. La emoción compartida de haber dejado el alma en el terreno.',
     image: '/images/events/san_pedro_finish.jpg',
@@ -63,9 +93,9 @@ const GALLERY_ITEMS = [
   },
   {
     id: 'community',
-    category: 'Comunidad',
+    category: 'Tercer Tiempo',
     title: 'La Ronda del Fuego Finisher',
-    subtitle: 'Post-Carrera · Puesto Central · 22:30 HS',
+    subtitle: 'Post-Carrera · Puesto Central',
     description:
       'El trail no termina en la meta: continúa alrededor de la fogata. Historias compartidas, hidratación, asado criollo y miradas cómplices.',
     image: '/images/events/san_pedro_community.jpg',
@@ -82,13 +112,13 @@ const GALLERY_ITEMS = [
     title: 'Materia Noble: Madera Grabada',
     subtitle: 'Recuerdo Tangible · Pieza Única',
     description:
-      'Cada medalla finisher es tallada en madera nativa recuperada y quemada a fuego vivo con el cuño oficial de San Pedro.',
+      'Cada medalla finisher es tallada en madera nativa recuperada y quemada a fuego vivo con el cuño oficial de los eventos Trillo.',
     image: '/images/events/san_pedro_kit.jpg',
     telemetry: {
       altitud: 'Artesanal',
       clima: 'Identidad Trillo',
       terreno: 'Madera & Yute',
-      destacado: 'Finisher Oficial San Pedro',
+      destacado: 'Finisher Oficial Trillo',
     },
   },
 ];

@@ -83,11 +83,11 @@ export default function EventosKits() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-black font-['Space_Grotesk'] uppercase text-[#f5f4f0] tracking-tight">
-              LO QUE TE LLEVAS DE <span className="font-['Newsreader'] italic font-light text-[#e87a38]">San Pedro</span>
+              LO QUE TE LLEVAS DE <span className="font-['Newsreader'] italic font-light text-[#e87a38]">Trillo Eventos</span>
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-[#8d9299] mb-6">
               Nos aseguramos de que cada detalle hable de la identidad de Trillo: materiales nobles,
-              artesanía del interior y la máxima seguridad en carrera.
+              artesanía del interior, indumentaria técnica de primer nivel y la máxima seguridad en carrera.
             </p>
 
             <div className="space-y-3.5">
