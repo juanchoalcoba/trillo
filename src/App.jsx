@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Outlet, Navigate } from 'react-router-dom';
 import SmoothScroll from './components/common/SmoothScroll';
 import { AuthProvider } from './context/AuthContext';
