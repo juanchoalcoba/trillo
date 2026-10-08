@@ -67,3 +67,84 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: #e87a38;
 }
+
+/* Adaptación para pantallas con altura reducida (TVs 32", resoluciones 720p/768p, notebooks con escalado 125%/150%) */
+@media (max-height: 740px) {
+  .hero-container-tv {
+    padding-top: 4.25rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  .hero-logo-tv {
+    max-height: 82px !important;
+  }
+  .hero-title-tv {
+    font-size: 2rem !important;
+    line-height: 1.15 !important;
+  }
+  .hero-subtitle-tv {
+    font-size: 0.8rem !important;
+    margin-top: 0.25rem !important;
+  }
+  .hero-buttons-tv {
+    margin-top: 0.5rem !important;
+    gap: 0.375rem !important;
+  }
+  .hero-buttons-tv a {
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+  .hero-social-tv {
+    margin-top: 0.375rem !important;
+  }
+  .hero-social-tv a {
+    padding: 0.35rem !important;
+  }
+  .hero-bottom-tv {
+    padding-top: 0.375rem !important;
+  }
+}
+
+@media (max-height: 620px) {
+  .hero-container-tv {
+    padding-top: 3.75rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  .hero-badge-tv {
+    margin-bottom: 0.25rem !important;
+    padding: 0.1rem 0.6rem !important;
+    font-size: 0.65rem !important;
+  }
+  .hero-logo-tv {
+    max-height: 65px !important;
+  }
+  .hero-title-tv {
+    font-size: 1.65rem !important;
+  }
+  .hero-subtitle-tv {
+    font-size: 0.75rem !important;
+  }
+  .hero-buttons-tv {
+    margin-top: 0.375rem !important;
+  }
+  .hero-buttons-tv a {
+    padding: 0.25rem 0.6rem !important;
+    font-size: 0.7rem !important;
+  }
+  .hero-social-tv {
+    margin-top: 0.25rem !important;
+  }
+  .hero-bottom-tv {
+    padding-top: 0.25rem !important;
+  }
+}
+
+@media (max-height: 480px) {
+  #hero {
+    height: auto !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+
