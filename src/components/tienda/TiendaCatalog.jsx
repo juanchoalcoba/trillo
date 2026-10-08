@@ -1,15 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Eye, MessageCircle, ArrowUpRight, Sparkles, Check } from 'lucide-react';
+import { ShoppingBag, Eye, ArrowUpRight } from 'lucide-react';
 import { TIENDA_CATEGORIES, PRODUCTS } from '../../data/tiendaData';
+import { productsApi } from '../../services/api';
 import TiendaProductModal from './TiendaProductModal';
 
+function normalizeProduct(p) {
+  const frontImg = p.front_image_url || p.frontImage || p.images?.front;
+  const backImg = p.back_image_url || p.backImage || p.images?.back || frontImg;
+  const fullMockup = p.full_mockup_url || p.fullMockup || p.images?.fullMockup;
+
+  return {
+    ...p,
+    id: p.slug || p.id,
+    frontImage: frontImg,
+    backImage: backImg,
+    images: {
+      front: frontImg,
+      back: backImg,
+      fullMockup: fullMockup,
+    },
+    price: typeof p.price === 'number' ? `$ ${p.price.toLocaleString('es-UY')}` : (p.price?.startsWith('$') ? p.price : `$ ${p.price}`),
+    currency: p.currency || 'UYU',
+    badge: p.badge || 'Oficial',
+    badgeColor: p.badgeColor || 'bg-violet-500/10 text-violet-300 border-violet-500/30',
+    stockStatus: p.stock_status || p.stockStatus || 'available',
+    sizes: Array.isArray(p.sizes) ? p.sizes : ['S', 'M', 'L', 'XL'],
+    features: Array.isArray(p.features) ? p.features : [],
+    sizeGuide: Array.isArray(p.size_guide) ? p.size_guide : p.sizeGuide || [],
+  };
+}
+
 export default function TiendaCatalog() {
+  const [products, setProducts] = useState(PRODUCTS.map(normalizeProduct));
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activeProduct, setActiveProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // Control de vista frente/dorso individual por tarjeta
   const [cardViews, setCardViews] = useState({});
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await productsApi.getPublished();
+        if (res?.products && res.products.length > 0) {
+          setProducts(res.products.map(normalizeProduct));
+        }
+      } catch (err) {
+        console.warn('Usando catálogo estático de productos (fallback offline):', err.message);
+      }
+    }
+    fetchProducts();
+  }, []);
 
   const handleToggleView = (productId, view, e) => {
     e.stopPropagation();
@@ -23,8 +64,8 @@ export default function TiendaCatalog() {
 
   const filteredProducts =
     selectedCategory === 'all'
-      ? PRODUCTS
-      : PRODUCTS.filter((p) => p.category === selectedCategory);
+      ? products
+      : products.filter((p) => p.category === selectedCategory);
 
   return (
     <section id="catalogo" className="relative z-10 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
@@ -70,7 +111,7 @@ export default function TiendaCatalog() {
           const displayedImage =
             currentView === 'front' ? product.frontImage : product.backImage;
           const hasTwoViews = product.frontImage !== product.backImage;
-          const defaultWhatsappMsg = `Hola Trillo! Quiero consultar / encargar la prenda: ${product.name} (${product.price} ${product.currency}). ¿Qué talles tienen en stock?`;
+          const defaultWhatsappMsg = `Hola Trillo! Quiero consultar / encargar la prenda: ${product.name} (${product.price}). ¿Qué talles tienen en stock?`;
 
           return (
             <motion.div
@@ -108,7 +149,7 @@ export default function TiendaCatalog() {
                     </span>
 
                     <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[#d8cfc4] border border-white/10 font-bold">
-                      {product.price} {product.currency}
+                      {product.price}
                     </span>
                   </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Shirt, Cpu, HeartPulse, Flame, CheckCircle2 } from 'lucide-react';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function EventosKits() {
   const kitItems = [
@@ -43,7 +44,7 @@ export default function EventosKits() {
           className="lg:col-span-6 relative rounded-3xl overflow-hidden glass-panel border border-white/10 group"
         >
           <img
-            src="/images/events/san_pedro_kit.jpg"
+            src={CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_KIT}
             alt="Kit Oficial San Pedro"
             className="w-full h-[400px] sm:h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
           />

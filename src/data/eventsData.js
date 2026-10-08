@@ -2,6 +2,7 @@
  * Trillo Eventos - Catálogo Oficial de Carreras y Competencias
  * Durazno, Uruguay
  */
+import { CLOUDINARY_MEDIA } from '../config/cloudinary';
 
 export const EVENTS = [
   {
@@ -16,7 +17,7 @@ export const EVENTS = [
     elevation: '+520m Desnivel Positivo',
     difficulty: 'Media - Alta',
     terrain: 'Senderos de sierra, canteras de piedra, cañadas y monte nativo',
-    image: '/eventosverti.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_VERTI,
     accent: '#f97316',
     accentBg: 'bg-orange-500/15 text-orange-400 border-orange-500/30',
     btnBg: 'bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-black',
@@ -62,7 +63,7 @@ export const EVENTS = [
     elevation: '+210m Desnivel Dinámico',
     difficulty: 'Media',
     terrain: 'Senderos serpenteantes, bancos de arena, repechos cortos y barro',
-    image: '/images/events/san_pedro_night.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_NIGHT,
     accent: '#eab308',
     accentBg: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30',
     btnBg: 'bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black',
@@ -108,7 +109,7 @@ export const EVENTS = [
     elevation: '+140m Desnivel Urbano-Costero',
     difficulty: 'Apta para todos los niveles',
     terrain: 'Avenida histórica, costanera asfaltada y rambla del Río Yí',
-    image: '/eventosbg.png',
+    image: CLOUDINARY_MEDIA.HERO_EVENTOS_BG,
     accent: '#e87a38',
     accentBg: 'bg-[#e87a38]/15 text-[#e87a38] border-[#e87a38]/30',
     btnBg: 'bg-gradient-to-r from-[#e87a38] to-[#ea580c] hover:from-[#f97316] hover:to-[#e87a38] text-white',

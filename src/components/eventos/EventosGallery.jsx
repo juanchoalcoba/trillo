@@ -14,6 +14,7 @@ import {
   Pause,
   Play,
 } from 'lucide-react';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 const GALLERY_ITEMS = [
   {
@@ -23,7 +24,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Plaza San Pedro · Celebración & Pertenencia',
     description:
       'Cientos de corredores, familias y amigos celebrando juntos después de cruzar la meta. La esencia de Trillo es el latido compartido de una comunidad unida por el movimiento.',
-    image: '/eventosbg.png',
+    image: CLOUDINARY_MEDIA.HERO_EVENTOS_BG,
     telemetry: {
       altitud: '84m',
       clima: 'Clima Festivo',
@@ -38,7 +39,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Sierra Agreste · Llegada Emocionante',
     description:
       'Cruzar la meta con una sonrisa genuina, escoltado por los tuyos. El trail running es superación personal pero también compañía y recuerdos imborrables.',
-    image: '/eventosverti.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_VERTI,
     telemetry: {
       altitud: '110m',
       clima: 'Sol de Otoño',
@@ -53,7 +54,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Km 0.0 · Plaza San Pedro · 18:30 HS',
     description:
       'Más de 400 corredores listos sobre el camino vecinal. El polvo dorado se eleva con los primeros pasos mientras el sol de Durazno baña las colinas.',
-    image: '/images/events/san_pedro_start.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_START,
     telemetry: {
       altitud: '84m',
       clima: '19°C · Viento Sur',
@@ -68,7 +69,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Km 8.4 · Monte Nativo · 20:15 HS',
     description:
       'La noche se cierra y las linternas frontales cobran vida. Cada respiración resuena en el sendero entre espinillos y cielo estrellado.',
-    image: '/images/events/san_pedro_night.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_NIGHT,
     telemetry: {
       altitud: '142m',
       clima: '14°C · Cielo Despejado',
@@ -83,7 +84,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Arco de Meta · San Pedro',
     description:
       'Cruzar el arco de madera flanqueado por antorchas encendidas y aplausos. La emoción compartida de haber dejado el alma en el terreno.',
-    image: '/images/events/san_pedro_finish.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_FINISH,
     telemetry: {
       altitud: '88m',
       clima: '13°C · Emoción Pura',
@@ -98,7 +99,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Post-Carrera · Puesto Central',
     description:
       'El trail no termina en la meta: continúa alrededor de la fogata. Historias compartidas, hidratación, asado criollo y miradas cómplices.',
-    image: '/images/events/san_pedro_community.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_COMMUNITY,
     telemetry: {
       altitud: '86m',
       clima: 'Calor de Hogar',
@@ -113,7 +114,7 @@ const GALLERY_ITEMS = [
     subtitle: 'Recuerdo Tangible · Pieza Única',
     description:
       'Cada medalla finisher es tallada en madera nativa recuperada y quemada a fuego vivo con el cuño oficial de los eventos Trillo.',
-    image: '/images/events/san_pedro_kit.jpg',
+    image: CLOUDINARY_MEDIA.EVENTOS_SAN_PEDRO_KIT,
     telemetry: {
       altitud: 'Artesanal',
       clima: 'Identidad Trillo',

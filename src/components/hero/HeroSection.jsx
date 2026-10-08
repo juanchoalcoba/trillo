@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Volume2, VolumeX, Sparkles, MapPin, Play, Pause } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function HeroSection() {
   const [ambientAudio, setAmbientAudio] = useState(false);
@@ -129,7 +130,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         <video
           ref={videoRef}
-          src="/1003.mp4"
+          src={CLOUDINARY_MEDIA.HERO_VIDEO}
           autoPlay
           loop
           muted={isVideoMuted}

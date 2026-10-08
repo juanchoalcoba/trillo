@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sun, Sparkles, ArrowDown, Footprints, ShieldCheck, ArrowUpRight, MessageCircle } from 'lucide-react';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function ClubHero() {
   const containerRef = useRef(null);
@@ -28,7 +29,7 @@ export default function ClubHero() {
         className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none select-none z-0"
       >
         <img
-          src="/clubfondook.jpg"
+          src={CLOUDINARY_MEDIA.HERO_CLUB_BG}
           alt="El Club de Corredores Trillo"
           className="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] saturate-[1.2]"
         />

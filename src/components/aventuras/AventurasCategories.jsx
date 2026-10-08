@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Compass,
@@ -8,17 +8,44 @@ import {
   TrendingUp,
   Users,
   Eye,
-  Sparkles,
-  ChevronRight,
-  Check,
 } from 'lucide-react';
 import { ADVENTURE_CATEGORIES, ADVENTURES } from '../../data/adventuresData';
+import { adventuresApi } from '../../services/api';
 import AventurasDetailModal from './AventurasDetailModal';
 
+function normalizeAdventure(a) {
+  return {
+    ...a,
+    id: a.slug || a.id,
+    image: a.image_url || a.image,
+    groupSize: a.group_size || a.groupSize || 'Grupos reducidos',
+    whatsappMsg: a.whatsapp_msg || a.whatsappMsg || 'Hola Trillo! Quiero consultar sobre esta aventura.',
+    highlights: Array.isArray(a.highlights) ? a.highlights : [],
+    itinerary: Array.isArray(a.itinerary) ? a.itinerary : [],
+    included: Array.isArray(a.included) ? a.included : [],
+    requirements: Array.isArray(a.requirements) ? a.requirements : [],
+  };
+}
+
 export default function AventurasCategories() {
+  const [adventures, setAdventures] = useState(ADVENTURES.map(normalizeAdventure));
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activeAdventure, setActiveAdventure] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    async function fetchAdventures() {
+      try {
+        const res = await adventuresApi.getPublished();
+        if (res?.adventures && res.adventures.length > 0) {
+          setAdventures(res.adventures.map(normalizeAdventure));
+        }
+      } catch (err) {
+        console.warn('Usando catálogo estático de aventuras (fallback offline):', err.message);
+      }
+    }
+    fetchAdventures();
+  }, []);
 
   const handleOpenDetail = (adventure) => {
     setActiveAdventure(adventure);
@@ -59,7 +86,7 @@ export default function AventurasCategories() {
                 : 'text-[#8d9299] hover:text-white'
             }`}
           >
-            Todas (9)
+            Todas ({adventures.length})
           </button>
           {ADVENTURE_CATEGORIES.map((cat) => (
             <button
@@ -84,9 +111,11 @@ export default function AventurasCategories() {
       {/* Renderizado por Categorías */}
       <div className="space-y-24">
         {filteredCategories.map((category) => {
-          const categoryAdventures = ADVENTURES.filter(
+          const categoryAdventures = adventures.filter(
             (adv) => adv.category === category.id
           );
+
+          if (categoryAdventures.length === 0) return null;
 
           return (
             <div key={category.id} id={category.id} className="scroll-mt-28">
@@ -103,7 +132,7 @@ export default function AventurasCategories() {
                         {category.name}
                       </h3>
                       <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full border border-white/10 text-[#d8cfc4] bg-white/5">
-                        {category.count} Opciones
+                        {categoryAdventures.length} {categoryAdventures.length === 1 ? 'Opción' : 'Opciones'}
                       </span>
                     </div>
                     <p className="text-xs sm:text-sm text-[#8d9299] mt-1 font-mono">

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Trophy, ArrowDown, Award, Users, Timer, Sparkles, MapPin } from 'lucide-react';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function EventosHero() {
   const containerRef = useRef(null);
@@ -28,7 +29,7 @@ export default function EventosHero() {
         className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none select-none z-0"
       >
         <img
-          src="/eventosbg.png"
+          src={CLOUDINARY_MEDIA.HERO_EVENTOS_BG}
           alt="Trillo Eventos Comunidad San Pedro"
           className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.08] saturate-[1.15]"
         />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Trophy,
@@ -6,18 +6,50 @@ import {
   Calendar,
   ArrowUpRight,
   TrendingUp,
-  Clock,
   Eye,
-  Sparkles,
-  Flame,
-  CheckCircle2,
 } from 'lucide-react';
 import { EVENTS } from '../../data/eventsData';
+import { eventsApi } from '../../services/api';
 import EventosDetailModal from './EventosDetailModal';
 
+function normalizeEvent(e) {
+  return {
+    ...e,
+    id: e.slug || e.id,
+    image: e.image_url || e.image,
+    date: e.date_text || e.date,
+    shortDescription: e.short_description || e.shortDescription,
+    description: e.description,
+    kitIncludes: e.kit_includes || e.kitIncludes || [],
+    accent: e.accent_color || e.accent || '#e87a38',
+    accentBg: e.accentBg || 'bg-[#e87a38]/10 text-[#e87a38] border-[#e87a38]/30',
+    btnBg: e.btnBg || 'bg-[#e87a38] text-black hover:bg-[#ff8a48] shadow-[#e87a38]/20',
+    whatsappMsg: e.whatsapp_msg || e.whatsappMsg || 'Hola Trillo! Quiero información e inscribirme.',
+    distances: Array.isArray(e.distances) ? e.distances : [],
+    highlights: Array.isArray(e.highlights) ? e.highlights : [],
+    schedule: Array.isArray(e.schedule) ? e.schedule : [],
+  };
+}
+
 export default function EventosCards() {
+  const [events, setEvents] = useState(EVENTS.map(normalizeEvent));
   const [activeEvent, setActiveEvent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const res = await eventsApi.getPublished();
+        if (res?.events && res.events.length > 0) {
+          setEvents(res.events.map(normalizeEvent));
+        }
+      } catch (err) {
+        // En caso de desconexión mantiene el catálogo estático como fallback
+        console.warn('Usando catálogo estático de eventos (fallback offline):', err.message);
+      }
+    }
+    fetchEvents();
+  }, []);
 
   const handleOpenDetail = (event) => {
     setActiveEvent(event);
@@ -36,7 +68,7 @@ export default function EventosCards() {
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] tracking-tight">
-            3 Eventos para Desafiarte en Durazno
+            Eventos para Desafiarte en el Territorio
           </h2>
           <p className="mt-2 text-sm sm:text-base text-[#8d9299] max-w-2xl">
             Desde el trail running más agreste en las sierras, hasta la velocidad táctica en el laberinto y la multitudinaria corrida nocturna de San Pedro.
@@ -52,15 +84,15 @@ export default function EventosCards() {
         </div>
       </div>
 
-      {/* Grid de los 3 Eventos Oficiales */}
+      {/* Grid de Eventos Oficiales */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-        {EVENTS.map((event, idx) => {
+        {events.map((event, idx) => {
           const whatsappUrl = `https://wa.me/59898121608?text=${encodeURIComponent(event.whatsappMsg)}`;
 
           return (
             <div
               key={event.id}
-              id={event.id === 'desafio-rebollo' ? 'rebollo' : event.id}
+              id={event.slug || event.id}
               className="scroll-mt-28 flex"
             >
               <motion.div
@@ -90,7 +122,7 @@ export default function EventosCards() {
                       </span>
 
                       <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[#d8cfc4] border border-white/10 flex items-center gap-1 font-semibold">
-                        <Calendar className="w-3 h-3 text-[#e87a38]" />
+                        <Calendar className="w-3 3 text-[#e87a38]" />
                         {event.season}
                       </span>
                     </div>

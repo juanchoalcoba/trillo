@@ -1,3 +1,5 @@
+import { CLOUDINARY_MEDIA } from '../config/cloudinary';
+
 export const TIENDA_CATEGORIES = [
   { id: 'all', name: 'Todas las Prendas' },
   { id: 'club', name: 'Colección El Club' },
@@ -16,9 +18,9 @@ export const PRODUCTS = [
     currency: 'UYU',
     badge: 'Edición Oficial',
     badgeColor: 'bg-red-500/20 text-red-400 border-red-500/30',
-    frontImage: '/tienda/remera-sanpedro-front.png',
-    backImage: '/tienda/remera-sanpedro-back.png',
-    fullMockup: '/remeras2.png',
+    frontImage: CLOUDINARY_MEDIA.TIENDA_SAN_PEDRO_FRONT,
+    backImage: CLOUDINARY_MEDIA.TIENDA_SAN_PEDRO_BACK,
+    fullMockup: CLOUDINARY_MEDIA.TIENDA_SAN_PEDRO_MOCKUP,
     description:
       'Remera técnica de alto rendimiento en color rojo fuego con degradé a blanco, diseñada especialmente para la 3ª Edición de la Corrida San Pedro en Durazno. Presenta la emblemática estampa conmemorativa de la cultura duraznense y el monumento a las Llamadas.',
     features: [
@@ -46,9 +48,9 @@ export const PRODUCTS = [
     currency: 'UYU',
     badge: 'Más Elegida',
     badgeColor: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
-    frontImage: '/tienda/remera-cdc-magma-front.png',
-    backImage: '/tienda/remera-cdc-magma-back.png',
-    fullMockup: '/remeras.png',
+    frontImage: CLOUDINARY_MEDIA.TIENDA_MAGMA_FRONT,
+    backImage: CLOUDINARY_MEDIA.TIENDA_MAGMA_BACK,
+    fullMockup: CLOUDINARY_MEDIA.TIENDA_MAGMA_MOCKUP,
     description:
       'El modelo insignia de entrenamiento del Club de Corredores Durazno. Estampado envolvente de magma en tonos naranja brillante y grafito, cuello rib reforzado, bandera uruguaya en la manga y el gran emblema circular de El Club en la espalda.',
     features: [
@@ -76,9 +78,9 @@ export const PRODUCTS = [
     currency: 'UYU',
     badge: 'Edición Río Yí',
     badgeColor: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
-    frontImage: '/tienda/remera-cdc-blue-front.png',
-    backImage: '/tienda/remera-cdc-blue-back.png',
-    fullMockup: '/remeras.png',
+    frontImage: CLOUDINARY_MEDIA.TIENDA_INDIGO_FRONT,
+    backImage: CLOUDINARY_MEDIA.TIENDA_INDIGO_BACK,
+    fullMockup: CLOUDINARY_MEDIA.TIENDA_MAGMA_MOCKUP,
     description:
       'Inspirada en el flujo constante y las aguas del Río Yí. Confeccionada en azul marino profundo con patrón de olas digitales en verde agua/cyan, sigla universitaria CDC en el pecho y el logo oficial en la espalda.',
     features: [
@@ -106,9 +108,9 @@ export const PRODUCTS = [
     currency: 'UYU',
     badge: 'Streetwear 24/1',
     badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    frontImage: '/tienda/remera-oversize-front.png',
-    backImage: '/tienda/remera-oversize-back.png',
-    fullMockup: '/remeras3.png',
+    frontImage: CLOUDINARY_MEDIA.TIENDA_OVERSIZE_FRONT,
+    backImage: CLOUDINARY_MEDIA.TIENDA_OVERSIZE_BACK,
+    fullMockup: CLOUDINARY_MEDIA.TIENDA_OVERSIZE_MOCKUP,
     description:
       'La prenda urbana definitiva de Universo Trillo. Corte oversize relajado confeccionada en algodón 100% peinado pesado 24/1. Logo sutil Trillo en el pecho y obra serigráfica de tamboril de candombe con la frase "El Ritmo de una Ciudad · Corrida San Pedro · Durazno - Uruguay" en la espalda.',
     features: [
@@ -135,9 +137,9 @@ export const PRODUCTS = [
     currency: 'UYU',
     badge: 'Oficial Atletas',
     badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-    frontImage: '/tienda/campera-club.png',
-    backImage: '/tienda/campera-club.png',
-    fullMockup: '/remeras4.png',
+    frontImage: CLOUDINARY_MEDIA.TIENDA_CAMPERA,
+    backImage: CLOUDINARY_MEDIA.TIENDA_CAMPERA,
+    fullMockup: CLOUDINARY_MEDIA.TIENDA_CAMPERA_MOCKUP,
     description:
       'Campera de abrigo técnico y pre-competencia oficial del Club de Corredores Durazno en colaboración con TDH Sports. Confeccionada en blanco puro con paneles y hombros en naranja deportivo, medio cierre frontal YKK y escudo del Club estampado.',
     features: [

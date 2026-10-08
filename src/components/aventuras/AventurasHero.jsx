@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Compass, ArrowDown, MapPin, ShieldCheck, Users, Mountain } from 'lucide-react';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function AventurasHero() {
   const containerRef = useRef(null);
@@ -28,11 +29,7 @@ export default function AventurasHero() {
         className="absolute inset-0 w-full h-[120%] -top-[10%] overflow-hidden pointer-events-none select-none z-0"
       >
         <img
-          src="/aventuras-optimized.jpg"
-          onError={(e) => {
-            // Fallback a la imagen original si fuese necesario
-            e.currentTarget.src = '/aventuras.JPG';
-          }}
+          src={CLOUDINARY_MEDIA.HERO_AVENTURAS_BG}
           alt="Trillo Aventuras Expediciones"
           className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.08] saturate-[1.15]"
         />

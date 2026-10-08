@@ -1,0 +1,186 @@
+{
+  "1003": {
+    "publicId": "trillo/ui/videos/1003",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/video/upload/v1791462575/trillo/ui/videos/1003.mp4",
+    "format": "mp4",
+    "bytes": 17364054,
+    "resourceType": "video",
+    "originalLocalPath": "public/1003.mp4"
+  },
+  "clubfondook": {
+    "publicId": "trillo/ui/hero-backgrounds/clubfondook",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462577/trillo/ui/hero-backgrounds/clubfondook.jpg",
+    "format": "jpg",
+    "bytes": 4123174,
+    "resourceType": "image",
+    "originalLocalPath": "public/clubfondook.jpg"
+  },
+  "aventuras-hero": {
+    "publicId": "trillo/ui/hero-backgrounds/aventuras-hero",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462578/trillo/ui/hero-backgrounds/aventuras-hero.jpg",
+    "format": "jpg",
+    "bytes": 699085,
+    "resourceType": "image",
+    "originalLocalPath": "public/aventuras-optimized.jpg"
+  },
+  "eventos-hero": {
+    "publicId": "trillo/ui/hero-backgrounds/eventos-hero",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462579/trillo/ui/hero-backgrounds/eventos-hero.png",
+    "format": "png",
+    "bytes": 1391064,
+    "resourceType": "image",
+    "originalLocalPath": "public/eventosbg.png"
+  },
+  "eventosverti": {
+    "publicId": "trillo/events/eventosverti",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462580/trillo/events/eventosverti.jpg",
+    "format": "jpg",
+    "bytes": 724290,
+    "resourceType": "image",
+    "originalLocalPath": "public/eventosverti.jpg"
+  },
+  "san_pedro_start": {
+    "publicId": "trillo/events/san_pedro_start",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462581/trillo/events/san_pedro_start.jpg",
+    "format": "jpg",
+    "bytes": 979872,
+    "resourceType": "image",
+    "originalLocalPath": "public/images/events/san_pedro_start.jpg"
+  },
+  "san_pedro_night": {
+    "publicId": "trillo/events/san_pedro_night",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462582/trillo/events/san_pedro_night.jpg",
+    "format": "jpg",
+    "bytes": 903885,
+    "resourceType": "image",
+    "originalLocalPath": "public/images/events/san_pedro_night.jpg"
+  },
+  "san_pedro_finish": {
+    "publicId": "trillo/events/san_pedro_finish",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462583/trillo/events/san_pedro_finish.jpg",
+    "format": "jpg",
+    "bytes": 974041,
+    "resourceType": "image",
+    "originalLocalPath": "public/images/events/san_pedro_finish.jpg"
+  },
+  "san_pedro_community": {
+    "publicId": "trillo/events/san_pedro_community",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462584/trillo/events/san_pedro_community.jpg",
+    "format": "jpg",
+    "bytes": 832605,
+    "resourceType": "image",
+    "originalLocalPath": "public/images/events/san_pedro_community.jpg"
+  },
+  "san_pedro_kit": {
+    "publicId": "trillo/events/san_pedro_kit",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462585/trillo/events/san_pedro_kit.jpg",
+    "format": "jpg",
+    "bytes": 1033126,
+    "resourceType": "image",
+    "originalLocalPath": "public/images/events/san_pedro_kit.jpg"
+  },
+  "remera-sanpedro-front": {
+    "publicId": "trillo/products/remera-sanpedro-front",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462585/trillo/products/remera-sanpedro-front.png",
+    "format": "png",
+    "bytes": 358075,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-sanpedro-front.png"
+  },
+  "remera-sanpedro-back": {
+    "publicId": "trillo/products/remera-sanpedro-back",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462586/trillo/products/remera-sanpedro-back.png",
+    "format": "png",
+    "bytes": 309642,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-sanpedro-back.png"
+  },
+  "remeras2-mockup": {
+    "publicId": "trillo/products/remeras2-mockup",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462587/trillo/products/remeras2-mockup.png",
+    "format": "png",
+    "bytes": 552473,
+    "resourceType": "image",
+    "originalLocalPath": "public/remeras2.png"
+  },
+  "remera-cdc-magma-front": {
+    "publicId": "trillo/products/remera-cdc-magma-front",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462588/trillo/products/remera-cdc-magma-front.png",
+    "format": "png",
+    "bytes": 176617,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-cdc-magma-front.png"
+  },
+  "remera-cdc-magma-back": {
+    "publicId": "trillo/products/remera-cdc-magma-back",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462589/trillo/products/remera-cdc-magma-back.png",
+    "format": "png",
+    "bytes": 179449,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-cdc-magma-back.png"
+  },
+  "remeras-cdc-mockup": {
+    "publicId": "trillo/products/remeras-cdc-mockup",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462590/trillo/products/remeras-cdc-mockup.png",
+    "format": "png",
+    "bytes": 499026,
+    "resourceType": "image",
+    "originalLocalPath": "public/remeras.png"
+  },
+  "remera-cdc-blue-front": {
+    "publicId": "trillo/products/remera-cdc-blue-front",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462590/trillo/products/remera-cdc-blue-front.png",
+    "format": "png",
+    "bytes": 153984,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-cdc-blue-front.png"
+  },
+  "remera-cdc-blue-back": {
+    "publicId": "trillo/products/remera-cdc-blue-back",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462591/trillo/products/remera-cdc-blue-back.png",
+    "format": "png",
+    "bytes": 157394,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-cdc-blue-back.png"
+  },
+  "remera-oversize-front": {
+    "publicId": "trillo/products/remera-oversize-front",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462592/trillo/products/remera-oversize-front.png",
+    "format": "png",
+    "bytes": 20055,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-oversize-front.png"
+  },
+  "remera-oversize-back": {
+    "publicId": "trillo/products/remera-oversize-back",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462593/trillo/products/remera-oversize-back.png",
+    "format": "png",
+    "bytes": 29475,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/remera-oversize-back.png"
+  },
+  "remeras3-mockup": {
+    "publicId": "trillo/products/remeras3-mockup",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462593/trillo/products/remeras3-mockup.png",
+    "format": "png",
+    "bytes": 79474,
+    "resourceType": "image",
+    "originalLocalPath": "public/remeras3.png"
+  },
+  "campera-club": {
+    "publicId": "trillo/products/campera-club",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462594/trillo/products/campera-club.png",
+    "format": "png",
+    "bytes": 573417,
+    "resourceType": "image",
+    "originalLocalPath": "public/tienda/campera-club.png"
+  },
+  "remeras4-mockup": {
+    "publicId": "trillo/products/remeras4-mockup",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791462595/trillo/products/remeras4-mockup.png",
+    "format": "png",
+    "bytes": 401861,
+    "resourceType": "image",
+    "originalLocalPath": "public/remeras4.png"
+  }
+}
