@@ -131,18 +131,19 @@ export default function HeroSection() {
         <video
           ref={videoRef}
           src={CLOUDINARY_MEDIA.HERO_VIDEO}
+          poster={CLOUDINARY_MEDIA.HERO_VIDEO_POSTER}
           autoPlay
           loop
           muted={isVideoMuted}
           playsInline
-          preload="auto"
+          preload="metadata"
           onPlay={() => setIsVideoPlaying(true)}
           onPause={() => setIsVideoPlaying(false)}
-          className="w-full h-full object-cover scale-100 filter brightness-[0.82] contrast-[1.05] saturate-[1.25] blur-[0.8px] transition-all duration-700"
+          className="w-full h-full object-cover scale-100 transition-opacity duration-700"
         />
 
         {/* Capa de oscurecimiento suave para resaltar el video manteniendo contraste de texto */}
-        <div className="absolute inset-0 bg-[#08090a]/35" />
+        <div className="absolute inset-0 bg-[#08090a]/40" />
 
         {/* Degradé superior para navbar y degradé inferior para fundir con la página */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/75 via-transparent to-[#08090a]/85" />

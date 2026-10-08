@@ -23,8 +23,9 @@ export function getOptimizedMediaUrl(key, transforms = 'f_auto,q_auto') {
 
 // Constantes globales de multimedia clave
 export const CLOUDINARY_MEDIA = {
-  // Video Principal
+  // Video Principal y Poster Liviano
   HERO_VIDEO: getOptimizedMediaUrl('1003', 'f_auto,q_auto'),
+  HERO_VIDEO_POSTER: 'https://res.cloudinary.com/pglfifpm/video/upload/so_1,w_1280,f_auto,q_auto/v1791462575/trillo/ui/videos/1003.jpg',
 
   // Fondos Hero
   HERO_CLUB_BG: getOptimizedMediaUrl('clubfondook', 'f_auto,q_auto,w_1920'),

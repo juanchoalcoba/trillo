@@ -31,6 +31,7 @@ export default function AventurasHero() {
         <img
           src={CLOUDINARY_MEDIA.HERO_AVENTURAS_BG}
           alt="Trillo Aventuras Expediciones"
+          fetchPriority="high"
           className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.08] saturate-[1.15]"
         />
 

@@ -19,5 +19,19 @@ export default defineConfig(({ mode }) => {
     define: {
       'import.meta.env.API_BASE_URL': JSON.stringify(apiBaseUrl),
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('node_modules/framer-motion')) {
+              return 'vendor-motion';
+            }
+          },
+        },
+      },
+    },
   }
 })

@@ -1,26 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Outlet, Navigate } from 'react-router-dom';
 import SmoothScroll from './components/common/SmoothScroll';
 import { AuthProvider } from './context/AuthContext';
 
-// Páginas Públicas
+// Páginas Públicas (HomePage inmediata, demás diferidas bajo demanda)
 import HomePage from './pages/HomePage';
-import ClubPage from './pages/ClubPage';
-import EventosPage from './pages/EventosPage';
-import AventurasPage from './pages/AventurasPage';
-import TiendaPage from './pages/TiendaPage';
+const ClubPage = lazy(() => import('./pages/ClubPage'));
+const EventosPage = lazy(() => import('./pages/EventosPage'));
+const AventurasPage = lazy(() => import('./pages/AventurasPage'));
+const TiendaPage = lazy(() => import('./pages/TiendaPage'));
 
-// Backoffice
+// Backoffice (100% diferido: cero impacto en visitantes públicos)
 import ProtectedRoute from './components/backoffice/ProtectedRoute';
-import BackofficeLayout from './components/backoffice/BackofficeLayout';
-import LoginPage from './pages/backoffice/LoginPage';
-import DashboardPage from './pages/backoffice/DashboardPage';
-import EventsListPage from './pages/backoffice/EventsListPage';
-import EventFormPage from './pages/backoffice/EventFormPage';
-import AdventuresListPage from './pages/backoffice/AdventuresListPage';
-import AdventureFormPage from './pages/backoffice/AdventureFormPage';
-import ProductsListPage from './pages/backoffice/ProductsListPage';
-import ProductFormPage from './pages/backoffice/ProductFormPage';
+const BackofficeLayout = lazy(() => import('./components/backoffice/BackofficeLayout'));
+const LoginPage = lazy(() => import('./pages/backoffice/LoginPage'));
+const DashboardPage = lazy(() => import('./pages/backoffice/DashboardPage'));
+const EventsListPage = lazy(() => import('./pages/backoffice/EventsListPage'));
+const EventFormPage = lazy(() => import('./pages/backoffice/EventFormPage'));
+const AdventuresListPage = lazy(() => import('./pages/backoffice/AdventuresListPage'));
+const AdventureFormPage = lazy(() => import('./pages/backoffice/AdventureFormPage'));
+const ProductsListPage = lazy(() => import('./pages/backoffice/ProductsListPage'));
+const ProductFormPage = lazy(() => import('./pages/backoffice/ProductFormPage'));
+
+// Indicador de carga ultra liviano y elegante para transiciones de ruta
+function PageLoader() {
+  return (
+    <div className="min-h-screen bg-[#08090a] flex items-center justify-center">
+      <div className="w-8 h-8 rounded-full border-2 border-[#e87a38]/30 border-t-[#e87a38] animate-spin" />
+    </div>
+  );
+}
 
 // Resetea el scroll al cambiar de página en el sitio público
 function ScrollReset() {
@@ -42,7 +51,9 @@ function PublicLayout() {
   return (
     <SmoothScroll>
       <ScrollReset />
-      <Outlet />
+      <Suspense fallback={<PageLoader />}>
+        <Outlet />
+      </Suspense>
     </SmoothScroll>
   );
 }
@@ -62,14 +73,23 @@ export default function App() {
           </Route>
 
           {/* 2. LOGIN ADMINISTRATIVO */}
-          <Route path="/backoffice/login" element={<LoginPage />} />
+          <Route
+            path="/backoffice/login"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <LoginPage />
+              </Suspense>
+            }
+          />
 
           {/* 3. RUTAS PROTEGIDAS DEL BACKOFFICE */}
           <Route
             path="/backoffice"
             element={
               <ProtectedRoute>
-                <BackofficeLayout />
+                <Suspense fallback={<PageLoader />}>
+                  <BackofficeLayout />
+                </Suspense>
               </ProtectedRoute>
             }
           >

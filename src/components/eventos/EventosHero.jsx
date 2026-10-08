@@ -31,6 +31,7 @@ export default function EventosHero() {
         <img
           src={CLOUDINARY_MEDIA.HERO_EVENTOS_BG}
           alt="Trillo Eventos Comunidad San Pedro"
+          fetchPriority="high"
           className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.08] saturate-[1.15]"
         />
 

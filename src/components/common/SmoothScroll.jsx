@@ -4,12 +4,13 @@ import 'lenis/dist/lenis.css';
 
 export default function SmoothScroll({ children }) {
   useEffect(() => {
-    // Configuración con física de inercia profunda (Glide / Momentum estilo Studio Freight)
+    // Configuración optimizada: respuesta ágil y sedosa sin fricción artificial pesada
     const lenis = new Lenis({
-      lerp: 0.06, // Inercia amortiguada continua: sigue deslizándose suavemente al soltar
-      wheelMultiplier: 1.15, // Impulso generoso por golpe de rueda
-      touchMultiplier: 1.8,
+      lerp: 0.1, // Respuesta inmediata y ligera: elimina el retraso perceptible de movimiento
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
       smoothWheel: true,
+      syncTouch: false, // Respeta la tasa de refresco nativa (120Hz) en smartphones y tablets
       infinite: false,
     });
 
