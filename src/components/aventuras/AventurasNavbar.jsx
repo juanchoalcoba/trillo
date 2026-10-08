@@ -87,11 +87,6 @@ export default function AventurasNavbar() {
 
         {/* Right CTA */}
         <div className="hidden sm:flex items-center gap-4">
-          <div className="hidden xl:flex items-center gap-1.5 text-xs text-[#8d9299] font-mono">
-            <Compass className="w-3.5 h-3.5 text-[#4ade80]" />
-            <span>EXPEDICIONES 2026/2027</span>
-          </div>
-
           <a
             href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20consultar%20por%20las%20pr%C3%B3ximas%20expediciones%20de%20Trillo%20Aventuras."
             target="_blank"
