@@ -116,7 +116,7 @@ export default function AventurasHero() {
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-['Space_Grotesk'] font-black uppercase text-[#f5f4f0] tracking-tight leading-none drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
               AVENTURAS
             </h1>
-            <p className="mt-1.5 sm:mt-2 text-lg sm:text-2xl font-['Newsreader'] italic font-light text-[#4ade80] drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
+            <p className="mt-1.5 sm:mt-2 text-lg sm:text-2xl font-['Space_Grotesk'] font-medium tracking-wide text-[#4ade80] drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
               Experiencias auténticas fuera de lo cotidiano
             </p>
             <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[#d8cfc4] font-normal leading-relaxed max-w-xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
