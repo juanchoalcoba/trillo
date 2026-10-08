@@ -124,7 +124,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full h-[100dvh] min-h-[480px] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#08090a]"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-between bg-[#08090a]"
     >
       {/* 1. Full-Bleed Background Video - Bright, Crisp & Cinematic */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
@@ -152,14 +152,14 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#08090a_90%)] opacity-40" />
       </div>
 
-      {/* 2. Foreground Hero Content Flow - Perfectly Proportionate to Screen */}
-      <div className="hero-container-tv relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-between pt-16 sm:pt-18 md:pt-20 pb-2 sm:pb-2.5 px-4 md:px-8">
+      {/* 2. Foreground Hero Content Flow - Monumental & Perfectly Balanced */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto h-full min-h-[100dvh] flex flex-col justify-between pt-16 sm:pt-20 md:pt-22 pb-3 px-4 md:px-8">
         {/* Top Meta Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-1.5 sm:pb-2 text-xs text-[#8d9299] shrink-0"
+          className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2 text-xs text-[#8d9299] shrink-0"
         >
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#e87a38] animate-ping" />
@@ -218,14 +218,14 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Hero Central Monumental Content (Scales to fit viewport) */}
-        <div className="my-auto py-1 sm:py-2 text-center flex flex-col items-center justify-center max-w-3xl mx-auto shrink min-h-0">
+        {/* Hero Central Monumental Content */}
+        <div className="my-auto py-2 sm:py-3 text-center flex flex-col items-center justify-center max-w-3xl mx-auto shrink">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="hero-badge-tv inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full glass-pill text-[10px] sm:text-xs font-medium text-[#f5f4f0] mb-1.5 sm:mb-2 shadow-lg bg-black/40 backdrop-blur-md border border-white/15"
+            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full glass-pill text-[10px] sm:text-xs font-medium text-[#f5f4f0] mb-2 sm:mb-3 shadow-lg bg-black/40 backdrop-blur-md border border-white/15"
           >
             <Sparkles className="w-3 h-3 text-[#e87a38]" />
             <span className="tracking-widest uppercase font-mono">
@@ -233,18 +233,18 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Logo Principal TRILLO (Alta Calidad Real con Presencia Equilibrada) */}
+          {/* Logo Principal TRILLO (Alta Calidad Real con Mayor Presencia) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mb-1.5 sm:mb-2 select-none"
+            className="mb-2 sm:mb-2.5 select-none"
           >
             <h1 className="sr-only">TRILLO</h1>
             <img
               src="/logoTrillo.png"
               alt="TRILLO"
-              className="hero-logo-tv w-auto h-auto max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[420px] max-h-[72px] sm:max-h-[85px] md:max-h-[96px] lg:max-h-[108px] object-contain drop-shadow-[0_8px_35px_rgba(0,0,0,0.9)] pointer-events-none"
+              className="w-auto h-auto max-w-[250px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[460px] max-h-[85px] sm:max-h-[105px] md:max-h-[125px] lg:max-h-[135px] object-contain drop-shadow-[0_8px_35px_rgba(0,0,0,0.9)] pointer-events-none"
               draggable="false"
             />
           </motion.div>
@@ -256,10 +256,10 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="max-w-2xl px-2"
           >
-            <h2 className="hero-title-tv text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-['Newsreader'] italic font-light text-[#f5f4f0] leading-tight drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
               Animate a vivir<span className="text-[#e87a38]">.</span>
             </h2>
-            <p className="hero-subtitle-tv mt-1 sm:mt-1.5 text-xs sm:text-sm md:text-base text-[#f5f4f0]/90 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-lg mx-auto">
+            <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base text-[#f5f4f0]/90 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-lg mx-auto">
               El deporte, la aventura y la naturaleza como estilo de vida
             </p>
           </motion.div>
@@ -269,11 +269,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="hero-buttons-tv mt-2 sm:mt-2.5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2"
+            className="mt-3 sm:mt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5"
           >
             <Link
               to="/eventos"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-[#e87a38] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-[#e87a38] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">Eventos</span>
@@ -281,7 +281,7 @@ export default function HeroSection() {
 
             <Link
               to="/aventuras"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-[#4ade80] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-white/20 hover:border-[#4ade80] transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-[#4ade80] group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">Aventuras</span>
@@ -289,7 +289,7 @@ export default function HeroSection() {
 
             <Link
               to="/club"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-amber-500/60 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-amber-500/60 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">El Club</span>
@@ -297,7 +297,7 @@ export default function HeroSection() {
 
             <Link
               to="/tienda"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-violet-500/60 hover:border-violet-400 hover:bg-violet-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs sm:text-sm text-[#f5f4f0] border border-violet-500/60 hover:border-violet-400 hover:bg-violet-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-violet-400 group-hover:scale-125 transition-transform shrink-0" />
               <span className="font-semibold tracking-wide">TiendaTrillo</span>
@@ -309,7 +309,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.42 }}
-            className="hero-social-tv mt-1.5 sm:mt-2 flex items-center justify-center gap-1.5 sm:gap-2"
+            className="mt-2.5 sm:mt-3 flex items-center justify-center gap-2 sm:gap-2.5"
           >
             {/* Instagram */}
             <a
@@ -318,7 +318,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               aria-label="Instagram oficial @trillo.uy"
               title="Instagram @trillo.uy"
-              className="p-1.5 sm:p-2 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-[#e87a38] text-[#d8cfc4] hover:text-[#e87a38] transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group"
+              className="p-2 sm:p-2.5 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-[#e87a38] text-[#d8cfc4] hover:text-[#e87a38] transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group"
             >
               <svg
                 className="w-4 h-4 transition-transform group-hover:scale-105"
@@ -342,7 +342,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               aria-label="WhatsApp oficial Trillo (+598 98 121 608)"
               title="WhatsApp Trillo"
-              className="p-1.5 sm:p-2 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-[#4ade80] text-[#d8cfc4] hover:text-[#4ade80] transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group"
+              className="p-2 sm:p-2.5 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-[#4ade80] text-[#d8cfc4] hover:text-[#4ade80] transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group"
             >
               <svg
                 className="w-4 h-4 transition-transform group-hover:scale-105"
@@ -359,7 +359,7 @@ export default function HeroSection() {
               onClick={(e) => e.preventDefault()}
               aria-label="YouTube oficial Trillo (Próximamente)"
               title="YouTube Trillo (Próximamente)"
-              className="p-1.5 sm:p-2 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-red-500/80 text-[#d8cfc4] hover:text-red-500 transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-red-500/80 text-[#d8cfc4] hover:text-red-500 transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group cursor-pointer"
             >
               <svg
                 className="w-4 h-4 transition-transform group-hover:scale-105"
@@ -377,7 +377,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="hero-bottom-tv flex items-center justify-between pt-1.5 sm:pt-2 border-t border-white/10 shrink-0"
+          className="flex items-center justify-between pt-2 border-t border-white/10 shrink-0"
         >
           <div className="text-[10px] sm:text-[11px] text-[#8d9299] font-mono hidden sm:flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#e87a38] animate-pulse" />
