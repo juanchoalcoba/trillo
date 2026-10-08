@@ -204,23 +204,24 @@ export default function EventFormPage() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6 pb-12">
-      {/* Barra superior con navegación */}
-      <div className="flex items-center justify-between">
+      {/* Barra superior con navegación y acción fija (Sticky) */}
+      <div className="sticky top-0 z-30 bg-[#08090a]/95 backdrop-blur-md py-4 border-b border-white/10 flex items-center justify-between -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
         <div className="flex items-center gap-3">
           <Link
             to="/backoffice/events"
-            className="p-2 rounded-xl bg-neutral-800/80 hover:bg-neutral-800 text-neutral-400 hover:text-white transition-colors"
+            className="p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors border border-neutral-700"
+            title="Volver a la lista de eventos"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-white tracking-tight font-display">
-              {isEditing ? `Editar Evento: ${formData.title}` : 'Crear Nuevo Evento'}
+            <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-display">
+              {isEditing ? `Editar: ${formData.title || 'Evento'}` : 'Crear Nuevo Evento'}
             </h1>
-            <p className="text-xs text-neutral-400">
-              {isEditing ? 'Modifica los detalles, distancias y kits de la carrera.' : 'Completa la ficha técnica para publicar una nueva competencia.'}
+            <p className="text-xs text-neutral-400 hidden sm:block">
+              {isEditing ? 'Modifica detalles, distancias, kits y cronograma de la carrera.' : 'Completa la ficha técnica para publicar una nueva competencia.'}
             </p>
           </div>
         </div>
@@ -228,7 +229,7 @@ export default function EventFormPage() {
         <div className="flex items-center gap-3">
           <Link
             to="/backoffice/events"
-            className="px-4 py-2 rounded-xl border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold text-neutral-300 transition-colors"
+            className="px-4 py-2.5 rounded-xl border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold text-neutral-300 transition-colors"
           >
             Cancelar
           </Link>
@@ -236,10 +237,16 @@ export default function EventFormPage() {
             type="button"
             onClick={handleSubmit}
             disabled={saving}
-            className="px-5 py-2 rounded-xl bg-primary hover:bg-primary-hover text-black font-semibold text-xs transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 flex items-center gap-2"
+            className="px-6 py-2.5 rounded-xl bg-[#e87a38] hover:bg-[#ff8a48] active:scale-95 text-black font-black text-xs uppercase tracking-wider transition-all shadow-xl shadow-[#e87a38]/30 flex items-center gap-2 cursor-pointer border border-[#ff9d66]"
           >
-            {saving && <div className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full animate-spin" />}
-            {isEditing ? 'Guardar Cambios' : 'Publicar Evento'}
+            {saving ? (
+              <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+            ) : (
+              <svg className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+            <span>{isEditing ? 'Guardar Cambios' : 'Publicar Evento'}</span>
           </button>
         </div>
       </div>
@@ -643,7 +650,7 @@ export default function EventFormPage() {
         </div>
 
         {/* Botones inferiores */}
-        <div className="flex items-center justify-end gap-3 pt-4">
+        <div className="flex items-center justify-end gap-3 pt-6 border-t border-neutral-800">
           <Link
             to="/backoffice/events"
             className="px-5 py-2.5 rounded-xl border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-sm font-semibold text-neutral-300 transition-colors"
@@ -653,10 +660,16 @@ export default function EventFormPage() {
           <button
             type="submit"
             disabled={saving}
-            className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-semibold text-sm transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 flex items-center gap-2"
+            className="px-8 py-3 rounded-xl bg-[#e87a38] hover:bg-[#ff8a48] active:scale-95 text-black font-black text-sm uppercase tracking-wider transition-all shadow-xl shadow-[#e87a38]/30 flex items-center gap-2 cursor-pointer border border-[#ff9d66]"
           >
-            {saving && <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />}
-            {isEditing ? 'Guardar Cambios' : 'Publicar Evento'}
+            {saving ? (
+              <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+            ) : (
+              <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+            <span>{isEditing ? 'Guardar Cambios' : 'Publicar Evento'}</span>
           </button>
         </div>
       </form>
