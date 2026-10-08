@@ -177,68 +177,75 @@ export default function AdventuresListPage() {
           <p className="text-sm text-neutral-400 mt-1">Intenta con otros filtros o crea una nueva expedición.</p>
         </div>
       ) : (
-        <div className="bg-[#0e1014] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-xl">
+        <div className="bg-[#0e1014] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse min-w-[900px]">
               <thead>
-                <tr className="border-b border-neutral-800 bg-[#13151a] text-neutral-400 text-xs font-semibold uppercase tracking-wider">
-                  <th className="py-3.5 px-4">Aventura</th>
-                  <th className="py-3.5 px-4">Categoría</th>
-                  <th className="py-3.5 px-4">Duración / Dificultad</th>
-                  <th className="py-3.5 px-4 text-center">Estado</th>
-                  <th className="py-3.5 px-4 text-right">Acciones</th>
+                <tr className="border-b border-neutral-800 bg-[#12141a] text-neutral-400 text-xs font-mono font-semibold uppercase tracking-wider">
+                  <th className="py-4 px-6">Aventura / Destino</th>
+                  <th className="py-4 px-5">Categoría</th>
+                  <th className="py-4 px-5 whitespace-nowrap">Duración & Nivel</th>
+                  <th className="py-4 px-5 whitespace-nowrap">Cupos</th>
+                  <th className="py-4 px-5 text-center">Estado</th>
+                  <th className="py-4 px-6 text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-850 text-sm">
+              <tbody className="divide-y divide-neutral-800/60 text-sm">
                 {filteredAdventures.map((adv) => (
-                  <tr key={adv.id} className="hover:bg-[#12141a]/60 transition-colors">
-                    {/* Thumbnail + Título */}
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-3">
+                  <tr key={adv.id} className="hover:bg-white/[0.02] transition-colors group">
+                    {/* Thumbnail + Título + Ubicación */}
+                    <td className="py-4.5 px-6">
+                      <div className="flex items-center gap-3.5">
                         <img
                           src={adv.image_url}
                           alt={adv.title}
-                          className="w-16 h-12 rounded-lg object-cover border border-neutral-800 bg-neutral-900 shrink-0"
+                          className="w-14 h-14 rounded-xl object-cover border border-neutral-800/80 bg-neutral-900 shrink-0 shadow-md group-hover:border-neutral-700 transition-colors"
                           onError={(e) => {
                             e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=200&auto=format&fit=crop&q=80';
                           }}
                         />
                         <div className="min-w-0">
-                          <p className="font-semibold text-white truncate max-w-xs">{adv.title}</p>
-                          <p className="text-xs text-neutral-400 truncate max-w-xs">{adv.subtitle}</p>
-                          <span className="text-[11px] font-mono text-neutral-500">/{adv.slug}</span>
+                          <p className="font-bold text-white text-sm group-hover:text-primary transition-colors truncate max-w-sm">
+                            {adv.title}
+                          </p>
+                          <div className="flex items-center gap-1.5 text-xs text-neutral-400 mt-1 truncate max-w-sm">
+                            <svg className="w-3.5 h-3.5 text-neutral-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            </svg>
+                            <span className="truncate">{adv.location}</span>
+                          </div>
                         </div>
                       </div>
                     </td>
 
                     {/* Categoría Badge */}
-                    <td className="py-4 px-4">
-                      <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#1a1c24] text-neutral-300 border border-neutral-700/60">
+                    <td className="py-4.5 px-5 whitespace-nowrap">
+                      <span className="inline-block px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-[#161820] text-neutral-300 border border-neutral-700/60">
                         {CATEGORY_LABELS[adv.category] || adv.category}
                       </span>
-                      <div className="text-xs text-neutral-400 flex items-center gap-1 mt-1.5">
-                        <svg className="w-3.5 h-3.5 text-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        </svg>
-                        {adv.location}
-                      </div>
                     </td>
 
                     {/* Duración y Dificultad */}
-                    <td className="py-4 px-4">
-                      <div className="text-xs text-neutral-200 font-medium">{adv.duration}</div>
-                      <div className="text-xs text-neutral-400 mt-0.5">{adv.difficulty}</div>
-                      <div className="text-[11px] text-neutral-500 mt-0.5 font-mono">{adv.group_size}</div>
+                    <td className="py-4.5 px-5 whitespace-nowrap">
+                      <div className="text-xs text-neutral-200 font-semibold">{adv.duration}</div>
+                      <div className="text-[11px] text-neutral-400 font-mono mt-1">{adv.difficulty}</div>
+                    </td>
+
+                    {/* Cupos / Grupo */}
+                    <td className="py-4.5 px-5 whitespace-nowrap">
+                      <span className="text-xs font-mono text-neutral-300 bg-neutral-900 border border-neutral-800 px-2 py-1 rounded-lg">
+                        {adv.group_size || 'Cupo limitado'}
+                      </span>
                     </td>
 
                     {/* Estado toggle */}
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-4.5 px-5 text-center whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => handleToggleStatus(adv)}
                         disabled={actionLoading}
                         title={`Click para alternar a ${adv.status === 'published' ? 'Borrador' : 'Publicado'}`}
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                           adv.status === 'published'
                             ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20'
                             : 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20'
@@ -254,11 +261,11 @@ export default function AdventuresListPage() {
                     </td>
 
                     {/* Acciones */}
-                    <td className="py-4 px-4 text-right">
+                    <td className="py-4.5 px-6 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           to={`/backoffice/adventures/${adv.id}/edit`}
-                          className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors"
+                          className="p-2 rounded-xl bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors border border-neutral-700/50"
                           title="Editar aventura"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -268,7 +275,7 @@ export default function AdventuresListPage() {
                         <button
                           type="button"
                           onClick={() => setDeletingId(adv.id)}
-                          className="p-1.5 rounded-lg bg-neutral-800 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition-colors"
+                          className="p-2 rounded-xl bg-neutral-800/80 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition-colors border border-neutral-700/50"
                           title="Eliminar aventura"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

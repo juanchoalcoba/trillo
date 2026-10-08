@@ -37,20 +37,22 @@ export default function BackofficeLayout() {
       {/* 1. Sidebar Desktop */}
       <aside className="hidden lg:flex w-64 flex-col justify-between border-r border-white/10 bg-[#0c0e12]/80 backdrop-blur-md p-6 shrink-0 sticky top-0 h-screen">
         <div className="space-y-8">
-          {/* Logo y Marca */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#e87a38] to-[#ea580c] flex items-center justify-center font-['Space_Grotesk'] font-bold text-black text-lg shadow-lg shadow-[#e87a38]/20">
-              T
-            </div>
-            <div>
-              <span className="font-['Space_Grotesk'] font-black tracking-wider text-sm block">
+          {/* Logo y Marca Oficial */}
+          <Link to="/backoffice" className="flex items-center gap-3 group">
+            <img
+              src="/logoTrillo.png"
+              alt="TRILLO"
+              className="h-10 w-auto object-contain filter drop-shadow-[0_2px_12px_rgba(232,122,56,0.3)] transition-transform group-hover:scale-105"
+            />
+            <div className="border-l border-white/10 pl-3">
+              <span className="font-['Space_Grotesk'] font-black tracking-wider text-xs block text-white">
                 TRILLO
               </span>
-              <span className="font-mono text-[10px] tracking-widest text-[#e87a38] uppercase block">
-                Panel Backoffice
+              <span className="font-mono text-[9px] tracking-widest text-[#e87a38] uppercase block">
+                Backoffice
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Navegación Principal */}
           <nav className="space-y-1.5">
@@ -124,14 +126,16 @@ export default function BackofficeLayout() {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top Header Mobile */}
         <header className="lg:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#0c0e12] sticky top-0 z-30">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-[#e87a38] flex items-center justify-center font-bold text-black text-xs">
-              T
-            </div>
-            <span className="font-['Space_Grotesk'] font-bold text-xs uppercase tracking-wider">
-              TRILLO BACKOFFICE
+          <Link to="/backoffice" className="flex items-center gap-2">
+            <img
+              src="/logoTrillo.png"
+              alt="TRILLO"
+              className="h-8 w-auto object-contain"
+            />
+            <span className="font-['Space_Grotesk'] font-bold text-xs uppercase tracking-wider text-white">
+              BACKOFFICE
             </span>
-          </div>
+          </Link>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

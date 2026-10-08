@@ -39,12 +39,16 @@ export default function LoginPage() {
       </div>
 
       <div className="relative z-10 w-full max-w-md">
-        {/* Cabecera / Identidad */}
+        {/* Cabecera / Identidad Oficial */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-[#e87a38] to-[#ea580c] text-black font-['Space_Grotesk'] font-black text-2xl shadow-xl shadow-[#e87a38]/20 mb-4">
-            T
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] tracking-tight">
+          <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+            <img
+              src="/logoTrillo.png"
+              alt="TRILLO"
+              className="h-16 w-auto mx-auto object-contain drop-shadow-[0_4px_24px_rgba(232,122,56,0.35)] mb-3"
+            />
+          </Link>
+          <h1 className="text-2xl sm:text-3xl font-black font-['Space_Grotesk'] tracking-tight text-white">
             TRILLO BACKOFFICE
           </h1>
           <p className="text-xs font-mono text-[#8d9299] mt-1.5 uppercase tracking-widest">

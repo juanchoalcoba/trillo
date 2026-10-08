@@ -172,86 +172,88 @@ export default function EventsListPage() {
           </p>
         </div>
       ) : (
-        <div className="bg-[#0e1014] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-xl">
+        <div className="bg-[#0e1014] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse min-w-[900px]">
               <thead>
-                <tr className="border-b border-neutral-800 bg-[#13151a] text-neutral-400 text-xs font-semibold uppercase tracking-wider">
-                  <th className="py-3.5 px-4">Evento</th>
-                  <th className="py-3.5 px-4">Fecha y Lugar</th>
-                  <th className="py-3.5 px-4">Dificultad / Distancias</th>
-                  <th className="py-3.5 px-4 text-center">Estado</th>
-                  <th className="py-3.5 px-4 text-right">Acciones</th>
+                <tr className="border-b border-neutral-800 bg-[#12141a] text-neutral-400 text-xs font-mono font-semibold uppercase tracking-wider">
+                  <th className="py-4 px-6">Carrera / Evento</th>
+                  <th className="py-4 px-5">Etiqueta & Temporada</th>
+                  <th className="py-4 px-5 whitespace-nowrap">Fecha</th>
+                  <th className="py-4 px-5">Distancias</th>
+                  <th className="py-4 px-5 text-center">Estado</th>
+                  <th className="py-4 px-6 text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-850 text-sm">
+              <tbody className="divide-y divide-neutral-800/60 text-sm">
                 {filteredEvents.map((event) => (
-                  <tr key={event.id} className="hover:bg-[#12141a]/60 transition-colors">
-                    {/* Thumbnail + Título */}
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-3">
+                  <tr key={event.id} className="hover:bg-white/[0.02] transition-colors group">
+                    {/* Thumbnail + Título + Lugar */}
+                    <td className="py-4.5 px-6">
+                      <div className="flex items-center gap-3.5">
                         <img
                           src={event.image_url}
                           alt={event.title}
-                          className="w-16 h-12 rounded-lg object-cover border border-neutral-800 bg-neutral-900 shrink-0"
+                          className="w-14 h-14 rounded-xl object-cover border border-neutral-800/80 bg-neutral-900 shrink-0 shadow-md group-hover:border-neutral-700 transition-colors"
                           onError={(e) => {
                             e.target.src = 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=200&auto=format&fit=crop&q=80';
                           }}
                         />
                         <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <p className="font-semibold text-white truncate max-w-xs">{event.title}</p>
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-800 text-neutral-300 border border-neutral-700">
-                              {event.badge}
-                            </span>
+                          <p className="font-bold text-white text-sm group-hover:text-primary transition-colors truncate max-w-sm">
+                            {event.title}
+                          </p>
+                          <div className="flex items-center gap-1.5 text-xs text-neutral-400 mt-1 truncate max-w-sm">
+                            <svg className="w-3.5 h-3.5 text-neutral-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span className="truncate">{event.location}</span>
                           </div>
-                          <p className="text-xs text-neutral-400 truncate max-w-xs">{event.subtitle}</p>
-                          <span className="text-[11px] font-mono text-neutral-500">/{event.slug}</span>
                         </div>
                       </div>
                     </td>
 
-                    {/* Fecha y Lugar */}
-                    <td className="py-4 px-4">
-                      <div className="text-neutral-200 font-medium">{event.date_text}</div>
-                      <div className="text-xs text-neutral-400 flex items-center gap-1 mt-0.5">
-                        <svg className="w-3.5 h-3.5 text-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        {event.location}
+                    {/* Badge & Temporada */}
+                    <td className="py-4.5 px-5">
+                      <span className="inline-block px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-[#161820] text-neutral-300 border border-neutral-700/60 whitespace-nowrap">
+                        {event.badge}
+                      </span>
+                      <div className="text-[11px] font-mono text-[#e87a38] mt-1.5 whitespace-nowrap">
+                        {event.season}
                       </div>
                     </td>
 
-                    {/* Dificultad y Distancias */}
-                    <td className="py-4 px-4">
-                      <div className="text-xs text-neutral-300 font-medium">{event.difficulty}</div>
-                      <div className="flex flex-wrap gap-1 mt-1">
+                    {/* Fecha */}
+                    <td className="py-4.5 px-5 whitespace-nowrap">
+                      <span className="text-xs text-neutral-200 font-medium">
+                        {event.date_text}
+                      </span>
+                    </td>
+
+                    {/* Distancias */}
+                    <td className="py-4.5 px-5">
+                      <div className="flex flex-wrap gap-1.5 max-w-xs">
                         {Array.isArray(event.distances) &&
-                          event.distances.slice(0, 3).map((d, idx) => (
+                          event.distances.map((d, idx) => (
                             <span
                               key={idx}
-                              className="px-1.5 py-0.5 rounded text-[10px] bg-neutral-800/80 text-primary border border-neutral-700/60 font-mono"
+                              className="px-2 py-0.5 rounded-md text-[11px] bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono whitespace-nowrap"
                             >
                               {d}
                             </span>
                           ))}
-                        {Array.isArray(event.distances) && event.distances.length > 3 && (
-                          <span className="text-[10px] text-neutral-500 self-center">
-                            +{event.distances.length - 3}
-                          </span>
-                        )}
                       </div>
                     </td>
 
                     {/* Estado con switch rápido */}
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-4.5 px-5 text-center whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => handleToggleStatus(event)}
                         disabled={actionLoading}
                         title={`Click para cambiar a ${event.status === 'published' ? 'Borrador' : 'Publicado'}`}
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                           event.status === 'published'
                             ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20'
                             : 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20'
@@ -267,11 +269,11 @@ export default function EventsListPage() {
                     </td>
 
                     {/* Acciones */}
-                    <td className="py-4 px-4 text-right">
+                    <td className="py-4.5 px-6 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           to={`/backoffice/events/${event.id}/edit`}
-                          className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors"
+                          className="p-2 rounded-xl bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors border border-neutral-700/50"
                           title="Editar evento"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -281,7 +283,7 @@ export default function EventsListPage() {
                         <button
                           type="button"
                           onClick={() => setDeletingId(event.id)}
-                          className="p-1.5 rounded-lg bg-neutral-800 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition-colors"
+                          className="p-2 rounded-xl bg-neutral-800/80 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition-colors border border-neutral-700/50"
                           title="Eliminar evento"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -184,77 +184,80 @@ export default function ProductsListPage() {
           <p className="text-sm text-neutral-400 mt-1">Prueba cambiando los filtros o publica una nueva prenda oficial.</p>
         </div>
       ) : (
-        <div className="bg-[#0e1014] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-xl">
+        <div className="bg-[#0e1014] border border-neutral-800/80 rounded-2xl overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse min-w-[900px]">
               <thead>
-                <tr className="border-b border-neutral-800 bg-[#13151a] text-neutral-400 text-xs font-semibold uppercase tracking-wider">
-                  <th className="py-3.5 px-4">Prenda / Producto</th>
-                  <th className="py-3.5 px-4">Categoría</th>
-                  <th className="py-3.5 px-4">Precio (UYU)</th>
-                  <th className="py-3.5 px-4">Talles / Stock</th>
-                  <th className="py-3.5 px-4 text-center">Estado</th>
-                  <th className="py-3.5 px-4 text-right">Acciones</th>
+                <tr className="border-b border-neutral-800 bg-[#12141a] text-neutral-400 text-xs font-mono font-semibold uppercase tracking-wider">
+                  <th className="py-4 px-6">Prenda / Producto</th>
+                  <th className="py-4 px-5">Categoría</th>
+                  <th className="py-4 px-5 whitespace-nowrap">Precio</th>
+                  <th className="py-4 px-5 whitespace-nowrap">Stock & Talles</th>
+                  <th className="py-4 px-5 text-center">Estado</th>
+                  <th className="py-4 px-6 text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-850 text-sm">
+              <tbody className="divide-y divide-neutral-800/60 text-sm">
                 {filteredProducts.map((prod) => {
                   const stockMeta = STOCK_STATUS_LABELS[prod.stock_status] || STOCK_STATUS_LABELS.available;
 
                   return (
-                    <tr key={prod.id} className="hover:bg-[#12141a]/60 transition-colors">
+                    <tr key={prod.id} className="hover:bg-white/[0.02] transition-colors group">
                       {/* Imagen + Título */}
-                      <td className="py-4 px-4">
-                        <div className="flex items-center gap-3">
+                      <td className="py-4.5 px-6">
+                        <div className="flex items-center gap-3.5">
                           <img
                             src={prod.front_image_url}
                             alt={prod.name}
-                            className="w-14 h-14 rounded-xl object-contain bg-[#171920] border border-neutral-800 shrink-0 p-1"
+                            className="w-14 h-14 rounded-xl object-contain bg-[#161820] border border-neutral-800/80 shrink-0 p-1 shadow-md group-hover:border-neutral-700 transition-colors"
                             onError={(e) => {
                               e.target.src = 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=200&auto=format&fit=crop&q=80';
                             }}
                           />
                           <div className="min-w-0">
                             <div className="flex items-center gap-2">
-                              <p className="font-semibold text-white truncate max-w-xs">{prod.name}</p>
+                              <p className="font-bold text-white text-sm group-hover:text-primary transition-colors truncate max-w-sm">
+                                {prod.name}
+                              </p>
                               {prod.badge && (
-                                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary/10 text-primary border border-primary/20">
+                                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#e87a38]/10 text-[#e87a38] border border-[#e87a38]/30 shrink-0">
                                   {prod.badge}
                                 </span>
                               )}
                             </div>
-                            <p className="text-xs text-neutral-400 truncate max-w-xs">{prod.subtitle}</p>
-                            <span className="text-[11px] font-mono text-neutral-500">/{prod.slug}</span>
+                            <p className="text-xs text-neutral-400 mt-1 truncate max-w-sm">
+                              {prod.subtitle}
+                            </p>
                           </div>
                         </div>
                       </td>
 
                       {/* Categoría */}
-                      <td className="py-4 px-4">
-                        <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#1a1c24] text-neutral-300 border border-neutral-700/60">
+                      <td className="py-4.5 px-5 whitespace-nowrap">
+                        <span className="inline-block px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-[#161820] text-neutral-300 border border-neutral-700/60">
                           {CATEGORY_LABELS[prod.category] || prod.category}
                         </span>
                       </td>
 
                       {/* Precio */}
-                      <td className="py-4 px-4">
-                        <div className="font-mono text-white font-bold text-base">
+                      <td className="py-4.5 px-5 whitespace-nowrap">
+                        <div className="font-mono text-white font-bold text-sm">
                           $ {Number(prod.price).toLocaleString('es-UY')}
+                          <span className="text-[10px] text-neutral-500 font-mono ml-1 uppercase">{prod.currency || 'UYU'}</span>
                         </div>
-                        <span className="text-[10px] text-neutral-500 uppercase">{prod.currency || 'UYU'}</span>
                       </td>
 
                       {/* Talles y Stock */}
-                      <td className="py-4 px-4">
+                      <td className="py-4.5 px-5 whitespace-nowrap">
                         <span className={`inline-flex px-2 py-0.5 rounded-md text-[11px] font-semibold border ${stockMeta.class}`}>
                           {stockMeta.label}
                         </span>
-                        <div className="flex flex-wrap gap-1 mt-1.5">
+                        <div className="flex items-center gap-1 mt-1.5">
                           {Array.isArray(prod.sizes) &&
                             prod.sizes.map((s, idx) => (
                               <span
                                 key={idx}
-                                className="px-1.5 py-0.5 rounded text-[10px] bg-neutral-800 text-neutral-300 font-mono"
+                                className="px-1.5 py-0.5 rounded text-[10px] bg-neutral-900 border border-neutral-800 text-neutral-300 font-mono"
                               >
                                 {s}
                               </span>
@@ -263,13 +266,13 @@ export default function ProductsListPage() {
                       </td>
 
                       {/* Estado */}
-                      <td className="py-4 px-4 text-center">
+                      <td className="py-4.5 px-5 text-center whitespace-nowrap">
                         <button
                           type="button"
                           onClick={() => handleToggleStatus(prod)}
                           disabled={actionLoading}
                           title={`Click para cambiar a ${prod.status === 'published' ? 'Borrador' : 'Publicado'}`}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                             prod.status === 'published'
                               ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20'
                               : 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20'
@@ -285,11 +288,11 @@ export default function ProductsListPage() {
                       </td>
 
                       {/* Acciones */}
-                      <td className="py-4 px-4 text-right">
+                      <td className="py-4.5 px-6 text-right whitespace-nowrap">
                         <div className="flex items-center justify-end gap-2">
                           <Link
                             to={`/backoffice/products/${prod.id}/edit`}
-                            className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors"
+                            className="p-2 rounded-xl bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors border border-neutral-700/50"
                             title="Editar prenda"
                           >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -299,7 +302,7 @@ export default function ProductsListPage() {
                           <button
                             type="button"
                             onClick={() => setDeletingId(prod.id)}
-                            className="p-1.5 rounded-lg bg-neutral-800 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition-colors"
+                            className="p-2 rounded-xl bg-neutral-800/80 hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition-colors border border-neutral-700/50"
                             title="Eliminar producto"
                           >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
