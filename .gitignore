@@ -24,3 +24,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw camera media (not browser compatible)
+raw_photos_backup/
+*.ARW
+*.arw
+*.CR2
+*.cr2

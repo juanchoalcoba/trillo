@@ -72,6 +72,12 @@ export default function AventurasNavbar() {
             Internacionales
           </a>
           <a
+            href="#galeria-aventuras"
+            className="text-xs font-mono uppercase tracking-wider text-[#8d9299] hover:text-[#4ade80] transition-colors"
+          >
+            Galería
+          </a>
+          <a
             href="#filosofia"
             className="text-xs font-mono uppercase tracking-wider text-[#8d9299] hover:text-[#f5f4f0] transition-colors"
           >
@@ -153,6 +159,17 @@ export default function AventurasNavbar() {
               <span>Experiencias Internacionales</span>
               <span className="text-xs bg-[#f59e0b]/20 text-[#f59e0b] px-2 py-0.5 rounded-full font-mono">
                 Andes & Patagonia
+              </span>
+            </a>
+
+            <a
+              href="#galeria-aventuras"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base text-[#f5f4f0] hover:text-[#4ade80] transition-colors font-medium flex items-center justify-between"
+            >
+              <span>Galería de Expediciones</span>
+              <span className="text-xs bg-[#4ade80]/20 text-[#4ade80] px-2 py-0.5 rounded-full font-mono">
+                Fotos Reales
               </span>
             </a>
 

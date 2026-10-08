@@ -3,6 +3,7 @@ import AventurasNavbar from '../components/aventuras/AventurasNavbar';
 import AventurasHero from '../components/aventuras/AventurasHero';
 import AventurasCategories from '../components/aventuras/AventurasCategories';
 import AventurasPhilosophy from '../components/aventuras/AventurasPhilosophy';
+import AventurasGallery from '../components/aventuras/AventurasGallery';
 import AventurasCTA from '../components/aventuras/AventurasCTA';
 
 export default function AventurasPage() {
@@ -23,6 +24,9 @@ export default function AventurasPage() {
 
         {/* Las 3 Categorías: Durazno, Nacionales e Internacionales */}
         <AventurasCategories />
+
+        {/* Galería Fotográfica Real de Aventuras y Expediciones */}
+        <AventurasGallery />
 
         {/* Filosofía, Seguridad, Protocolos WFR y Mínimo Impacto */}
         <AventurasPhilosophy />
