@@ -152,7 +152,7 @@ export default function HeroSection() {
       </div>
 
       {/* 2. Foreground Hero Content Flow - Perfectly Proportionate to Screen */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-between pt-16 sm:pt-20 pb-3 md:pb-4 px-4 md:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-between pt-24 sm:pt-28 pb-3 md:pb-4 px-4 md:px-8">
         {/* Top Meta Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
