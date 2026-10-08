@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Outlet, Navigate } from 'react-router-dom';
 import SmoothScroll from './components/common/SmoothScroll';
 import { AuthProvider } from './context/AuthContext';
 
@@ -91,6 +90,11 @@ export default function App() {
             <Route path="products/new" element={<ProductFormPage />} />
             <Route path="products/:id/edit" element={<ProductFormPage />} />
           </Route>
+
+          {/* 4. ALIAS Y REDIRECCIONES */}
+          <Route path="/backend" element={<Navigate to="/backoffice" replace />} />
+          <Route path="/admin" element={<Navigate to="/backoffice" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
