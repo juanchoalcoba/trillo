@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, ArrowUpRight, Menu, X } from 'lucide-react';
+import { Compass, ArrowUpRight, Menu, X, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -67,9 +67,10 @@ export default function Navbar() {
           </Link>
           <Link
             to="/tienda"
-            className="text-sm font-medium text-[#8d9299] hover:text-violet-400 transition-colors duration-200 tracking-wide"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#8d9299] hover:text-violet-300 transition-colors duration-200 tracking-wide group"
           >
-            TiendaTrillo
+            <ShoppingBag className="w-3.5 h-3.5 text-violet-400/80 group-hover:text-violet-300 transition-all duration-200 group-hover:scale-110" />
+            <span>TiendaTrillo</span>
           </Link>
         </nav>
 
@@ -146,9 +147,10 @@ export default function Navbar() {
             <Link
               to="/tienda"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-violet-400 transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-base text-[#f5f4f0] hover:text-violet-400 transition-colors font-medium"
             >
-              TiendaTrillo
+              <ShoppingBag className="w-4 h-4 text-violet-400" />
+              <span>TiendaTrillo</span>
             </Link>
             <Link
               to="/contacto"
