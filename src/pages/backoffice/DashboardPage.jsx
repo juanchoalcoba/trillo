@@ -11,8 +11,9 @@ import {
   CheckCircle2,
   Loader2,
   AlertCircle,
+  HeartHandshake,
 } from 'lucide-react';
-import { eventsApi, adventuresApi, productsApi } from '../../services/api';
+import { eventsApi, adventuresApi, productsApi, clubPlansApi } from '../../services/api';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -20,6 +21,7 @@ export default function DashboardPage() {
     eventsPublished: 0,
     adventuresCount: 0,
     productsCount: 0,
+    clubPlansCount: 0,
     isLoading: true,
     error: null,
   });
@@ -27,21 +29,24 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [eventsRes, advRes, prodRes] = await Promise.all([
+        const [eventsRes, advRes, prodRes, plansRes] = await Promise.all([
           eventsApi.getAllAdmin().catch(() => ({ events: [] })),
           adventuresApi.getAllAdmin().catch(() => ({ adventures: [] })),
           productsApi.getAllAdmin().catch(() => ({ products: [] })),
+          clubPlansApi.getAllAdmin().catch(() => ({ plans: [] })),
         ]);
 
         const events = eventsRes.events || [];
         const adventures = advRes.adventures || [];
         const products = prodRes.products || [];
+        const plans = plansRes.plans || [];
 
         setStats({
           eventsCount: events.length,
           eventsPublished: events.filter((e) => e.status === 'published').length,
           adventuresCount: adventures.length,
           productsCount: products.length,
+          clubPlansCount: plans.length || 3,
           isLoading: false,
           error: null,
         });
@@ -56,6 +61,7 @@ export default function DashboardPage() {
 
     fetchStats();
   }, []);
+
 
   return (
     <div className="space-y-8">
@@ -93,7 +99,7 @@ export default function DashboardPage() {
       </div>
 
       {/* 2. Tarjetas de Métricas Nucleares */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* Card: Eventos */}
         <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-6 flex flex-col justify-between hover:border-[#e87a38]/40 transition-colors group">
           <div>
@@ -142,7 +148,7 @@ export default function DashboardPage() {
               {stats.isLoading ? <Loader2 className="w-8 h-8 animate-spin" /> : stats.adventuresCount}
             </div>
             <p className="text-xs text-[#8d9299] mt-2">
-              Durazno, Nacionales e Internacionales
+              Durazno, Nacionales y más
             </p>
           </div>
           <Link
@@ -150,6 +156,36 @@ export default function DashboardPage() {
             className="mt-6 inline-flex items-center gap-1.5 text-xs text-[#4ade80] group-hover:underline font-semibold"
           >
             <span>Administrar expediciones</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Card: El Club (Planes) */}
+        <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-6 flex flex-col justify-between hover:border-amber-400/40 transition-colors group">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="p-2.5 rounded-2xl bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                <HeartHandshake className="w-5 h-5" />
+              </span>
+              <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-white/5 text-[#8d9299]">
+                Membresía
+              </span>
+            </div>
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#8d9299]">
+              El Club de Corredores
+            </h3>
+            <div className="text-3xl sm:text-4xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] mt-2">
+              {stats.isLoading ? <Loader2 className="w-8 h-8 animate-spin" /> : stats.clubPlansCount}
+            </div>
+            <p className="text-xs text-[#8d9299] mt-2">
+              Planes y cuotas gestionables
+            </p>
+          </div>
+          <Link
+            to="/backoffice/club-plans"
+            className="mt-6 inline-flex items-center gap-1.5 text-xs text-amber-400 group-hover:underline font-semibold"
+          >
+            <span>Gestionar cuotas & planes</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -172,7 +208,7 @@ export default function DashboardPage() {
               {stats.isLoading ? <Loader2 className="w-8 h-8 animate-spin" /> : stats.productsCount}
             </div>
             <p className="text-xs text-[#8d9299] mt-2">
-              Prendas activas para venta por WhatsApp
+              Prendas activas para WhatsApp
             </p>
           </div>
           <Link
@@ -184,6 +220,7 @@ export default function DashboardPage() {
           </Link>
         </div>
       </div>
+
 
       {/* 3. Estado de la Infraestructura */}
       <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-6 sm:p-8">

@@ -13,6 +13,7 @@ import {
   User,
   Shield,
   Sparkles,
+  HeartHandshake,
 } from 'lucide-react';
 
 export default function BackofficeLayout() {
@@ -30,7 +31,9 @@ export default function BackofficeLayout() {
     { to: '/backoffice/events', label: 'Eventos & Carreras', icon: Trophy },
     { to: '/backoffice/adventures', label: 'Aventuras', icon: Compass },
     { to: '/backoffice/products', label: 'Tienda Trillo', icon: ShoppingBag },
+    { to: '/backoffice/club-plans', label: 'El Club (Planes)', icon: HeartHandshake },
   ];
+
 
   return (
     <div className="min-h-screen bg-[#08090a] text-[#f5f4f0] flex">

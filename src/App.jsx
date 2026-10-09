@@ -21,6 +21,8 @@ const AdventuresListPage = lazy(() => import('./pages/backoffice/AdventuresListP
 const AdventureFormPage = lazy(() => import('./pages/backoffice/AdventureFormPage'));
 const ProductsListPage = lazy(() => import('./pages/backoffice/ProductsListPage'));
 const ProductFormPage = lazy(() => import('./pages/backoffice/ProductFormPage'));
+const ClubPlansPage = lazy(() => import('./pages/backoffice/ClubPlansPage'));
+
 
 // Indicador de carga ultra liviano y elegante para transiciones de ruta
 function PageLoader() {
@@ -110,7 +112,11 @@ export default function App() {
             <Route path="products" element={<ProductsListPage />} />
             <Route path="products/new" element={<ProductFormPage />} />
             <Route path="products/:id/edit" element={<ProductFormPage />} />
+
+            {/* Gestión de Planes del Club */}
+            <Route path="club-plans" element={<ClubPlansPage />} />
           </Route>
+
 
           {/* 4. ALIAS Y REDIRECCIONES */}
           <Route path="/backend" element={<Navigate to="/backoffice" replace />} />

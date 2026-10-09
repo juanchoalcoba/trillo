@@ -1,69 +1,95 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Sparkles, MessageCircle, ArrowUpRight, ShieldCheck, HeartHandshake, Zap, Trophy } from 'lucide-react';
+import { clubPlansApi } from '../../services/api';
+
+const DEFAULT_PLANS = [
+  {
+    id: 'mensual',
+    slug: 'mensual',
+    name: 'Plan Mensual Pase Libre',
+    badge: 'Más Elegido · Presencial',
+    price: '$ 1.400',
+    period: 'UYU / mes',
+    tagline: 'Acceso total a todos los días, turnos y grupos de entrenamiento en Durazno.',
+    highlighted: true,
+    accent: '#f59e0b',
+    features: [
+      'Pase libre a todos los entrenamientos presenciales (Lunes a Sábado)',
+      'Profesores de educación física guiando cada sesión en vivo',
+      'Planificación deportiva según tus metas (desde iniciación a maratón)',
+      'Entrenamientos en pista, ribera del Río Yí y senderos',
+      'Descuento exclusivo en inscripciones a Trillo Eventos (San Pedro)',
+      'Acceso preferencial a expediciones de Trillo Aventuras',
+      'Fondos grupales y tercer tiempo de camaradería los fines de semana',
+      'Seguro deportivo de accidentes personales incluido',
+    ],
+    whatsapp_msg: 'Hola Trillo! Quiero afiliarme a El Club de Corredores con el Plan Mensual Pase Libre ($1.400/mes). ¿Cuáles son los próximos pasos?',
+  },
+  {
+    id: 'semestral',
+    slug: 'semestral',
+    name: 'Plan Semestral Bonificado',
+    badge: 'Remera Oficial Incluida',
+    price: '$ 1.200',
+    period: 'UYU / mes (Abono semestral)',
+    tagline: 'Para quienes hacen del movimiento un estilo de vida continuo todo el año.',
+    highlighted: false,
+    accent: '#fbbf24',
+    features: [
+      'Todos los beneficios del Plan Mensual Pase Libre',
+      'Remera técnica oficial de entrenamiento del Club de regalo',
+      'Ahorro directo en la cuota mensual',
+      '20% de descuento asegurado en la Corrida San Pedro',
+      'Congelamiento de cuota por 6 meses',
+      'Prioridad absoluta en indumentaria y cupos de eventos',
+    ],
+    whatsapp_msg: 'Hola Trillo! Quiero afiliarme con el Plan Semestral Bonificado de El Club de Corredores.',
+  },
+  {
+    id: 'distancia',
+    slug: 'distancia',
+    name: 'Plan a Distancia',
+    badge: 'Todo Uruguay',
+    price: '$ 1.100',
+    period: 'UYU / mes',
+    tagline: 'Entrená con nuestra metodología y seguimiento estés donde estés en el país.',
+    highlighted: false,
+    accent: '#d8cfc4',
+    features: [
+      'Planificación semanal personalizada según tus tiempos y objetivos',
+      'Preparación específica para 5K, 10K, 21K, 42K o Trail',
+      'Contacto directo y feedback semanal con los entrenadores',
+      'Ajustes continuos de ritmos según datos de tu reloj o app',
+      'Descuentos en carreras del circuito Trillo',
+      'Comunidad online y apoyo constante',
+    ],
+    whatsapp_msg: 'Hola Trillo! Me interesa contratar el Plan a Distancia de El Club de Corredores.',
+  },
+];
 
 export default function ClubPricing() {
-  const plans = [
-    {
-      id: 'mensual',
-      name: 'Plan Mensual Pase Libre',
-      badge: 'Más Elegido · Presencial',
-      price: '$ 1.400',
-      period: 'UYU / mes',
-      tagline: 'Acceso total a todos los días, turnos y grupos de entrenamiento en Durazno.',
-      highlighted: true,
-      accent: '#f59e0b',
-      features: [
-        'Pase libre a todos los entrenamientos presenciales (Lunes a Sábado)',
-        'Profesores de educación física guiando cada sesión en vivo',
-        'Planificación deportiva según tus metas (desde iniciación a maratón)',
-        'Entrenamientos en pista, ribera del Río Yí y senderos',
-        'Descuento exclusivo en inscripciones a Trillo Eventos (San Pedro)',
-        'Acceso preferencial a expediciones de Trillo Aventuras',
-        'Fondos grupales y tercer tiempo de camaradería los fines de semana',
-        'Seguro deportivo de accidentes personales incluido',
-      ],
-      whatsappMsg: 'Hola Trillo! Quiero afiliarme a El Club de Corredores con el Plan Mensual Pase Libre ($1.400/mes). ¿Cuáles son los próximos pasos?',
-    },
-    {
-      id: 'semestral',
-      name: 'Plan Semestral Bonificado',
-      badge: 'Remera Oficial Incluida',
-      price: '$ 1.200',
-      period: 'UYU / mes (Abono semestral)',
-      tagline: 'Para quienes hacen del movimiento un estilo de vida continuo todo el año.',
-      highlighted: false,
-      accent: '#fbbf24',
-      features: [
-        'Todos los beneficios del Plan Mensual Pase Libre',
-        'Remera técnica oficial de entrenamiento del Club de regalo',
-        'Ahorro directo en la cuota mensual',
-        '20% de descuento asegurado en la Corrida San Pedro',
-        'Congelamiento de cuota por 6 meses',
-        'Prioridad absoluta en indumentaria y cupos de eventos',
-      ],
-      whatsappMsg: 'Hola Trillo! Quiero afiliarme con el Plan Semestral Bonificado de El Club de Corredores.',
-    },
-    {
-      id: 'distancia',
-      name: 'Plan a Distancia',
-      badge: 'Todo Uruguay',
-      price: '$ 1.100',
-      period: 'UYU / mes',
-      tagline: 'Entrená con nuestra metodología y seguimiento estés donde estés en el país.',
-      highlighted: false,
-      accent: '#d8cfc4',
-      features: [
-        'Planificación semanal personalizada según tus tiempos y objetivos',
-        'Preparación específica para 5K, 10K, 21K, 42K o Trail',
-        'Contacto directo y feedback semanal con los entrenadores',
-        'Ajustes continuos de ritmos según datos de tu reloj o app',
-        'Descuentos en carreras del circuito Trillo',
-        'Comunidad online y apoyo constante',
-      ],
-      whatsappMsg: 'Hola Trillo! Me interesa contratar el Plan a Distancia de El Club de Corredores.',
-    },
-  ];
+  const [plans, setPlans] = useState(DEFAULT_PLANS);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadPlans() {
+      try {
+        const res = await clubPlansApi.getPublished();
+        if (isMounted && res?.plans && res.plans.length > 0) {
+          setPlans(res.plans);
+        }
+      } catch (err) {
+        // En caso de corte o red lenta se conservan los DEFAULT_PLANS
+        console.warn('Usando planes locales de respaldo del Club:', err.message);
+      }
+    }
+    loadPlans();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
 
   const benefitsGrid = [
     {
@@ -177,7 +203,7 @@ export default function ClubPricing() {
                 <span className="block text-[11px] font-mono uppercase tracking-wider text-[#d8cfc4] font-bold">
                   Beneficios incluidos:
                 </span>
-                {plan.features.map((feat, i) => (
+                {(Array.isArray(plan.features) ? plan.features : []).map((feat, i) => (
                   <div key={i} className="flex items-start gap-2.5 text-xs text-[#d8cfc4]">
                     <div className="w-4 h-4 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-2.5 h-2.5 text-amber-400" />
@@ -190,8 +216,9 @@ export default function ClubPricing() {
 
             {/* Botón WhatsApp con Teléfono Real */}
             <a
-              href={`https://wa.me/59898121608?text=${encodeURIComponent(plan.whatsappMsg)}`}
+              href={`https://wa.me/59898121608?text=${encodeURIComponent(plan.whatsapp_msg || plan.whatsappMsg || 'Hola Trillo! Quiero afiliarme a El Club de Corredores.')}`}
               target="_blank"
+
               rel="noopener noreferrer"
               className={`w-full py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-95 ${
                 plan.highlighted

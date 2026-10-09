@@ -196,10 +196,28 @@ export const uploadApi = {
   },
 };
 
+// ==========================================
+// 6. SERVICIOS DE PLANES DEL CLUB
+// ==========================================
+export const clubPlansApi = {
+  getPublished: () => request('/api/club-plans'),
+  getBySlugOrId: (slugOrId) => request(`/api/club-plans/${slugOrId}`),
+
+  // Métodos administrativos
+  getAllAdmin: () => request('/api/club-plans/admin/all'),
+  update: (id, data) =>
+    request(`/api/club-plans/admin/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+};
+
 export default {
   auth: authApi,
   events: eventsApi,
   adventures: adventuresApi,
   products: productsApi,
+  clubPlans: clubPlansApi,
   upload: uploadApi,
 };
+
