@@ -9,6 +9,7 @@ const ClubPage = lazy(() => import('./pages/ClubPage'));
 const EventosPage = lazy(() => import('./pages/EventosPage'));
 const AventurasPage = lazy(() => import('./pages/AventurasPage'));
 const TiendaPage = lazy(() => import('./pages/TiendaPage'));
+const ContactoPage = lazy(() => import('./pages/ContactoPage'));
 
 // Backoffice (100% diferido: cero impacto en visitantes públicos)
 import ProtectedRoute from './components/backoffice/ProtectedRoute';
@@ -22,6 +23,7 @@ const AdventureFormPage = lazy(() => import('./pages/backoffice/AdventureFormPag
 const ProductsListPage = lazy(() => import('./pages/backoffice/ProductsListPage'));
 const ProductFormPage = lazy(() => import('./pages/backoffice/ProductFormPage'));
 const ClubPlansPage = lazy(() => import('./pages/backoffice/ClubPlansPage'));
+const MessagesPage = lazy(() => import('./pages/backoffice/MessagesPage'));
 
 
 // Indicador de carga ultra liviano y elegante para transiciones de ruta
@@ -72,6 +74,7 @@ export default function App() {
             <Route path="/eventos" element={<EventosPage />} />
             <Route path="/aventuras" element={<AventurasPage />} />
             <Route path="/tienda" element={<TiendaPage />} />
+            <Route path="/contacto" element={<ContactoPage />} />
           </Route>
 
           {/* 2. LOGIN ADMINISTRATIVO */}
@@ -97,6 +100,9 @@ export default function App() {
           >
             {/* Dashboard principal */}
             <Route index element={<DashboardPage />} />
+
+            {/* Gestión de Mensajes de Contacto */}
+            <Route path="messages" element={<MessagesPage />} />
 
             {/* Gestión de Eventos */}
             <Route path="events" element={<EventsListPage />} />

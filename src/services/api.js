@@ -212,12 +212,37 @@ export const clubPlansApi = {
     }),
 };
 
+// ==========================================
+// 7. SERVICIOS DE MENSAJES DE CONTACTO
+// ==========================================
+export const contactApi = {
+  submit: (data) =>
+    request('/api/contact', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  // Métodos administrativos
+  getAllAdmin: () => request('/api/contact/admin/all'),
+  updateStatus: (id, status, admin_notes) =>
+    request(`/api/contact/admin/${id}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status, admin_notes }),
+    }),
+  delete: (id) =>
+    request(`/api/contact/admin/${id}`, {
+      method: 'DELETE',
+    }),
+};
+
 export default {
   auth: authApi,
   events: eventsApi,
   adventures: adventuresApi,
   products: productsApi,
   clubPlans: clubPlansApi,
+  contact: contactApi,
   upload: uploadApi,
 };
+
 

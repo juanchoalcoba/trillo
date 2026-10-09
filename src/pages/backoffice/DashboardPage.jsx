@@ -12,8 +12,9 @@ import {
   Loader2,
   AlertCircle,
   HeartHandshake,
+  MessageSquare,
 } from 'lucide-react';
-import { eventsApi, adventuresApi, productsApi, clubPlansApi } from '../../services/api';
+import { eventsApi, adventuresApi, productsApi, clubPlansApi, contactApi } from '../../services/api';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -22,6 +23,8 @@ export default function DashboardPage() {
     adventuresCount: 0,
     productsCount: 0,
     clubPlansCount: 0,
+    messagesCount: 0,
+    unreadMessagesCount: 0,
     isLoading: true,
     error: null,
   });
@@ -29,17 +32,19 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [eventsRes, advRes, prodRes, plansRes] = await Promise.all([
+        const [eventsRes, advRes, prodRes, plansRes, contactRes] = await Promise.all([
           eventsApi.getAllAdmin().catch(() => ({ events: [] })),
           adventuresApi.getAllAdmin().catch(() => ({ adventures: [] })),
           productsApi.getAllAdmin().catch(() => ({ products: [] })),
           clubPlansApi.getAllAdmin().catch(() => ({ plans: [] })),
+          contactApi.getAllAdmin().catch(() => ({ messages: [] })),
         ]);
 
         const events = eventsRes.events || [];
         const adventures = advRes.adventures || [];
         const products = prodRes.products || [];
         const plans = plansRes.plans || [];
+        const msgs = contactRes.messages || [];
 
         setStats({
           eventsCount: events.length,
@@ -47,6 +52,8 @@ export default function DashboardPage() {
           adventuresCount: adventures.length,
           productsCount: products.length,
           clubPlansCount: plans.length || 3,
+          messagesCount: msgs.length,
+          unreadMessagesCount: msgs.filter((m) => m.status === 'unread').length,
           isLoading: false,
           error: null,
         });
@@ -98,8 +105,70 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* Alerta de Consultas Nuevas sin Leer */}
+      {stats.unreadMessagesCount > 0 && (
+        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#e87a38]/20 via-[#14171c] to-[#121417] border border-[#e87a38]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg shadow-[#e87a38]/5">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#e87a38] text-black flex items-center justify-center shrink-0 font-bold shadow-md">
+              <MessageSquare className="w-5 h-5 animate-pulse" />
+            </div>
+            <div>
+              <span className="font-bold text-sm text-white block">
+                {stats.unreadMessagesCount === 1
+                  ? '¡Tenés 1 nueva consulta de contacto sin responder!'
+                  : `¡Tenés ${stats.unreadMessagesCount} nuevas consultas de contacto sin responder!`}
+              </span>
+              <span className="text-xs text-[#8d9299]">
+                Recibidas a través del formulario de contacto público.
+              </span>
+            </div>
+          </div>
+          <Link
+            to="/backoffice/messages"
+            className="px-4 py-2 rounded-xl bg-[#e87a38] hover:bg-[#ea580c] text-black font-bold text-xs uppercase tracking-wider font-mono self-start sm:self-auto transition-all shadow-md"
+          >
+            Ver Bandeja de Entrada
+          </Link>
+        </div>
+      )}
+
       {/* 2. Tarjetas de Métricas Nucleares */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {/* Card: Mensajes Web */}
+        <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-5 flex flex-col justify-between hover:border-[#e87a38]/40 transition-colors group">
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="p-2 rounded-xl bg-[#e87a38]/10 text-[#e87a38] border border-[#e87a38]/20">
+                <MessageSquare className="w-4 h-4" />
+              </span>
+              {stats.unreadMessagesCount > 0 ? (
+                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-[#e87a38] text-black font-bold">
+                  {stats.unreadMessagesCount} Nuevos
+                </span>
+              ) : (
+                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-white/5 text-[#8d9299]">
+                  Al día
+                </span>
+              )}
+            </div>
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#8d9299]">
+              Mensajes Web
+            </h3>
+            <div className="text-2xl sm:text-3xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] mt-1.5">
+              {stats.isLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : stats.messagesCount}
+            </div>
+            <p className="text-[11px] text-[#8d9299] mt-1.5">
+              {stats.unreadMessagesCount} pendientes de respuesta
+            </p>
+          </div>
+          <Link
+            to="/backoffice/messages"
+            className="mt-5 inline-flex items-center gap-1.5 text-xs text-[#e87a38] group-hover:underline font-semibold"
+          >
+            <span>Ver consultas</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
         {/* Card: Eventos */}
         <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-6 flex flex-col justify-between hover:border-[#e87a38]/40 transition-colors group">
           <div>

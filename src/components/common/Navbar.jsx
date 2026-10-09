@@ -80,13 +80,13 @@ export default function Navbar() {
             <span>33°22'S 56°31'W</span>
           </div>
 
-          <a
-            href="#about"
+          <Link
+            to="/contacto"
             className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-[#f5f4f0] hover:bg-[#e87a38] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[#e87a38]/20"
           >
-            <span>Animate a vivir</span>
+            <span>Contactanos</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -150,15 +150,22 @@ export default function Navbar() {
             >
               TiendaTrillo
             </Link>
+            <Link
+              to="/contacto"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base text-[#e87a38] hover:text-white transition-colors font-medium"
+            >
+              Contactanos
+            </Link>
             <div className="pt-2 border-t border-white/10 flex items-center justify-between">
               <span className="text-xs text-[#8d9299] font-mono">Durazno, Uruguay</span>
-              <a
-                href="#about"
+              <Link
+                to="/contacto"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-2 rounded-full text-xs font-semibold bg-[#e87a38] text-white"
               >
-                Animate a vivir
-              </a>
+                Contactanos
+              </Link>
             </div>
           </motion.div>
         )}
