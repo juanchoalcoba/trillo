@@ -355,11 +355,12 @@ export default function HeroSection() {
 
             {/* YouTube */}
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              aria-label="YouTube oficial Trillo (Próximamente)"
-              title="YouTube Trillo (Próximamente)"
-              className="p-2 sm:p-2.5 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-red-500/80 text-[#d8cfc4] hover:text-red-500 transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group cursor-pointer"
+              href="https://www.youtube.com/@ALTRANCOPODCAST/streams"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube Trillo - Al Tranco Podcast"
+              title="YouTube Trillo (@ALTRANCOPODCAST)"
+              className="p-2 sm:p-2.5 rounded-xl bg-black/50 hover:bg-black/80 border border-white/15 hover:border-red-500/80 text-[#d8cfc4] hover:text-red-500 transition-all duration-300 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 group"
             >
               <svg
                 className="w-4 h-4 transition-transform group-hover:scale-105"
