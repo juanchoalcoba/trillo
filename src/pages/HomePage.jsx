@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/common/Navbar';
 import HeroSection from '../components/hero/HeroSection';
 import AboutSection from '../components/about/AboutSection';
+import SobreNosotrosSection from '../components/about/SobreNosotrosSection';
 import { ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ export default function HomePage() {
       <main className="relative z-10">
         <HeroSection />
         <AboutSection />
+        <SobreNosotrosSection />
       </main>
 
       {/* Footer Minimalista */}

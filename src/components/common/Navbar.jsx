@@ -34,18 +34,12 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7 lg:gap-8">
           <a
             href="#about"
             className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
           >
             Qué es Trillo
-          </a>
-          <a
-            href="#universo"
-            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
-          >
-            Universo
           </a>
           <Link
             to="/eventos"
@@ -65,6 +59,12 @@ export default function Navbar() {
           >
             El Club
           </Link>
+          <a
+            href="#nosotros"
+            className="text-sm font-medium text-[#8d9299] hover:text-[#f5f4f0] transition-colors duration-200 tracking-wide"
+          >
+            Sobre Nosotros
+          </a>
           <Link
             to="/tienda"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[#8d9299] hover:text-violet-300 transition-colors duration-200 tracking-wide group"
@@ -116,13 +116,6 @@ export default function Navbar() {
             >
               Qué es Trillo
             </a>
-            <a
-              href="#universo"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
-            >
-              Universo Trillo
-            </a>
             <Link
               to="/eventos"
               onClick={() => setMobileMenuOpen(false)}
@@ -144,6 +137,13 @@ export default function Navbar() {
             >
               El Club
             </Link>
+            <a
+              href="#nosotros"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+            >
+              Sobre Nosotros
+            </a>
             <Link
               to="/tienda"
               onClick={() => setMobileMenuOpen(false)}
