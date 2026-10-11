@@ -136,7 +136,7 @@ export default function EventosNavbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="pointer-events-auto lg:hidden mt-2 mx-auto max-w-7xl glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-white/10 bg-[#08090a]/95 backdrop-blur-2xl shadow-2xl"
+            className="pointer-events-auto lg:hidden mt-2 mx-auto max-w-7xl rounded-2xl p-6 flex flex-col gap-4 border border-white/15 bg-[#0b0d11]/98 backdrop-blur-2xl shadow-2xl shadow-black/90"
           >
             <div className="text-[11px] font-mono text-[#8d9299] uppercase tracking-widest border-b border-white/10 pb-2 flex items-center justify-between">
               <span>Eventos Oficiales Trillo</span>

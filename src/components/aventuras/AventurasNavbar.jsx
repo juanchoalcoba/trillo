@@ -115,7 +115,7 @@ export default function AventurasNavbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="pointer-events-auto lg:hidden mt-2 mx-auto max-w-7xl glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-white/10 bg-[#08090a]/95 backdrop-blur-2xl"
+            className="pointer-events-auto lg:hidden mt-2 mx-auto max-w-7xl rounded-2xl p-6 flex flex-col gap-4 border border-white/15 bg-[#0b0d11]/98 backdrop-blur-2xl shadow-2xl shadow-black/90"
           >
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <span className="text-xs font-mono uppercase tracking-widest text-[#4ade80]">

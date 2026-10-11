@@ -107,47 +107,53 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="pointer-events-auto md:hidden mt-2 mx-auto max-w-7xl glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-white/10"
+            className="pointer-events-auto md:hidden mt-2 mx-auto max-w-7xl rounded-2xl p-6 flex flex-col gap-4 border border-white/15 bg-[#0b0d11]/98 backdrop-blur-2xl shadow-2xl shadow-black/90"
           >
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#e87a38] font-semibold">
+                Menú Trillo
+              </span>
+              <span className="text-[11px] font-mono text-[#8d9299]">Durazno, Uruguay</span>
+            </div>
             <a
               href="#about"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium py-0.5"
             >
               Qué es Trillo
             </a>
             <Link
               to="/eventos"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium py-0.5"
             >
               Eventos
             </Link>
             <Link
               to="/aventuras"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#4ade80] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#4ade80] transition-colors font-medium py-0.5"
             >
               Aventuras
             </Link>
             <Link
               to="/club"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-amber-400 transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-amber-400 transition-colors font-medium py-0.5"
             >
               El Club
             </Link>
             <a
               href="#nosotros"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium"
+              className="text-base text-[#f5f4f0] hover:text-[#e87a38] transition-colors font-medium py-0.5"
             >
               Sobre Nosotros
             </a>
             <Link
               to="/tienda"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 text-base text-[#f5f4f0] hover:text-violet-400 transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-base text-[#f5f4f0] hover:text-violet-400 transition-colors font-medium py-0.5"
             >
               <ShoppingBag className="w-4 h-4 text-violet-400" />
               <span>TiendaTrillo</span>
@@ -155,16 +161,16 @@ export default function Navbar() {
             <Link
               to="/contacto"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#e87a38] hover:text-white transition-colors font-medium"
+              className="text-base text-[#e87a38] hover:text-white transition-colors font-medium py-0.5"
             >
               Contactanos
             </Link>
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-[#8d9299] font-mono">Durazno, Uruguay</span>
+            <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs text-[#8d9299] font-mono">33°22'S 56°31'W</span>
               <Link
                 to="/contacto"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 rounded-full text-xs font-semibold bg-[#e87a38] text-white"
+                className="px-4 py-2 rounded-full text-xs font-semibold bg-[#e87a38] text-white shadow-md hover:bg-[#ea580c] transition-colors"
               >
                 Contactanos
               </Link>
