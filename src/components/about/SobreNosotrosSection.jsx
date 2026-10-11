@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Compass, Users, MapPin, Award, Heart, Sparkles, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function SobreNosotrosSection() {
   const founders = [
@@ -128,9 +129,9 @@ export default function SobreNosotrosSection() {
               {/* Imagen representativa real de Trillo / Durazno */}
               <div className="aspect-[4/5] w-full overflow-hidden">
                 <img
-                  src="https://res.cloudinary.com/pglfifpm/image/upload/f_auto,q_auto,w_1000/v1791492020/trillo/galeria/aventuras/_MG_7852.jpg"
+                  src={CLOUDINARY_MEDIA.ABOUT_DURAZNO || 'https://res.cloudinary.com/pglfifpm/image/upload/f_auto,q_auto,w_1000/v1791735018/trillo/ui/about/durazno.jpg'}
                   alt="Trillo Durazno Naturaleza y Deporte"
-                  className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.1] transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover object-center filter brightness-[0.9] contrast-[1.08] transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>

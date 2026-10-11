@@ -1,4 +1,12 @@
 {
+  "durazno": {
+    "publicId": "trillo/ui/about/durazno",
+    "secureUrl": "https://res.cloudinary.com/pglfifpm/image/upload/v1791735018/trillo/ui/about/durazno.jpg",
+    "format": "jpg",
+    "bytes": 199015,
+    "resourceType": "image",
+    "originalLocalPath": "public/durazno.jpg"
+  },
   "1003": {
     "publicId": "trillo/ui/videos/1003",
     "secureUrl": "https://res.cloudinary.com/pglfifpm/video/upload/v1791462575/trillo/ui/videos/1003.mp4",

@@ -32,6 +32,9 @@ export const CLOUDINARY_MEDIA = {
   HERO_AVENTURAS_BG: getOptimizedMediaUrl('aventuras-hero', 'f_auto,q_auto,w_1920'),
   HERO_EVENTOS_BG: getOptimizedMediaUrl('eventos-hero', 'f_auto,q_auto,w_1920'),
 
+  // Sobre Nosotros
+  ABOUT_DURAZNO: getOptimizedMediaUrl('durazno', 'f_auto,q_auto,w_1000'),
+
   // Eventos
   EVENTOS_VERTI: getOptimizedMediaUrl('eventosverti', 'f_auto,q_auto,w_1200'),
   EVENTOS_SAN_PEDRO_START: getOptimizedMediaUrl('san_pedro_start', 'f_auto,q_auto,w_1200'),
