@@ -4,6 +4,7 @@ import AventurasHero from '../components/aventuras/AventurasHero';
 import AventurasCategories from '../components/aventuras/AventurasCategories';
 import AventurasPhilosophy from '../components/aventuras/AventurasPhilosophy';
 import AventurasGallery from '../components/aventuras/AventurasGallery';
+import ArmaTuAventura from '../components/aventuras/ArmaTuAventura';
 import AventurasCTA from '../components/aventuras/AventurasCTA';
 
 export default function AventurasPage() {
@@ -27,6 +28,9 @@ export default function AventurasPage() {
 
         {/* Galería Fotográfica Real de Aventuras y Expediciones */}
         <AventurasGallery />
+
+        {/* Servicio Interactivo: Armá tu Aventura a Medida */}
+        <ArmaTuAventura />
 
         {/* Filosofía, Seguridad, Protocolos WFR y Mínimo Impacto */}
         <AventurasPhilosophy />

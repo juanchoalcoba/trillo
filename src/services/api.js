@@ -235,6 +235,29 @@ export const contactApi = {
     }),
 };
 
+// ==========================================
+// 8. SERVICIOS DE PEDIDOS "ARMA TU AVENTURA"
+// ==========================================
+export const adventureOrdersApi = {
+  submit: (data) =>
+    request('/api/adventure-orders', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  // Métodos administrativos
+  getAllAdmin: () => request('/api/adventure-orders/admin/all'),
+  updateStatus: (id, status, admin_notes) =>
+    request(`/api/adventure-orders/admin/${id}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status, admin_notes }),
+    }),
+  delete: (id) =>
+    request(`/api/adventure-orders/admin/${id}`, {
+      method: 'DELETE',
+    }),
+};
+
 export default {
   auth: authApi,
   events: eventsApi,
@@ -242,6 +265,7 @@ export default {
   products: productsApi,
   clubPlans: clubPlansApi,
   contact: contactApi,
+  adventureOrders: adventureOrdersApi,
   upload: uploadApi,
 };
 

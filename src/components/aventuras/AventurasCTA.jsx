@@ -53,19 +53,23 @@ export default function AventurasCTA() {
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20consultar%20por%20una%20expedici%C3%B3n%20a%20medida%20para%20un%20grupo%20privado."
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#arma-tu-aventura"
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-[#4ade80] hover:bg-[#22c55e] transition-all duration-300 shadow-xl shadow-[#4ade80]/20 active:scale-95"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span>Coordinar Aventura Privada</span>
+              <Sparkles className="w-4 h-4" />
+              <span>Armar Mi Aventura Ahora</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
 
-            <div className="text-xs text-[#8d9299] font-mono">
-              Respuesta en el día · Asesoramiento personalizado
-            </div>
+            <a
+              href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20consultar%20por%20una%20expedici%C3%B3n%20a%20medida%20para%20un%20grupo%20privado."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-mono uppercase tracking-wider text-[#d8cfc4] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-[#4ade80]" />
+              <span>Escribir por WhatsApp</span>
+            </a>
           </div>
         </div>
       </motion.div>

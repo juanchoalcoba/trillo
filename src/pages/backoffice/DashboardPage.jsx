@@ -13,8 +13,9 @@ import {
   AlertCircle,
   HeartHandshake,
   MessageSquare,
+  ClipboardList,
 } from 'lucide-react';
-import { eventsApi, adventuresApi, productsApi, clubPlansApi, contactApi } from '../../services/api';
+import { eventsApi, adventuresApi, productsApi, clubPlansApi, contactApi, adventureOrdersApi } from '../../services/api';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -25,6 +26,8 @@ export default function DashboardPage() {
     clubPlansCount: 0,
     messagesCount: 0,
     unreadMessagesCount: 0,
+    ordersCount: 0,
+    pendingOrdersCount: 0,
     isLoading: true,
     error: null,
   });
@@ -32,12 +35,13 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [eventsRes, advRes, prodRes, plansRes, contactRes] = await Promise.all([
+        const [eventsRes, advRes, prodRes, plansRes, contactRes, ordersRes] = await Promise.all([
           eventsApi.getAllAdmin().catch(() => ({ events: [] })),
           adventuresApi.getAllAdmin().catch(() => ({ adventures: [] })),
           productsApi.getAllAdmin().catch(() => ({ products: [] })),
           clubPlansApi.getAllAdmin().catch(() => ({ plans: [] })),
           contactApi.getAllAdmin().catch(() => ({ messages: [] })),
+          adventureOrdersApi.getAllAdmin().catch(() => ({ orders: [] })),
         ]);
 
         const events = eventsRes.events || [];
@@ -45,6 +49,7 @@ export default function DashboardPage() {
         const products = prodRes.products || [];
         const plans = plansRes.plans || [];
         const msgs = contactRes.messages || [];
+        const orders = ordersRes.orders || ordersRes.data || [];
 
         setStats({
           eventsCount: events.length,
@@ -54,6 +59,8 @@ export default function DashboardPage() {
           clubPlansCount: plans.length || 3,
           messagesCount: msgs.length,
           unreadMessagesCount: msgs.filter((m) => m.status === 'unread').length,
+          ordersCount: orders.length,
+          pendingOrdersCount: orders.filter((o) => o.status === 'pending').length,
           isLoading: false,
           error: null,
         });
@@ -133,7 +140,43 @@ export default function DashboardPage() {
       )}
 
       {/* 2. Tarjetas de Métricas Nucleares */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        {/* Card: Pedidos de Aventuras */}
+        <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-5 flex flex-col justify-between hover:border-[#4ade80]/40 transition-colors group">
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="p-2 rounded-xl bg-[#4ade80]/10 text-[#4ade80] border border-[#4ade80]/20">
+                <ClipboardList className="w-4 h-4" />
+              </span>
+              {stats.pendingOrdersCount > 0 ? (
+                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-rose-500 text-white font-bold animate-pulse">
+                  {stats.pendingOrdersCount} Nuevos
+                </span>
+              ) : (
+                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-white/5 text-[#8d9299]">
+                  Al día
+                </span>
+              )}
+            </div>
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#8d9299]">
+              Pedidos Aventuras
+            </h3>
+            <div className="text-2xl sm:text-3xl font-['Space_Grotesk'] font-bold text-[#f5f4f0] mt-1.5">
+              {stats.isLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : stats.ordersCount}
+            </div>
+            <p className="text-[11px] text-[#8d9299] mt-1.5">
+              {stats.pendingOrdersCount} solicitudes pendientes
+            </p>
+          </div>
+          <Link
+            to="/backoffice/orders"
+            className="mt-5 inline-flex items-center gap-1.5 text-xs text-[#4ade80] group-hover:underline font-semibold"
+          >
+            <span>Ver pedidos</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
         {/* Card: Mensajes Web */}
         <div className="rounded-3xl border border-white/10 bg-[#0d1015] p-5 flex flex-col justify-between hover:border-[#e87a38]/40 transition-colors group">
           <div>

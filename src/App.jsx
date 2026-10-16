@@ -24,6 +24,7 @@ const ProductsListPage = lazy(() => import('./pages/backoffice/ProductsListPage'
 const ProductFormPage = lazy(() => import('./pages/backoffice/ProductFormPage'));
 const ClubPlansPage = lazy(() => import('./pages/backoffice/ClubPlansPage'));
 const MessagesPage = lazy(() => import('./pages/backoffice/MessagesPage'));
+const AdventureOrdersPage = lazy(() => import('./pages/backoffice/AdventureOrdersPage'));
 
 
 // Indicador de carga ultra liviano y elegante para transiciones de ruta
@@ -100,6 +101,9 @@ export default function App() {
           >
             {/* Dashboard principal */}
             <Route index element={<DashboardPage />} />
+
+            {/* Gestión de Pedidos (Armá tu Aventura) */}
+            <Route path="orders" element={<AdventureOrdersPage />} />
 
             {/* Gestión de Mensajes de Contacto */}
             <Route path="messages" element={<MessagesPage />} />

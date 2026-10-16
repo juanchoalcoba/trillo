@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ArrowUpRight, Menu, X, Compass, MapPin } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Menu, X, Compass, MapPin, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -76,6 +76,13 @@ export default function AventurasNavbar() {
             className="text-xs font-mono uppercase tracking-wider text-[#8d9299] hover:text-[#4ade80] transition-colors"
           >
             Galería
+          </a>
+          <a
+            href="#arma-tu-aventura"
+            className="text-xs font-mono uppercase tracking-wider text-[#4ade80] hover:text-[#22c55e] transition-colors flex items-center gap-1.5 font-bold"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            Armá tu Aventura
           </a>
           <a
             href="#filosofia"

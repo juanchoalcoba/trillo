@@ -15,6 +15,7 @@ import {
   Sparkles,
   HeartHandshake,
   MessageSquare,
+  ClipboardList,
 } from 'lucide-react';
 
 export default function BackofficeLayout() {
@@ -29,6 +30,7 @@ export default function BackofficeLayout() {
 
   const navItems = [
     { to: '/backoffice', label: 'Dashboard', icon: LayoutDashboard, end: true },
+    { to: '/backoffice/orders', label: 'Pedidos (Aventuras)', icon: ClipboardList },
     { to: '/backoffice/messages', label: 'Mensajes Web', icon: MessageSquare },
     { to: '/backoffice/events', label: 'Eventos & Carreras', icon: Trophy },
     { to: '/backoffice/adventures', label: 'Aventuras', icon: Compass },
