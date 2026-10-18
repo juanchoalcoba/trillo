@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { contactApi } from '../services/api';
+import Footer from '../components/common/Footer';
 
 const TOPICS = [
   { id: 'General', label: 'Consulta General' },
@@ -473,26 +474,8 @@ export default function ContactoPage() {
         </div>
       </main>
 
-      {/* Footer Minimalista */}
-      <footer className="relative z-10 border-t border-white/10 mt-16 py-8 text-center text-xs font-mono text-[#8d9299]">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span>TRILLO · Universo en Movimiento · Durazno, Uruguay</span>
-          <div className="flex items-center gap-4 text-[11px]">
-            <Link to="/" className="hover:text-[#f5f4f0] transition-colors">
-              Inicio
-            </Link>
-            <Link to="/eventos" className="hover:text-[#f5f4f0] transition-colors">
-              Eventos
-            </Link>
-            <Link to="/aventuras" className="hover:text-[#f5f4f0] transition-colors">
-              Aventuras
-            </Link>
-            <Link to="/club" className="hover:text-[#f5f4f0] transition-colors">
-              El Club
-            </Link>
-          </div>
-        </div>
-      </footer>
+      {/* Footer Global Unificado */}
+      <Footer />
     </div>
   );
 }

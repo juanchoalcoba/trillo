@@ -3,6 +3,7 @@ import TiendaNavbar from '../components/tienda/TiendaNavbar';
 import TiendaHero from '../components/tienda/TiendaHero';
 import TiendaCatalog from '../components/tienda/TiendaCatalog';
 import TiendaBanner from '../components/tienda/TiendaBanner';
+import Footer from '../components/common/Footer';
 
 export default function TiendaPage() {
   useEffect(() => {
@@ -20,6 +21,9 @@ export default function TiendaPage() {
         <TiendaCatalog />
         <TiendaBanner />
       </main>
+
+      {/* Footer Global Unificado */}
+      <Footer />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import AventurasPhilosophy from '../components/aventuras/AventurasPhilosophy';
 import AventurasGallery from '../components/aventuras/AventurasGallery';
 import ArmaTuAventura from '../components/aventuras/ArmaTuAventura';
 import AventurasCTA from '../components/aventuras/AventurasCTA';
+import Footer from '../components/common/Footer';
 
 export default function AventurasPage() {
   // Ajuste del título del documento para SEO y claridad
@@ -38,6 +39,9 @@ export default function AventurasPage() {
         {/* Expediciones a Medida, FAQ y Conexión con Eventos y Club */}
         <AventurasCTA />
       </main>
+
+      {/* Footer Global Unificado */}
+      <Footer />
     </div>
   );
 }

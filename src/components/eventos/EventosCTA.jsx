@@ -45,40 +45,6 @@ export default function EventosCTA() {
           </p>
         </div>
       </div>
-
-      {/* Footer Eventos */}
-      <footer className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#8d9299]">
-        <div className="flex items-center gap-3">
-          <span className="font-['Space_Grotesk'] font-black tracking-widest text-[#f5f4f0] uppercase text-sm">
-            TRILLO EVENTOS
-          </span>
-          <span className="text-white/20">|</span>
-          <span className="font-mono">Rebollo · Laberinto · San Pedro · Durazno</span>
-        </div>
-
-        <div className="flex items-center gap-6 font-mono text-[11px]">
-          <Link to="/" className="text-[#8d9299] hover:text-white transition-colors">
-            ← Universo Trillo
-          </Link>
-          <span className="text-white/20">|</span>
-          <Link to="/club" className="text-amber-400 hover:underline">
-            El Club de Corredores →
-          </Link>
-          <span className="text-white/20">|</span>
-          <Link to="/aventuras" className="text-[#4ade80] hover:underline">
-            Trillo Aventuras →
-          </Link>
-        </div>
-
-        <button
-          onClick={scrollToTop}
-          className="flex items-center gap-2 hover:text-[#f5f4f0] transition-colors p-2 rounded-full border border-white/10 hover:border-[#e87a38] cursor-pointer"
-          title="Volver arriba"
-        >
-          <ArrowUp className="w-3.5 h-3.5 text-[#e87a38]" />
-          <span className="font-mono uppercase text-[10px]">Arriba</span>
-        </button>
-      </footer>
     </section>
   );
 }

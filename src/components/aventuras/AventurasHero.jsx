@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Compass, ArrowDown, MapPin, ShieldCheck, Users, Mountain } from 'lucide-react';
+import { Compass, ArrowDown, MapPin, ShieldCheck, Users, Mountain, Sparkles } from 'lucide-react';
 import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
 
 export default function AventurasHero() {
@@ -164,6 +164,17 @@ export default function AventurasHero() {
                 <span className="block text-[10px] text-[#8d9299] font-mono">Andes & Patagonia</span>
               </div>
             </a>
+
+            {/* Botón especial EXCLUSIVO para Móvil: Armá tu Aventura */}
+            <div className="w-full block sm:hidden pt-1">
+              <a
+                href="#arma-tu-aventura"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#4ade80] to-[#22c55e] hover:brightness-110 text-black font-black text-xs font-mono uppercase tracking-wider shadow-lg shadow-[#4ade80]/20 active:scale-95 transition-all"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-black" />
+                <span>Armá tu Aventura Online</span>
+              </a>
+            </div>
           </motion.div>
         </div>
 

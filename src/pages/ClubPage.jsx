@@ -5,6 +5,7 @@ import ClubDisciplines from '../components/club/ClubDisciplines';
 import ClubPricing from '../components/club/ClubPricing';
 import ClubCommunity from '../components/club/ClubCommunity';
 import ClubJoinSection from '../components/club/ClubJoinSection';
+import Footer from '../components/common/Footer';
 
 export default function ClubPage() {
   // Ajuste del título del documento para SEO y claridad
@@ -34,6 +35,9 @@ export default function ClubPage() {
         {/* Clase de Prueba, Contacto por WhatsApp (+598 98 121 608) y Footer */}
         <ClubJoinSection />
       </main>
+
+      {/* Footer Global Unificado */}
+      <Footer />
     </div>
   );
 }

@@ -164,6 +164,21 @@ export default function AventurasNavbar() {
               </span>
             </a>
 
+            {/* Armá tu Aventura - Botón destacado en Menú Móvil */}
+            <a
+              href="#arma-tu-aventura"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 rounded-xl bg-gradient-to-r from-[#4ade80]/20 via-[#4ade80]/10 to-transparent border border-[#4ade80]/40 text-[#4ade80] hover:text-[#22c55e] transition-colors font-bold text-base flex items-center justify-between shadow-lg shadow-[#4ade80]/10"
+            >
+              <span className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#4ade80]" />
+                <span>Armá tu Aventura</span>
+              </span>
+              <span className="text-[10px] bg-[#4ade80] text-black font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">
+                A Medida
+              </span>
+            </a>
+
             <a
               href="#galeria-aventuras"
               onClick={() => setMobileMenuOpen(false)}
