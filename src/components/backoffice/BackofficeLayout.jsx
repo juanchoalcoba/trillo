@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -16,12 +16,64 @@ import {
   HeartHandshake,
   MessageSquare,
   ClipboardList,
+  Download,
 } from 'lucide-react';
 
 export default function BackofficeLayout() {
   const { admin, logout } = useAuth();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState(null);
+  const [isInstalled, setIsInstalled] = useState(false);
+
+  // Inicialización PWA exclusiva para Backoffice (Scope: /backoffice)
+  useEffect(() => {
+    // 1. Inyectar Manifest PWA dinámicamente solo en Backoffice
+    let manifestLink = document.querySelector('link[rel="manifest"]');
+    if (!manifestLink) {
+      manifestLink = document.createElement('link');
+      manifestLink.rel = 'manifest';
+      manifestLink.href = '/manifest-admin.webmanifest';
+      document.head.appendChild(manifestLink);
+    }
+
+    // 2. Registrar Service Worker liviano con scope /backoffice
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/backoffice' })
+        .catch((err) => console.debug('[PWA Admin] SW no registrado:', err));
+    }
+
+    // 3. Verificar si ya se está ejecutando como app instalada (standalone)
+    const isStandalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+    if (isStandalone) {
+      setIsInstalled(true);
+    }
+
+    // 4. Capturar evento nativo del navegador para instalar la PWA
+    const handleBeforeInstall = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+    };
+  }, []);
+
+  const handleInstallApp = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setInstallPrompt(null);
+      setIsInstalled(true);
+    }
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -91,6 +143,22 @@ export default function BackofficeLayout() {
 
         {/* Footer Sidebar: Admin info y Logout */}
         <div className="pt-6 border-t border-white/10 space-y-4">
+          {installPrompt && !isInstalled && (
+            <button
+              onClick={handleInstallApp}
+              className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#e87a38]/15 hover:bg-[#e87a38]/25 border border-[#e87a38]/30 text-[#e87a38] text-xs font-mono font-bold transition-all shadow-md cursor-pointer group"
+              title="Instalar Backoffice en tu dispositivo"
+            >
+              <span className="flex items-center gap-2">
+                <Download className="w-4 h-4 text-[#e87a38] group-hover:scale-110 transition-transform" />
+                <span>Instalar App Admin</span>
+              </span>
+              <span className="text-[10px] bg-[#e87a38] text-black px-1.5 py-0.5 rounded font-black">
+                PWA
+              </span>
+            </button>
+          )}
+
           <Link
             to="/"
             target="_blank"
@@ -155,6 +223,24 @@ export default function BackofficeLayout() {
         {/* Drawer Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden border-b border-white/10 bg-[#0c0e12] p-4 space-y-3 z-20">
+            {installPrompt && !isInstalled && (
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleInstallApp();
+                }}
+                className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#e87a38]/15 hover:bg-[#e87a38]/25 border border-[#e87a38]/30 text-[#e87a38] text-xs font-mono font-bold transition-all shadow-md"
+              >
+                <span className="flex items-center gap-2">
+                  <Download className="w-4 h-4 text-[#e87a38]" />
+                  <span>Instalar App Admin en Celular</span>
+                </span>
+                <span className="text-[10px] bg-[#e87a38] text-black px-1.5 py-0.5 rounded font-black">
+                  PWA
+                </span>
+              </button>
+            )}
+
             <nav className="space-y-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
