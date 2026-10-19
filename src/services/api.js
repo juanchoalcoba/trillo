@@ -3,20 +3,23 @@ const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.API_BASE
 export const API_BASE_URL = String(rawBaseUrl).trim().replace(/\/+$/, '');
 
 /**
- * Cliente HTTP base que maneja JSON y envía cookies HttpOnly automáticamente.
+ * Cliente HTTP base que maneja JSON, envía cookies HttpOnly automáticamente
+ * y adjunta Authorization Bearer como respaldo para máxima compatibilidad cross-domain.
  */
 async function request(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
+  const token = typeof window !== 'undefined' ? localStorage.getItem('trillo_admin_token') : null;
 
   const headers = {
     'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...options.headers,
   };
 
   const config = {
     ...options,
     headers,
-    credentials: 'include', // Imprescindible para enviar y recibir la cookie trillo_admin_token
+    credentials: 'include', // Envía y recibe la cookie trillo_admin_token
   };
 
   let response;
@@ -29,6 +32,9 @@ async function request(endpoint, options = {}) {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
+    if (response.status === 401 && typeof window !== 'undefined') {
+      localStorage.removeItem('trillo_admin_token');
+    }
     const errorMessage = data?.error?.message || data?.message || `Error del servidor (${response.status})`;
     const error = new Error(errorMessage);
     error.status = response.status;
@@ -43,16 +49,28 @@ async function request(endpoint, options = {}) {
 // 1. SERVICIOS DE AUTENTICACIÓN
 // ==========================================
 export const authApi = {
-  login: (email, password) =>
-    request('/api/auth/login', {
+  login: async (email, password) => {
+    const data = await request('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
-    }),
+    });
+    if (data?.token && typeof window !== 'undefined') {
+      localStorage.setItem('trillo_admin_token', data.token);
+    }
+    return data;
+  },
 
-  logout: () =>
-    request('/api/auth/logout', {
-      method: 'POST',
-    }),
+  logout: async () => {
+    try {
+      return await request('/api/auth/logout', {
+        method: 'POST',
+      });
+    } finally {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('trillo_admin_token');
+      }
+    }
+  },
 
   getMe: () =>
     request('/api/auth/me', {
