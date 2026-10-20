@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ClubNavbar from '../components/club/ClubNavbar';
 import ClubHero from '../components/club/ClubHero';
 import ClubDisciplines from '../components/club/ClubDisciplines';
@@ -6,15 +6,17 @@ import ClubPricing from '../components/club/ClubPricing';
 import ClubCommunity from '../components/club/ClubCommunity';
 import ClubJoinSection from '../components/club/ClubJoinSection';
 import Footer from '../components/common/Footer';
+import SEO from '../components/common/SEO';
 
 export default function ClubPage() {
-  // Ajuste del título del documento para SEO y claridad
-  useEffect(() => {
-    document.title = 'El Club de Corredores | Trillo Durazno';
-  }, []);
-
   return (
     <div className="relative min-h-screen bg-[#08090a] text-[#f5f4f0] selection:bg-amber-400 selection:text-black overflow-x-hidden">
+      <SEO
+        title="Club de Corredores y Entrenamiento"
+        description="Unite al Club de Corredores Trillo en Durazno, Uruguay. Grupos de running, trail running, entrenamiento funcional y preparación física para carreras al aire libre."
+        canonical="https://trilloeventos.com/club"
+        keywords="club de corredores durazno, grupo de running durazno, entrenamiento trail uruguay, running uruguay, trillo club"
+      />
       {/* Navegación de El Club */}
       <ClubNavbar />
 

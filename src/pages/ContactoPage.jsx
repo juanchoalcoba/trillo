@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { contactApi } from '../services/api';
 import Footer from '../components/common/Footer';
+import SEO from '../components/common/SEO';
 
 const TOPICS = [
   { id: 'General', label: 'Consulta General' },
@@ -40,9 +41,6 @@ export default function ContactoPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  useEffect(() => {
-    document.title = 'Contacto | TRILLO Durazno';
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -100,6 +98,12 @@ export default function ContactoPage() {
 
   return (
     <div className="min-h-screen bg-[#08090a] text-[#f5f4f0] selection:bg-[#e87a38] selection:text-white relative overflow-x-hidden">
+      <SEO
+        title="Contacto y Consultas"
+        description="Ponete en contacto con el equipo de Trillo en Durazno, Uruguay. Consultas sobre carreras, inscripciones, membresías del Club o expediciones personalizadas."
+        canonical="https://trilloeventos.com/contacto"
+        keywords="contacto trillo, trillo durazno uruguay, inscripciones carreras trillo, whatsapp trillo"
+      />
       {/* Background Decorative Gradient Orbs */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[-10%] right-[-5%] w-[550px] h-[550px] rounded-full bg-[#e87a38]/10 blur-[130px]" />

@@ -3,25 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    
-    <!-- SEO & Metadata -->
-    <title>TRILLO — Animate a vivir | Universo Trillo</title>
-    <meta name="description" content="Trillo es un estilo de vida y una forma de vivir. Eventos deportivos, carreras, aventuras de naturaleza y comunidad desde el interior de Uruguay." />
+
+    <!-- SEO Fundamental & Indexación -->
+    <title>TRILLO — Eventos Deportivos, Carreras de Trail y Aventuras en Uruguay</title>
+    <meta name="description" content="Trillo es una productora de experiencias deportivas y estilo de vida al aire libre en Uruguay. Carreras de trail running, eventos en la naturaleza, comunidad y aventuras únicas en el interior del país. Animate a vivir." />
+    <meta name="keywords" content="Trillo, Trillo eventos, Universo Trillo, trail running uruguay, carreras de trail, eventos deportivos uruguay, carreras durazno, rebollo, laberinto, ecoturismo uruguay, senderismo, correr uruguay, aventuras uruguay" />
+    <meta name="author" content="Trillo" />
+    <meta name="publisher" content="Trillo" />
+    <link rel="canonical" href="https://trilloeventos.com/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- SEO Geográfico (Uruguay) -->
+    <meta name="geo.region" content="UY" />
+    <meta name="geo.placename" content="Uruguay" />
+    <meta name="geo.position" content="-33.381;-56.523" />
+    <meta name="ICBM" content="-33.381, -56.523" />
+
+    <!-- Open Graph / Redes Sociales & WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TRILLO" />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:url" content="https://trilloeventos.com/" />
+    <meta property="og:title" content="TRILLO — Eventos Deportivos, Carreras de Trail y Aventuras en Uruguay" />
+    <meta property="og:description" content="Trillo es una productora de experiencias deportivas y estilo de vida al aire libre en Uruguay. Carreras de trail running, eventos en la naturaleza y comunidad. Animate a vivir." />
+    <meta property="og:image" content="https://trilloeventos.com/logocorredores.png" />
+    <meta property="og:image:alt" content="Trillo - Animate a vivir" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trilloeventos.com/" />
+    <meta name="twitter:title" content="TRILLO — Eventos Deportivos, Carreras de Trail y Aventuras en Uruguay" />
+    <meta name="twitter:description" content="Eventos deportivos, carreras de trail running, aventuras de naturaleza y comunidad desde el interior de Uruguay. Animate a vivir." />
+    <meta name="twitter:image" content="https://trilloeventos.com/logocorredores.png" />
+
+    <!-- PWA y visualización móvil -->
     <meta name="theme-color" content="#08090a" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Trillo Admin" />
+    <meta name="apple-mobile-web-app-title" content="Trillo" />
 
     <!-- Google Fonts: Space Grotesk & Inter & Newsreader -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Datos Estructurados JSON-LD (Schema.org) para Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://trilloeventos.com/#website",
+            "url": "https://trilloeventos.com/",
+            "name": "TRILLO",
+            "alternateName": ["Universo Trillo", "Trillo Eventos", "Trillo Uruguay"],
+            "description": "Eventos deportivos, carreras de trail running, aventuras de naturaleza y comunidad en Uruguay.",
+            "inLanguage": "es-UY"
+          },
+          {
+            "@type": "SportsOrganization",
+            "@id": "https://trilloeventos.com/#organization",
+            "name": "TRILLO",
+            "alternateName": "Universo Trillo",
+            "url": "https://trilloeventos.com/",
+            "logo": "https://trilloeventos.com/logoTrillo.png",
+            "image": "https://trilloeventos.com/logocorredores.png",
+            "description": "Comunidad deportiva y productora de carreras de trail running, expediciones de naturaleza y ecoturismo en el interior de Uruguay.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Uruguay"
+            },
+            "sameAs": [
+              "https://www.instagram.com/trillo.uy/",
+              "https://www.youtube.com/@ALTRANCOPODCAST/streams"
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body class="bg-[#08090a] text-[#f4f3ef] antialiased selection:bg-[#e87a38] selection:text-black min-h-screen overflow-x-hidden font-sans">
     <div id="root"></div>

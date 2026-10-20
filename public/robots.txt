@@ -1,0 +1,14 @@
+# =======================================================
+# Robots.txt - TRILLO (https://trilloeventos.com)
+# =======================================================
+
+User-agent: *
+Allow: /
+
+# Excluir rutas privadas y administrativas del rastreo
+Disallow: /backoffice/
+Disallow: /admin
+Disallow: /backend
+
+# Mapa de sitio oficial
+Sitemap: https://trilloeventos.com/sitemap.xml
