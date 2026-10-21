@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Volume2, VolumeX, Sparkles, MapPin, Play, Pause } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { CLOUDINARY_MEDIA } from '../../config/cloudinary';
-//hola
+
 export default function HeroSection() {
   const [ambientAudio, setAmbientAudio] = useState(false);
   const audioCtxRef = useRef(null);

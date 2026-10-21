@@ -139,7 +139,6 @@ export default function EventosHero() {
               <span className="w-2 h-2 rounded-full bg-[#f97316] group-hover:scale-125 transition-transform shrink-0" />
               <div className="text-left">
                 <span className="block font-semibold tracking-wide text-white">Desafío Rebollo</span>
-                <span className="block text-[10px] text-[#8d9299] font-mono">Trail & Sierras</span>
               </div>
             </a>
 
@@ -150,7 +149,7 @@ export default function EventosHero() {
               <span className="w-2 h-2 rounded-full bg-[#eab308] group-hover:scale-125 transition-transform shrink-0" />
               <div className="text-left">
                 <span className="block font-semibold tracking-wide text-white">Laberinto</span>
-                <span className="block text-[10px] text-[#8d9299] font-mono">Cross Country</span>
+
               </div>
             </a>
 
@@ -161,7 +160,7 @@ export default function EventosHero() {
               <span className="w-2 h-2 rounded-full bg-[#e87a38] group-hover:scale-125 transition-transform shrink-0" />
               <div className="text-left">
                 <span className="block font-semibold tracking-wide text-white">San Pedro</span>
-                <span className="block text-[10px] text-[#8d9299] font-mono">Corrida Nocturna</span>
+                
               </div>
             </a>
           </motion.div>
