@@ -115,7 +115,7 @@ export default function EventosHero() {
             className="max-w-3xl mx-auto px-2"
           >
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-['Space_Grotesk'] font-black uppercase text-[#f5f4f0] tracking-tight leading-none drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
-              TRILLO EVENTOS
+           EVENTOS
             </h1>
             <p className="mt-1.5 sm:mt-2 text-lg sm:text-2xl font-['Space_Grotesk'] font-medium tracking-wide text-[#e87a38] drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
               Carreras y desafíos que hacen vibrar a toda una ciudad
