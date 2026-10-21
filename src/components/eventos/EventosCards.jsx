@@ -71,7 +71,7 @@ export default function EventosCards() {
             Eventos para Desafiarte en el Territorio
           </h2>
           <p className="mt-2 text-sm sm:text-base text-[#8d9299] max-w-2xl">
-            Desde el trail running más agreste en las sierras, hasta la velocidad táctica en el laberinto y la multitudinaria corrida nocturna de San Pedro.
+            Carrera de calle, trail running y desafíos naturales para vivir con amigos y en familia.
           </p>
         </div>
 

@@ -54,7 +54,7 @@ export const EVENTS = [
   {
     id: 'laberinto',
     title: 'Carrera del Laberinto',
-    subtitle: 'Cross Country Técnico & Velocidad Pura',
+    subtitle: 'Una prueba para la orientación y los sentidos',
     badge: 'Cross Dinámico',
     season: 'Invierno 2027',
     date: 'Agosto 2027 · Durazno',
@@ -100,7 +100,7 @@ export const EVENTS = [
   {
     id: 'san-pedro',
     title: 'Corrida San Pedro',
-    subtitle: 'La Gran Fiesta del Running & Atardecer',
+    subtitle: 'La Gran Fiesta del Running',
     badge: 'Edición Oficial',
     season: 'Primavera 2026',
     date: 'Sábado 21 de Noviembre · 18:30 HS',

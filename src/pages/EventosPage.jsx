@@ -4,7 +4,6 @@ import EventosHero from '../components/eventos/EventosHero';
 import EventosCards from '../components/eventos/EventosCards';
 import EventosGallery from '../components/eventos/EventosGallery';
 import EventosKits from '../components/eventos/EventosKits';
-import EventosCTA from '../components/eventos/EventosCTA';
 import Footer from '../components/common/Footer';
 import SEO from '../components/common/SEO';
 
@@ -33,9 +32,6 @@ export default function EventosPage() {
 
         {/* Kits del Corredor, Medallas y Servicios */}
         <EventosKits />
-
-        {/* Inscripciones, FAQ y Contacto */}
-        <EventosCTA />
       </main>
 
       {/* Footer Global Unificado */}
