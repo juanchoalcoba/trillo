@@ -129,9 +129,7 @@ export default function SobreNosotrosSection() {
               {/* Contenido Editorial de Pablo */}
               <div className="p-6 sm:p-8 space-y-6">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#e87a38] uppercase tracking-wider mb-1">
-                    <span>Liderazgo & Creación</span>
-                  </div>
+                 
                   <h3 className="text-2xl sm:text-3xl font-black text-[#f5f4f0] font-['Space_Grotesk'] tracking-tight">
                     Pablo Salazar
                   </h3>
@@ -205,7 +203,7 @@ export default function SobreNosotrosSection() {
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-xs font-mono text-[#f5f4f0]">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    <span className="font-bold tracking-wider uppercase">Co-Fundador</span>
+                    <span className="font-bold tracking-wider uppercase">Coordinador</span>
                   </div>
 
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] font-mono text-[#d8cfc4]">
@@ -225,9 +223,7 @@ export default function SobreNosotrosSection() {
               {/* Contenido Editorial de Robert */}
               <div className="p-6 sm:p-8 space-y-6">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-amber-400 uppercase tracking-wider mb-1">
-                    <span>Docencia & Preparación Física</span>
-                  </div>
+                  
                   <h3 className="text-2xl sm:text-3xl font-black text-[#f5f4f0] font-['Space_Grotesk'] tracking-tight">
                     Robert Acosta
                   </h3>

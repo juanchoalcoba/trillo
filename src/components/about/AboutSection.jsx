@@ -23,7 +23,7 @@ export default function AboutSection() {
       title: 'TRILLO EVENTOS',
       headline: 'Creamos experiencias que hacen vibrar a una ciudad.',
       description:
-        'Carreras, desafíos y eventos deportivos que buscan ser mucho más que una competencia. Es la energía de cientos de personas compartiendo un mismo pulso en el asfalto o en el barro.',
+        'Carreras, desafíos y eventos deportivos que buscan ser mucho más que una competencia. Es la energía de cientos de personas compartiendo un mismo pulso.',
       highlights: ['Corrida San Pedro (Durazno)', 'Carrera del Laberinto', 'Desafíos nocturnos y urbanos'],
       icon: Trophy,
       accent: '#e87a38',

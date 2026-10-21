@@ -221,17 +221,7 @@ export default function HeroSection() {
         {/* Hero Central Monumental Content */}
         <div className="my-auto py-2 sm:py-3 text-center flex flex-col items-center justify-center max-w-3xl mx-auto shrink">
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full glass-pill text-[10px] sm:text-xs font-medium text-[#f5f4f0] mb-2 sm:mb-3 shadow-lg bg-black/40 backdrop-blur-md border border-white/15"
-          >
-            <Sparkles className="w-3 h-3 text-[#e87a38]" />
-            <span className="tracking-widest uppercase font-mono">
-              Una filosofía de vida
-            </span>
-          </motion.div>
+          
 
           {/* Logo Principal TRILLO (Alta Calidad Real con Mayor Presencia) */}
           <motion.div
