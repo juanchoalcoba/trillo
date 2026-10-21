@@ -133,7 +133,7 @@ export default function EventosHero() {
             className="mt-2.5 sm:mt-3.5 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-3xl"
           >
             <a
-              href="#rebollo"
+              href="#desafio-rebollo"
               className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/90 text-xs text-[#f5f4f0] border border-[#f97316]/40 hover:border-[#f97316] transition-all duration-300 group shadow-xl backdrop-blur-md active:scale-95"
             >
               <span className="w-2 h-2 rounded-full bg-[#f97316] group-hover:scale-125 transition-transform shrink-0" />
