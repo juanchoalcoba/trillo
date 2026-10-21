@@ -118,9 +118,7 @@ export default function ClubHero() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-['Newsreader'] italic font-light text-amber-400 leading-tight drop-shadow-[0_3px_15px_rgba(0,0,0,0.95)]">
               El deporte como estilo de vida<span className="text-[#f5f4f0]">.</span>
             </h2>
-            <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-[#f5f4f0]/90 font-normal leading-relaxed max-w-lg mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-              Entrenamientos grupales semanales en Durazno, preparación física guiada por profesores y el Río Yí como nuestro patio natural.
-            </p>
+            
           </motion.div>
 
           {/* Botones / Accesos Directos a las Secciones */}
@@ -130,32 +128,7 @@ export default function ClubHero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-2.5 sm:mt-3.5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-3xl"
           >
-            <a
-              href="#disciplinas"
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-[#f5f4f0] border border-white/20 hover:border-amber-400 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
-            >
-              <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
-              <span className="font-semibold tracking-wide">Disciplinas</span>
-              <span className="text-[#d8cfc4] text-[11px] font-mono">· Running & Trail</span>
-            </a>
-
-            <a
-              href="#membresia"
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-amber-300 border border-amber-500/60 hover:border-amber-400 bg-amber-500/10 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
-            >
-              <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform shrink-0" />
-              <span className="font-semibold tracking-wide">Cuota & Beneficios</span>
-              <span className="text-amber-200/80 text-[11px] font-mono">· $1.400/mes</span>
-            </a>
-
-            <a
-              href="#rioyi"
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-black/60 hover:bg-black/80 text-xs text-[#f5f4f0] border border-white/20 hover:border-amber-400 transition-all duration-300 group shadow-lg backdrop-blur-md whitespace-nowrap active:scale-95"
-            >
-              <span className="w-2 h-2 rounded-full bg-stone-300 group-hover:scale-125 transition-transform shrink-0" />
-              <span className="font-semibold tracking-wide">El Río Yí</span>
-              <span className="text-[#d8cfc4] text-[11px] font-mono">· Naturaleza</span>
-            </a>
+            
 
             <a
               href="https://wa.me/59898121608?text=Hola%20Trillo!%20Quiero%20sumarme%20a%20El%20Club%20de%20Corredores%20en%20Durazno."
