@@ -57,14 +57,6 @@ export default function EventosKits() {
             </span>
           </div>
 
-          <div className="absolute bottom-5 left-5 right-5">
-            <h3 className="text-xl sm:text-2xl font-bold font-['Space_Grotesk'] text-[#f5f4f0]">
-              Materia Criolla & Tecnología Deportiva
-            </h3>
-            <p className="text-xs text-[#8d9299] font-mono mt-1">
-              Retiro de kits: Viernes 20 en Durazno Centro o Sábado 21 en Plaza San Pedro.
-            </p>
-          </div>
         </motion.div>
 
         {/* Columna Derecha: Lista de Ítems */}
