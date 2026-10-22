@@ -118,18 +118,6 @@ export default function ClubPricing() {
     <section id="membresia" className="relative z-10 py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10 scroll-mt-24">
       {/* Header de Sección */}
       <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 text-xs text-amber-300 mb-4"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span className="font-mono uppercase tracking-widest text-[11px] font-semibold">
-            Cuota Mensual & Afiliación
-          </span>
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,15 +128,7 @@ export default function ClubPricing() {
           Invertí en tu Salud, Energía y Pertenencia
         </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mt-4 text-base sm:text-lg text-[#8d9299] leading-relaxed"
-        >
-          Una cuota accesible pensada para que no haya excusas. Pase libre a todos los entrenamientos semanales, profesores en cada sesión y la mejor comunidad de corredores del interior del país.
-        </motion.p>
+        
       </div>
 
       {/* Grid de Planes & Cuotas */}
