@@ -12,14 +12,29 @@ import {
   Film,
 } from 'lucide-react';
 import { AVENTURAS_GALLERY } from '../../data/galeriasData';
+import { galleriesApi } from '../../services/api';
 
 export default function AventurasGallery() {
+  const [gallery, setGallery] = useState(AVENTURAS_GALLERY || []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'featured'
 
-  const gallery = AVENTURAS_GALLERY || [];
+  useEffect(() => {
+    async function loadDynamicGalleries() {
+      try {
+        const res = await galleriesApi.getPublic();
+        if (res?.galleries?.aventuras && res.galleries.aventuras.length > 0) {
+          setGallery(res.galleries.aventuras);
+        }
+      } catch (err) {
+        console.debug('Usando galería estática de aventuras (fallback offline):', err.message);
+      }
+    }
+    loadDynamicGalleries();
+  }, []);
+
   const activeImage = gallery[currentIndex] || gallery[0];
 
   const nextSlide = () => {

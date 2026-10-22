@@ -17,6 +17,7 @@ import {
   MessageSquare,
   ClipboardList,
   Download,
+  Camera,
 } from 'lucide-react';
 
 export default function BackofficeLayout() {
@@ -88,6 +89,7 @@ export default function BackofficeLayout() {
     { to: '/backoffice/adventures', label: 'Aventuras', icon: Compass },
     { to: '/backoffice/products', label: 'Tienda Trillo', icon: ShoppingBag },
     { to: '/backoffice/club-plans', label: 'El Club (Planes)', icon: HeartHandshake },
+    { to: '/backoffice/galleries', label: 'Galerías de Fotos', icon: Camera },
   ];
 
 

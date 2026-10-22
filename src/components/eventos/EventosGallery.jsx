@@ -13,6 +13,7 @@ import {
   Flame,
 } from 'lucide-react';
 import { EVENTOS_GALLERIES } from '../../data/galeriasData';
+import { galleriesApi } from '../../services/api';
 
 const TABS = [
   {
@@ -46,12 +47,30 @@ const TABS = [
 
 export default function EventosGallery() {
   const [activeTab, setActiveTab] = useState('rebollo');
+  const [galleries, setGalleries] = useState(EVENTOS_GALLERIES);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [viewMode, setViewMode] = useState('featured'); // 'featured' | 'grid'
 
-  const currentGallery = EVENTOS_GALLERIES[activeTab] || [];
+  useEffect(() => {
+    async function loadDynamicGalleries() {
+      try {
+        const res = await galleriesApi.getPublic();
+        if (res?.galleries?.eventos) {
+          setGalleries((prev) => ({
+            ...prev,
+            ...res.galleries.eventos,
+          }));
+        }
+      } catch (err) {
+        console.debug('Usando galería estática de eventos (fallback offline):', err.message);
+      }
+    }
+    loadDynamicGalleries();
+  }, []);
+
+  const currentGallery = galleries[activeTab] || [];
   const currentTabMeta = TABS.find((t) => t.key === activeTab) || TABS[0];
   const activeImage = currentGallery[currentIndex] || currentGallery[0];
 

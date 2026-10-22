@@ -276,6 +276,47 @@ export const adventureOrdersApi = {
     }),
 };
 
+// ==========================================
+// 9. SERVICIOS DE GALERÍAS FOTOGRÁFICAS
+// ==========================================
+export const galleriesApi = {
+  // Público
+  getPublic: () => request('/api/galleries/public'),
+
+  // Administrativo
+  getAllAdmin: (params = {}) => {
+    const searchParams = new URLSearchParams();
+    if (params.category) searchParams.append('category', params.category);
+    if (params.section) searchParams.append('section', params.section);
+    if (params.status) searchParams.append('status', params.status);
+    const qs = searchParams.toString();
+    return request(`/api/galleries/admin/all${qs ? `?${qs}` : ''}`);
+  },
+
+  create: (data) =>
+    request('/api/galleries/admin', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  update: (id, data) =>
+    request(`/api/galleries/admin/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+
+  toggleStatus: (id, is_active) =>
+    request(`/api/galleries/admin/${id}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ is_active }),
+    }),
+
+  delete: (id) =>
+    request(`/api/galleries/admin/${id}`, {
+      method: 'DELETE',
+    }),
+};
+
 export default {
   auth: authApi,
   events: eventsApi,
@@ -284,6 +325,7 @@ export default {
   clubPlans: clubPlansApi,
   contact: contactApi,
   adventureOrders: adventureOrdersApi,
+  galleries: galleriesApi,
   upload: uploadApi,
 };
 

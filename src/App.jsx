@@ -25,6 +25,7 @@ const ProductFormPage = lazy(() => import('./pages/backoffice/ProductFormPage'))
 const ClubPlansPage = lazy(() => import('./pages/backoffice/ClubPlansPage'));
 const MessagesPage = lazy(() => import('./pages/backoffice/MessagesPage'));
 const AdventureOrdersPage = lazy(() => import('./pages/backoffice/AdventureOrdersPage'));
+const GalleriesManagerPage = lazy(() => import('./pages/backoffice/GalleriesManagerPage'));
 
 
 // Indicador de carga ultra liviano y elegante para transiciones de ruta
@@ -125,6 +126,9 @@ export default function App() {
 
             {/* Gestión de Planes del Club */}
             <Route path="club-plans" element={<ClubPlansPage />} />
+
+            {/* Gestión de Galerías Multimedia */}
+            <Route path="galleries" element={<GalleriesManagerPage />} />
           </Route>
 
 
