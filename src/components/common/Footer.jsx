@@ -17,10 +17,81 @@ import {
   Heart,
   ChevronRight,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+function getBannerData(pathname = '') {
+  if (pathname.startsWith('/club')) {
+    return {
+      badgeText: 'Expediciones · Naturaleza · Travesías',
+      badgeColor: 'text-[#4ade80]',
+      titlePrefix: 'Llevá tu energía al territorio salvaje.',
+      titleGradient: 'Viví Trillo Aventuras.',
+      gradientClass: 'from-[#4ade80] via-[#22c55e] to-[#10b981]',
+      description:
+        'Complementá los entrenamientos semanales con expediciones guiadas, travesías en kayak por el Río Yí y trekking agreste por todo el país.',
+      ctaTo: '/aventuras',
+      ctaLabel: 'Explorar Aventuras',
+      whatsappMsg:
+        'Hola Trillo! Estoy en El Club y quiero conocer las próximas expediciones de Trillo Aventuras.',
+      glowColor: 'bg-[#4ade80]/10',
+    };
+  }
+
+  if (pathname.startsWith('/eventos')) {
+    return {
+      badgeText: 'Comunidad · Entrenamiento · Rendimiento',
+      badgeColor: 'text-amber-400',
+      titlePrefix: 'El camino se hace al andar.',
+      titleGradient: 'Preparate con El Club.',
+      gradientClass: 'from-amber-400 via-orange-400 to-[#e87a38]',
+      description:
+        'Entrenamientos grupales semanales en Durazno, preparación física guiada por profesores y la mejor comunidad para desafiarte en cada carrera.',
+      ctaTo: '/club',
+      ctaLabel: 'Conocer El Club',
+      whatsappMsg:
+        'Hola Trillo! Quiero entrenar con El Club de Corredores para preparar las próximas carreras.',
+      glowColor: 'bg-amber-400/10',
+    };
+  }
+
+  if (pathname.startsWith('/aventuras')) {
+    return {
+      badgeText: 'Carreras · Desafíos · Senderos',
+      badgeColor: 'text-[#e87a38]',
+      titlePrefix: 'Desafiá tus propios límites.',
+      titleGradient: 'Vibrá en Trillo Eventos.',
+      gradientClass: 'from-[#e87a38] via-[#f59e0b] to-[#fbbf24]',
+      description:
+        'Poné a prueba tu resistencia en las sierras con Desafío Rebollo, los circuitos técnicos del Laberinto y la multitudinaria corrida nocturna de San Pedro.',
+      ctaTo: '/eventos',
+      ctaLabel: 'Ver Carreras y Eventos',
+      whatsappMsg:
+        'Hola Trillo! Quiero consultar sobre las próximas carreras y eventos de trail.',
+      glowColor: 'bg-[#e87a38]/10',
+    };
+  }
+
+  // Por defecto (Home, Tienda, Contacto, etc.)
+  return {
+    badgeText: 'Comunidad · Territorio · Movimiento',
+    badgeColor: 'text-[#e87a38]',
+    titlePrefix: 'El camino se hace al andar.',
+    titleGradient: 'Animate a vivirlo como nosotros.',
+    gradientClass: 'from-[#e87a38] via-[#f59e0b] to-[#fbbf24]',
+    description:
+      'Entrenamientos grupales en El Club, carreras inolvidables y expediciones a los rincones más agrestes de Durazno y la región.',
+    ctaTo: '/club',
+    ctaLabel: 'Conocer El Club',
+    whatsappMsg:
+      'Hola Trillo! Me contacto desde la web para conocer más sobre sus actividades.',
+    glowColor: 'bg-[#e87a38]/10',
+  };
+}
 
 export default function Footer() {
   const [legalModal, setLegalModal] = useState(null); // 'terms' | 'privacy' | null
+  const { pathname } = useLocation();
+  const banner = getBannerData(pathname);
 
   const scrollToTop = () => {
     if (window.lenis) {
@@ -41,7 +112,7 @@ export default function Footer() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-30" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* 1. Pre-Footer Banner de Llamado a la Acción */}
+          {/* 1. Pre-Footer Banner de Llamado a la Acción Dinámico */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,28 +120,28 @@ export default function Footer() {
             transition={{ duration: 0.8 }}
             className="rounded-3xl p-8 sm:p-12 mb-16 sm:mb-20 bg-gradient-to-br from-[#12151c]/90 via-[#0e1117]/95 to-[#08090a] border border-white/10 relative overflow-hidden backdrop-blur-xl shadow-2xl"
           >
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#e87a38]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className={`absolute -top-20 -right-20 w-80 h-80 rounded-full blur-3xl pointer-events-none ${banner.glowColor}`} />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
               <div className="max-w-2xl space-y-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#e87a38]">
+                <div className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono ${banner.badgeColor}`}>
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span className="uppercase tracking-wider">Comunidad · Territorio · Movimiento</span>
+                  <span className="uppercase tracking-wider">{banner.badgeText}</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black font-['Space_Grotesk'] text-[#f5f4f0] uppercase tracking-tight leading-tight">
-                  El camino se hace al andar.{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e87a38] via-[#f59e0b] to-[#fbbf24]">
-                    Animate a vivirlo como nosotros.
+                  {banner.titlePrefix}{' '}
+                  <span className={`text-transparent bg-clip-text bg-gradient-to-r ${banner.gradientClass}`}>
+                    {banner.titleGradient}
                   </span>
                 </h3>
                 <p className="text-xs sm:text-sm text-[#8d9299] leading-relaxed">
-                  Entrenamientos grupales en El Club, carreras inolvidables y expediciones a los rincones más agrestes de Durazno y la región.
+                  {banner.description}
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full lg:w-auto">
                 <a
-                  href="https://wa.me/59898121608?text=Hola%20Trillo!%20Me%20contacto%20desde%20la%20web%20para%20conocer%20m%C3%A1s%20sobre%20sus%20actividades."
+                  href={`https://wa.me/59898121608?text=${encodeURIComponent(banner.whatsappMsg)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-[#4ade80] hover:bg-[#22c55e] transition-all duration-300 shadow-xl shadow-[#4ade80]/20 active:scale-95"
@@ -81,10 +152,10 @@ export default function Footer() {
                 </a>
 
                 <Link
-                  to="/club"
+                  to={banner.ctaTo}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider text-[#f5f4f0] hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
                 >
-                  <span>Conocer El Club</span>
+                  <span>{banner.ctaLabel}</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

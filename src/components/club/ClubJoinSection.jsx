@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Check, ArrowUpRight, Compass, Trophy } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { MessageCircle, ArrowUpRight } from 'lucide-react';
 
 export default function ClubJoinSection() {
   return (
@@ -48,36 +47,6 @@ export default function ClubJoinSection() {
           </div>
         </div>
       </motion.div>
-
-      {/* Footer del Club con Volver a Universo Trillo */}
-      <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#8d9299]">
-        <div className="flex items-center gap-3">
-          <div className="w-6 h-6 rounded-full overflow-hidden border border-amber-400/30 p-0.5 bg-black/40 shrink-0">
-            <img
-              src="/logocorredores.png"
-              alt="Club Corredores"
-              className="w-full h-full object-cover rounded-full"
-            />
-          </div>
-          <span className="text-[11px] font-mono">
-            EL CLUB DE CORREDORES © {new Date().getFullYear()} · Durazno, Uruguay
-          </span>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-6 font-mono text-[11px]">
-          <Link to="/eventos" className="hover:text-[#e87a38] transition-colors flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#e87a38]" />
-            Trillo Eventos (San Pedro)
-          </Link>
-          <Link to="/aventuras" className="hover:text-[#4ade80] transition-colors flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
-            Trillo Aventuras (Expedición)
-          </Link>
-          <Link to="/" className="hover:text-white transition-colors">
-            Inicio Trillo
-          </Link>
-        </div>
-      </div>
     </section>
   );
 }
