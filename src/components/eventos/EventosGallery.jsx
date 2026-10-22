@@ -71,6 +71,7 @@ export default function EventosGallery() {
   }, []);
 
   const currentGallery = galleries[activeTab] || [];
+  const currentTabMeta = TABS.find((t) => t.key === activeTab) || TABS[0];
   const activeImage = currentGallery[currentIndex] || currentGallery[0];
 
   // Resetea el índice al cambiar de pestaña
