@@ -71,7 +71,6 @@ export default function EventosGallery() {
   }, []);
 
   const currentGallery = galleries[activeTab] || [];
-  const currentTabMeta = TABS.find((t) => t.key === activeTab) || TABS[0];
   const activeImage = currentGallery[currentIndex] || currentGallery[0];
 
   // Resetea el índice al cambiar de pestaña
@@ -184,38 +183,25 @@ export default function EventosGallery() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
         {TABS.map((tab) => {
           const isActive = activeTab === tab.key;
-          const count = (EVENTOS_GALLERIES[tab.key] || []).length;
 
           return (
             <button
               key={tab.key}
               type="button"
               onClick={() => handleTabChange(tab.key)}
-              className={`relative p-4 rounded-2xl text-left transition-all duration-300 border flex flex-col justify-between group cursor-pointer ${
+              className={`relative py-3.5 px-4 rounded-2xl text-center transition-all duration-300 border group cursor-pointer ${
                 isActive
                   ? `bg-[#0f1115] ${tab.activeBorder} shadow-lg shadow-black/50`
                   : 'bg-[#0a0c0f]/60 border-white/10 hover:border-white/20 hover:bg-[#0f1115]/50'
               }`}
             >
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono border ${tab.badgeColor}`}>
-                  {tab.tag}
-                </span>
-                <span className="text-[11px] font-mono text-[#8d9299]">
-                  {count} {count === 1 ? 'foto' : 'fotos'}
-                </span>
-              </div>
-
-              <div>
-                <h3 className={`font-bold font-['Space_Grotesk'] text-base sm:text-lg transition-colors ${
+              <h3
+                className={`font-bold font-['Space_Grotesk'] text-base sm:text-lg transition-colors ${
                   isActive ? 'text-white' : 'text-neutral-300 group-hover:text-white'
-                }`}>
-                  {tab.label}
-                </h3>
-                <p className="text-[11px] text-[#8d9299] mt-0.5 truncate">
-                  {tab.subtitle}
-                </p>
-              </div>
+                }`}
+              >
+                {tab.label}
+              </h3>
 
               {isActive && (
                 <div
