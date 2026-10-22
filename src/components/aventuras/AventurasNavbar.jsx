@@ -84,12 +84,6 @@ export default function AventurasNavbar() {
             <Sparkles className="w-3.5 h-3.5" />
             Armá tu Aventura
           </a>
-          <a
-            href="#filosofia"
-            className="text-xs font-mono uppercase tracking-wider text-[#8d9299] hover:text-[#f5f4f0] transition-colors"
-          >
-            Seguridad & Guías
-          </a>
         </nav>
 
         {/* Right CTA */}
@@ -190,13 +184,6 @@ export default function AventurasNavbar() {
               </span>
             </a>
 
-            <a
-              href="#filosofia"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#f5f4f0] hover:text-white transition-colors font-medium"
-            >
-              Seguridad, Logística & Protocolos
-            </a>
 
             <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
               <a

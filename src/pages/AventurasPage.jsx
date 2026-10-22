@@ -2,7 +2,6 @@ import React from 'react';
 import AventurasNavbar from '../components/aventuras/AventurasNavbar';
 import AventurasHero from '../components/aventuras/AventurasHero';
 import AventurasCategories from '../components/aventuras/AventurasCategories';
-import AventurasPhilosophy from '../components/aventuras/AventurasPhilosophy';
 import AventurasGallery from '../components/aventuras/AventurasGallery';
 import ArmaTuAventura from '../components/aventuras/ArmaTuAventura';
 import AventurasCTA from '../components/aventuras/AventurasCTA';
@@ -34,9 +33,6 @@ export default function AventurasPage() {
 
         {/* Servicio Interactivo: Armá tu Aventura a Medida */}
         <ArmaTuAventura />
-
-        {/* Filosofía, Seguridad, Protocolos WFR y Mínimo Impacto */}
-        <AventurasPhilosophy />
 
         {/* Expediciones a Medida, FAQ y Conexión con Eventos y Club */}
         <AventurasCTA />
